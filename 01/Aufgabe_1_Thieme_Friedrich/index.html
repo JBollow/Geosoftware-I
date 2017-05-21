@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Eric Thieme (429603), Christoph Friedrich (428065)">
+  <title>Distanzberechnung - Geosoftware I, SoSe 2017, Aufgabe 1</title>
+  <!-- our app code -->
+  <script src="app.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Distanzberechnung</h1>
+  <p>Geosoftware I, SoSe 2017, Aufgabe 1</p>
+  
+  <!-- little how to -->
+  <p>Bitte die Koordinaten der Punkte angeben. Punkte auf der Südhalbkugel oder in der westlichen Hemisphäre bitte mit negativen Werten für Breite bzw. Länge angeben.</p>
+  
+  <!-- form, on submit event calc() is called and the default action (i.e. submitting the form) prevented -->
+  <form onsubmit="event.preventDefault(); calc();">
+    <!-- group lat and lon fields together -->
+    <fieldset>
+      <legend>Punkt 1</legend>
+      <!-- Latitude has an allowed range from -90 to 90, longitude from -180 to 180. step="any" is necessary to allow float numbers (instead of integers only) -->
+      <label for="lat1">Latitude</label> <input name="lat1" id="lat1" required type="number" min="-90"  max="90"  step="any" placeholder="latitude point 1">
+      <label for="lon1">Longitude</label><input name="lon1" id="lon1" required type="number" min="-180" max="180" step="any" placeholder="longitude point 1">
+    </fieldset>
+    <!-- second point analogous -->
+    <fieldset>
+      <legend>Punkt 2</legend>
+      <label for="lat2">Latitude</label> <input name="lat2" id="lat2" required type="number" min="-90"  max="90"  step="any" placeholder="latitude point 2">
+      <label for="lon2">Longitude</label><input name="lon2" id="lon2" required type="number" min="-180" max="180" step="any" placeholder="longitude point 2">
+    </fieldset>
+    <!-- submit button -->
+    <input type="submit" value="Berechnen">
+  </form><br>
+  
+  <!-- output field -->
+  <output name="distanz" id="distanz" for="lat1 lon1 lat2 lon2">Resultat wird hier ausgegeben</output>
+</body>
+</html>

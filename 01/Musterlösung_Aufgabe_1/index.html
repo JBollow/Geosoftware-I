@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<!-- Author: Max Mustermann -->
+
+<html lang="en">
+	<head>
+		<!-- metadata about the site, lika page text encoding and title -->
+		<meta charset="utf-8">
+		<title>Task 1 - Distance between points</title>
+	</head>
+
+	<body>
+		<h1> Hey there!, </h1><h3> and welcome to our first HTML page for Geosoftware I.</h3> 
+		
+		<p>This page allows you to enter a set of real-world coordinates, and then automatically calculate the distance between them. Awesome, right?</p>
+		<br>
+		Enter your starting coordinate here:<br>
+		<!-- these are input tags for the first set of coordinates (as numbers) -->
+		<input id="lat1" type="number" min="-90" max="90" step="any" placeholder="Latitude here!"/>
+		<input id="lon1" type="number" min="-180" max="180" step="any" placeholder="Longitude here!"/>
+		<br><br>
+		Enter your destination coordinate here:<br>
+		<!-- these are input tags for the second set of coordinates (as numbers) -->
+		<input id="lat2" type="number" min="-90" max="90" step="any" placeholder="Latitude here!"/>
+		<input id="lon2" type="number" min="-180" max="180" step="any" placeholder="Longitude here!"/>
+		<p> And now, press this button for the magic to happen:
+		<!-- 	upon clicking this button, the calculateDistanceFromInputCoords() function is called,
+				which will use the coordinates currently filled in the input fields -->
+		<button id="submitCoordForm" onclick="calculateDistanceFromInputCoords()">Calculate Distance</button> 
+		</p>
+		<!-- 	This is a div, a HTML container for basically anything.
+				The results of the calculateDistanceFromInputCoords function will be displayed here. -->
+		<div id="inputCoordsDistanceOutput"></div>
+
+		<br>
+		<h3>This here is an example set of coordinates, and the calculated distance between them:</h3>
+		<!-- 	on page load, this div will be filled with the example Coordinates and the output of the
+				GetDistance function called using these coordinates´ values -->
+		<div id="distancevalue"> </div>
+		
+		<p>These pages were used as source for our calculations: <br>
+			<!-- external links can be set with an "a"-tag like so -->
+			<a href="http://www.movable-type.co.uk/scripts/latlong.html">Movable Type Scripts</a> <br> 
+			<a href="http://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula">Stackoverflow</a>
+		</p>
+
+		<!-- loading external scripts from files, here from our calcDistance.js file -->
+		<script src="calcDistance.js"></script>
+	</body>
+</html>
