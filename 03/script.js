@@ -23,18 +23,29 @@ var ReadFile = function(event) {
   reader.onload = function(){
 
       filecontent = reader.result; //coordinate data saved to this variable
+
+console.log(filecontent);
+      
       myBuildArray = new BuildArray(filecontent);
       myBuildArray.work(); //using self defined work function; see below
+      
+console.log(coordArray);
 
-      for (i=0; i < coordArray.length; i = i+4) { //iterating over array length...
+      for (i=0; i < coordArray.length-2; i = i+2) { //iterating over array length...
+//fixed this after the last seisson, sorry i wasn't there last monday, had a bad sunburn
 
           myPoint = new Point(coordArray[i], coordArray[i + 1]); //... to build points ....
           myPoint2 = new Point(coordArray[i + 2], coordArray[i + 3]);
+
+console.log(myPoint);
+console.log(myPoint2);
 
           myLine = new Line(myPoint, myPoint2); //... and combine those to lines...
           myLine.buildLine(); // using self defined build function; see below
           lengthArray.push(myLine.length);
       }
+
+
 
       myPolyLine = new Polyline(lengthArray); // builds polyline from the lines lengths stored in lengthArray
       myPolyLine.partialSum(); // computes the total length
@@ -94,7 +105,7 @@ function Point(lat, long){
 function Line(pt1, pt2){
 
     //attributes
-    this.pt1  = pt1;
+    this.pt1 = pt1;
     this.pt2 = pt2;
 
     //methods

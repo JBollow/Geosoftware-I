@@ -1,25 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="author" content="Sebastian Holtkamp, 406724">
-        <meta name="author" content="Jan-Patrick Bollow, 349891">
-        <title>Geosoftware I</title>
-    </head>
+<html lang="de">
+<head>
+    <!-- @author Jan-Patrick Bollow 349891 -->
+    <meta charset="UTF-8" name="Jan-Patrick Bollow" content="Aufgabe 03">
+    <link rel="stylesheet" href="Stylesheet.css">
+    <title>Aufgabe 03</title>
+    
+    <!-- loading scripts -->
+    <script src="script.js"></script>
+    <script src="jsnlog.min.js"></script>
 
-    <body>
-      <h1>Polyline measurements</h1>
+</head>
+<body>
+
+<!-- div container headline -->
+<div style="margin-left:10%; padding-left:10px; padding-top:10x; padding-bottom:10px; width:80%;">
+    <h1><b><u>
+        Polyline measurements
+    </b></u></h1>
+    <br>
+    <p>with JSNlog</p>
+</div>
+
+<!-- div container loading textfile for calculations -->
+<div style="background-color:#ffffff; margin-left:10%; padding-left:10px; padding-top:10x; padding-bottom:1px; border: 1px solid black;  width:500px;box-shadow: 10px 10px 5px #888888;">
+    
       <p>Please upload coordinate data below</p>
 
-
-      <input type='file' accept='text/plain' onchange='ReadFile(event)'>  <!-- calling the JS script -->
+      <input type='file' accept='text/plain' onchange='ReadFile(event)'>  
       <pre id="fileDisplayArea"></pre>
 
+    <p id="results">&nbsp;</p> 
+</div>
 
-    <p id="results"> </p> <!-- result displayed here -->
-    </body>
-
-    <script src="script.js" ></script>
+</body>
 </html>
