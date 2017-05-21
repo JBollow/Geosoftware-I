@@ -1,5 +1,4 @@
 /**
- * authors: Sebastian Holtkamp, 406724
  * authors: Jan-Patrick Bollow, 349891
  */
 
@@ -7,6 +6,9 @@
 var coordArray; //initializing Array
 var filecontent; //initializing String
 var lengthArray = []; //initializing Array
+
+JL.enabled;
+
 
 /**
 * @desc main function;
@@ -24,6 +26,7 @@ var ReadFile = function(event) {
 
       filecontent = reader.result; //coordinate data saved to this variable
 
+JL().fatal("log message");
 console.log(filecontent);
       
       myBuildArray = new BuildArray(filecontent);
