@@ -1,5 +1,6 @@
 /**
- * authors: Jan-Patrick Bollow, 349891
+ * authors: Jan-Patrick Bollow, 349891#
+ * authors: 
  */
 
 
@@ -7,7 +8,18 @@ var coordArray; //initializing Array
 var filecontent; //initializing String
 var lengthArray = []; //initializing Array
 
-JL.enabled;
+/**
+ * Only works with Firefox
+ * 
+ * Chrome doesn't allow cross origin without
+ * chrome --disable-web-security or --allow-file-access-from-files --allow-file-access --allow-cross-origin-auth-prompt
+ * 
+ * Logs aren't saved local, but visible in console (missing write rights)
+ * 
+ */
+var logger = JL();
+var consoleAppender = JL.createConsoleAppender('consoleAppender');
+logger.setOptions({"appenders": [consoleAppender]});
 
 
 /**
@@ -26,13 +38,22 @@ var ReadFile = function(event) {
 
       filecontent = reader.result; //coordinate data saved to this variable
 
-JL().fatal("log message");
-console.log(filecontent);
+/*
+*  First logger
+*  filecontent = content of the read file
+*/
+// console.log(filecontent);
+logger.debug(filecontent);
       
       myBuildArray = new BuildArray(filecontent);
       myBuildArray.work(); //using self defined work function; see below
-      
-console.log(coordArray);
+
+/*
+*  Second logger
+*  coordArray = array of all coordinates
+*/      
+// console.log(coordArray);
+logger.debug(coordArray);
 
       for (i=0; i < coordArray.length-2; i = i+2) { //iterating over array length...
 //fixed this after the last seisson, sorry i wasn't there last monday, had a bad sunburn
@@ -40,8 +61,19 @@ console.log(coordArray);
           myPoint = new Point(coordArray[i], coordArray[i + 1]); //... to build points ....
           myPoint2 = new Point(coordArray[i + 2], coordArray[i + 3]);
 
-console.log(myPoint);
-console.log(myPoint2);
+/*
+*  Third logger
+*  myPoint = point#1
+*/
+// console.log(myPoint);
+logger.debug(myPoint);
+
+/*
+*  Fourth logger
+*  myPoint2 = point#2
+*/
+// console.log(myPoint2);
+logger.debug(myPoint2);
 
           myLine = new Line(myPoint, myPoint2); //... and combine those to lines...
           myLine.buildLine(); // using self defined build function; see below
@@ -127,6 +159,14 @@ function Line(pt1, pt2){
         var temp3 = radius * temp2; //temp3 = distance in km
 
         this.length = temp3;
+
+/*
+*  First logger
+*  temp3 = distance between points
+*/
+// console.log(temp3);
+logger.debug(temp3);
+
     }
   }
 
