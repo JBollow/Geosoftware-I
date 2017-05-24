@@ -9,16 +9,14 @@ var filecontent; //initializing String
 var lengthArray = []; //initializing Array
 
 /**
- * Only works with Firefox
+ * Works best with Firefox
+ * ConsoleAppender works with Chrome
  * 
  * Chrome doesn't allow cross origin without
  * chrome --disable-web-security or --allow-file-access-from-files --allow-file-access --allow-cross-origin-auth-prompt
  * 
- * It works in Chrome on my Surface but not on my Desktop
- * 
  * Logs aren't saved local, but visible in console using ConsoleAppender (missing write rights)
- * http://jsnlog.com/Documentation/WebConfig/JSNLog/ConsoleAppender
- * 
+ * http://jsnlog.com/Documentation/WebConfig/JSNLog/ConsoleAppender 
  */
 var logger = JL();
 var consoleAppender = JL.createConsoleAppender('consoleAppender');
