@@ -17,6 +17,8 @@ var lengthArray = []; //initializing Array
  * 
  * Logs aren't saved local, but visible in console using ConsoleAppender (missing write rights)
  * http://jsnlog.com/Documentation/WebConfig/JSNLog/ConsoleAppender 
+ * 
+ * 
  */
 var logger = JL();
 var consoleAppender = JL.createConsoleAppender('consoleAppender');
