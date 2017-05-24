@@ -1,6 +1,6 @@
 /**
  * authors: Jan-Patrick Bollow, 349891#
- * authors: 
+ * authors: Malte Tiemann, 
  */
 
 
