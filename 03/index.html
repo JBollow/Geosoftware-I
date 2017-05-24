@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <!-- @author Jan-Patrick Bollow 349891 -->
     <meta charset="UTF-8" name="Jan-Patrick Bollow" content="Aufgabe 03">
     <link rel="stylesheet" href="Stylesheet.css">
     <title>Aufgabe 03</title>
-    
+
     <!-- loading scripts -->
     <script src="jsnlog.min.js"></script>
 
 </head>
+
 <body>
 
-<!-- div container headline -->
-<div style="margin-left:10%; padding-left:10px; padding-top:10x; padding-bottom:10px; width:80%;">
-    <h1><b><u>
+    <!-- div container headline -->
+    <div style="margin-left:10%; padding-left:10px; padding-top:10x; padding-bottom:10px; width:80%;">
+        <h1><b><u>
         Polyline measurements
-    </b></u></h1>
-    <br>
-    <p>with JSNlog</p>
-</div>
+    </b></u>
+        </h1>
+        <br>
+        <p>with JSNlog</p>
+    </div>
 
-<!-- div container loading textfile for calculations -->
-<div style="background-color:#ffffff; margin-left:10%; padding-left:10px; padding-top:10x; padding-bottom:1px; border: 1px solid black;  width:500px;box-shadow: 10px 10px 5px #888888;">
-    
-      <p>Please upload coordinate data below</p>
+    <!-- div container loading textfile for calculations -->
+    <div style="background-color:#ffffff; margin-left:10%; padding-left:10px; padding-top:10x; padding-bottom:1px; border: 1px solid black;  width:500px;box-shadow: 10px 10px 5px #888888;">
 
-      <input type='file' accept='text/plain' onchange='ReadFile(event)'>  
-      <pre id="fileDisplayArea"></pre>
+        <p>Please upload coordinate data below</p>
 
-    <p id="results">&nbsp;</p> 
-</div>
+        <input type='file' accept='text/plain' onchange='ReadFile(event)'>
+        <pre id="fileDisplayArea"></pre>
+
+        <p id="results">&nbsp;</p>
+    </div>
 
 </body>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 
 </html>
