@@ -60,7 +60,7 @@ var ReadFile = function (event) {
 
 
         for (i = 0; i < coordArray.length - 2; i = i + 2) { //iterating over array length...
-            //fixed this after the last seisson, sorry i wasn't there last monday, had a bad sunburn
+            //fixed this after the last seisson, sorry i wasn't there that monday, had a bad sunburn
 
             myPoint = new Point(coordArray[i], coordArray[i + 1]); //... to build points ....
             myPoint2 = new Point(coordArray[i + 2], coordArray[i + 3]);
