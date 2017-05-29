@@ -9,8 +9,8 @@ git add .
 
 git commit -a -m ""
 
-git push origin branch
+git push origin master
 
-git checkout branch
+git checkout master
 
 git checkout -b newbranch
