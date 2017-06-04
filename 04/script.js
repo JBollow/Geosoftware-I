@@ -22,7 +22,7 @@ var lengthArray = []; //initializing Array
 var logger = JL();
 var consoleAppender = JL.createConsoleAppender('consoleAppender');
 logger.setOptions({ "appenders": [consoleAppender] });
-    
+
 
 /**
 * @desc main function;
@@ -61,7 +61,6 @@ var ReadFile = function (event) {
 
 
         for (i = 0; i < coordArray.length - 2; i = i + 2) { //iterating over array length...
-            //fixed this after the last seisson, sorry i wasn't there that monday, had a bad sunburn
 
             myPoint = new Point(coordArray[i], coordArray[i + 1]); //... to build points ....
             myPoint2 = new Point(coordArray[i + 2], coordArray[i + 3]);
@@ -124,7 +123,8 @@ function BuildArray(input) {
             */
             // console.log(temp3);
             console.log("logger.ERROR(Not enough coordinates given!);");
-            logger.ERROR("Not enough coordinates given!");
+            logger.error("Not enough coordinates given!");
+            // fixed ERROR
 
             alert("Not enough coordinates given!");
             document.getElementById("results").innerHTML = "The given file does not contain enough points to construct a polyline!";
