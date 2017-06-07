@@ -1,6 +1,7 @@
 /**
- * authors: Jan-Patrick Bollow, 349891#
- * 
+ * author: Jan-Patrick Bollow, 349891#
+ *  
+ * new and cleaner, divided into many scripts
  */
 
 
@@ -62,31 +63,43 @@ var ReadFile = function (event) {
 
         for (i = 0; i < coordArray.length - 2; i = i + 2) { //iterating over array length...
 
+          /**  +++++++++++Point+++++++++++
+          *
             myPoint = new Point(coordArray[i], coordArray[i + 1]); //... to build points ....
-            myPoint2 = new Point(coordArray[i + 2], coordArray[i + 3]);
+            myPoint2 = new Point(coordArray[i + 2], coordArray[i + 3]);        
+          */
 
             /*
             *  Third logger
             *  myPoint = point#1
             */
             // console.log(myPoint);
-            console.log("logger.debug(myPoint);");
-            logger.debug(myPoint);
+            //console.log("logger.debug(myPoint);");
+            //logger.debug(myPoint);
 
             /*
             *  Fourth logger
             *  myPoint2 = point#2
             */
             // console.log(myPoint2);
-            console.log("logger.debug(myPoint2);");
-            logger.debug(myPoint2);
+            //console.log("logger.debug(myPoint2);");
+            //logger.debug(myPoint2);
+        
 
+
+          /**  +++++++++++Line+++++++++++
+          *
             myLine = new Line(myPoint, myPoint2); //... and combine those to lines...
             myLine.buildLine(); // using self defined build function; see below
-            lengthArray.push(myLine.length);
+            lengthArray.push(myLine.length);        
+          */
+
+
         }
 
 
+        /**  +++++++++++Polyline+++++++++++
+        *
 
         myPolyLine = new Polyline(lengthArray); // builds polyline from the lines lengths stored in lengthArray
         myPolyLine.partialSum(); // computes the total length
@@ -94,10 +107,13 @@ var ReadFile = function (event) {
         // Changes the results paragraph in the HTML doc to display the calculated length
         document.getElementById("results").innerHTML = "The length of the polyline is is: " + myPolyLine.sum + "km";
         lengthArray.length = 0; // resets the lengthArray to allow multiple computations without refresh
-
+        
+        */
 
     };
+
     reader.readAsText(input.files[0]);
+
 };
 
 /**
@@ -114,6 +130,10 @@ function BuildArray(input) {
 
         coordArray = filecontent.split(" "); // using the whitespaces to split String into an array
         coordArray = coordArray.filter(function (entry) { return entry.trim() != ''; }); // trimming the whitespaces from the array, after using them to split the String into the array
+
+        while (coordArray[0].length <= 3) {
+            coordArray.shift();
+        }
 
         if (coordArray.length < 2) { // error handling for empty .txt. files
 
@@ -133,84 +153,4 @@ function BuildArray(input) {
 
         }
     }
-}
-
-/**
- * @desc point class used to construct lines
- * @param lat lattitude of given coordinate
- * @param long longitude of given coordinate
- */
-function Point(lat, long) {
-
-    //attributes
-    this.lat = lat;
-    this.long = long;
-}
-
-/**
- * @desc line class used to compute lengths
- * reuses Haversine formula from assignment 1
- * @param pt1 first point constructed with coordinates
- * @param pt2 second point constructed with coordinates
- */
-function Line(pt1, pt2) {
-
-    //attributes
-    this.pt1 = pt1;
-    this.pt2 = pt2;
-
-    //methods
-    this.buildLine = function (pt1, pt2) {
-
-        // Computing data by using Haversine formula specified in linked documents
-        var radius = 6371; //Radius of the earth in km
-        var degreeLatitude = degree2radians(this.pt2.lat - this.pt1.lat);
-        var degreeLongitude = degree2radians(this.pt2.long - this.pt1.long);
-        var temp1 =
-            Math.sin(degreeLatitude / 2) * Math.sin(degreeLatitude / 2) +
-            Math.cos(degree2radians(this.pt1.lat)) * Math.cos(degree2radians(this.pt2.lat)) *
-            Math.sin(degreeLongitude / 2) * Math.sin(degreeLongitude / 2)
-            ;
-        var temp2 = 2 * Math.atan2(Math.sqrt(temp1), Math.sqrt(1 - temp1));
-        var temp3 = radius * temp2; //temp3 = distance in km
-
-        this.length = temp3;
-
-        /*
-        *  Sixth logger
-        *  temp3 = distance between points
-        */
-        // console.log(temp3);
-        console.log("logger.info(temp3);");
-        logger.info(temp3);
-
-    }
-}
-
-// Auxiliary function used for Haversine formula
-function degree2radians(degree) {
-    return degree * (Math.PI / 180)
-}
-
-/**
- * @desc polyline class used to build polylines from line lengths
- * @method partialSum computes the length of the poly line
- */
-function Polyline(lengthArray) {
-
-    //attributes
-    this.lenghtArray = lengthArray;
-    this.sum = 0;
-
-    //methods
-    this.partialSum = function () {
-
-        //this.lengthArray = lengthArray;
-
-        for (i = 0; i < lengthArray.length; i++) {   //iterates over the lengthArray and sums it up to compute complete length
-            this.sum = this.sum + lengthArray[i];
-        }
-    }
-
-
 }

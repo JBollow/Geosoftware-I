@@ -1,5 +1,5 @@
 /**
- * authors: Jan-Patrick Bollow, 349891#
+ * author: Jan-Patrick Bollow, 349891#
  * 
  */
 
