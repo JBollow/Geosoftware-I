@@ -3,14 +3,10 @@
  * 
  */
 
-var geojsonFeature = {
-    "type": "Feature",
-    "properties": {
-        "name": "GeoJSON-Object",
-    },
-    "geometry": {
-        "type": "Polygon",
-        "coordinates": [coordArray[0], coordArray[1]]
-
-    }
+var route = {
+  "type": "Feature",
+  "geometry": {
+    "type": "LineString",
+    "coordinates":[[7.625104 ,51.936584], [7.626327, 51.955811]]
+  },
 };

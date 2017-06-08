@@ -6,12 +6,13 @@
     <!-- @author Jan-Patrick Bollow 349891 -->
     <meta charset="UTF-8" name="Jan-Patrick Bollow" content="Aufgabe 04">
     <link rel="stylesheet" href="Stylesheet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css">
     <title>Aufgabe 04</title>
 
     <!-- loading scripts -->
     <script src="js/jsnlog.min.js"></script>
 
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js"></script>
     <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
 
     <script src="js/main.js"></script>
@@ -19,7 +20,8 @@
     <script src="js/point.js"></script>
     <script src="js/line.js"></script>
     <script src="js/polyline.js"></script>
-    <script src="js/geojson.js"></script>
+    
+    <!-- <script src="js/geojson.js"></script> -->
 
     <script src="js/map.js"></script>
     <script src="js/blendmap.js"></script>
@@ -34,35 +36,35 @@
         GeoJSON
         </b></u>
         </h1>
-        <p>with JSNlog</p>
     </div>
 
     <!-- div container loading textfile for calculations -->
     <div style="background-color:#ffffff; margin-left:10%; padding-left:10px; padding-top:10x; padding-bottom:1px; border: 1px solid black;  width:70%;box-shadow: 10px 10px 5px #888888;">
 
-        <p>Please upload coordinate data below</p>
+        <p>Please upload data below</p>
 
         <input type='file' accept='text/plain' onchange='ReadFile(event)'>
         <pre id="fileDisplayArea"></pre>
-
         <p id="results">&nbsp;</p>
     </div>
     <br>
 
     <!-- div container blendmapcheckbox -->
-    <div style="background-color:#ffffff; margin-left:10%; padding-left:10px; padding-top:10x; padding-bottom:1px; border: 1px solid black;  width: 310px;box-shadow: 10px 10px 5px #888888;">
+    <div style="background-color:#ffffff; margin-left:10%; padding-left:10px; padding-top:10x; padding-bottom:1px; border: 1px solid black;  width: 100px;box-shadow: 10px 10px 5px #888888;">
         <form class="form-inline" id="mapblendform">
             <p>
-                Hide map<input type="checkbox" name="checkfield" id="blendmapbox" onchange="blendmap(this)" />
+                Hide map&nbsp;<input type="checkbox" name="checkfield" id="blendmapbox" onchange="blendmap(this)" />
                 <!-- I hope this counts as two elements -->
             </p>
         </form>
     </div>
     <br>
 
+
     <!-- div container map -->
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css">
-    <div id="map_canvas" style="background-color:#ffffff; margin-left:10%; padding-left:10px; padding-top:10x; padding-bottom:1px; border: 1px solid black; width: 70%; height: 700px;box-shadow: 10px 10px 5px #888888;"></div>
+    <div id="map" style="background-color:#ffffff; margin-left:10%; padding-left:10px; padding-top:10x; padding-bottom:1px; border: 1px solid black; width: 70%; height: 700px;box-shadow: 10px 10px 5px #888888;"></div>
+
+
 
 </body>
 

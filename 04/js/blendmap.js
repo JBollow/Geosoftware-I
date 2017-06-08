@@ -5,9 +5,9 @@
 
 function blendmap(checkboxElem) {
     if (checkboxElem.checked) {
-        $("#map_canvas").fadeOut(3000);
+        $("#map").fadeOut(3000);
     }
     else {
-        $("#map_canvas").fadeIn(3000);
+        $("#map").fadeIn(3000);
     }
 }

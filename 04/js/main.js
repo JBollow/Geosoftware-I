@@ -8,6 +8,7 @@
 var coordArray; //initializing Array
 var filecontent; //initializing String
 var lengthArray = []; //initializing Array
+var geoJsonArray = []; //initializing GeoJSON Array
 
 /**
  * Works best with Firefox
@@ -55,44 +56,65 @@ var ReadFile = function (event) {
         /*
         *  Second logger
         *  coordArray = array of all coordinates
+
+                    "coordinates": [[coordArray[i+1], coordArray[i]], [coordArray[i+3], coordArray[i+2]]]
+                    "coordinates": [[7.625104, 51.936584], [7.626327, 51.955811]]
+
         */
         // console.log(coordArray);
         console.log("logger.info(coordArray);");
         logger.info(coordArray);
 
 
-        for (i = 0; i < coordArray.length - 2; i = i + 2) { //iterating over array length...
+        for (i = 0; i < coordArray.length - 4; i = i + 4) { //iterating over array length...
 
-          /**  +++++++++++Point+++++++++++
-          *
+            /*
+            *  logger
+            *  coordArray = array of all coordinates
+             */
+
+            console.log("logger.info(coordArray[i]+coordArray[i+1]);");
+            logger.info(coordArray[i] + " " + coordArray[i + 1]);
+
+            var geojsonLine = {
+                "type": "Feature",
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": [[coordArray[i + 1], coordArray[i]], [coordArray[i + 3], coordArray[i + 2]]]
+                },
+            };
+            map.data.addGeoJson(geojsonLine);
+
+
             myPoint = new Point(coordArray[i], coordArray[i + 1]); //... to build points ....
-            myPoint2 = new Point(coordArray[i + 2], coordArray[i + 3]);        
-          */
+            myPoint2 = new Point(coordArray[i + 2], coordArray[i + 3]);
+
 
             /*
             *  Third logger
             *  myPoint = point#1
             */
             // console.log(myPoint);
-            //console.log("logger.debug(myPoint);");
-            //logger.debug(myPoint);
+            console.log("logger.debug(myPoint);");
+            logger.debug(myPoint);
 
             /*
             *  Fourth logger
             *  myPoint2 = point#2
             */
             // console.log(myPoint2);
-            //console.log("logger.debug(myPoint2);");
-            //logger.debug(myPoint2);
-        
+            console.log("logger.debug(myPoint2);");
+            logger.debug(myPoint2);
 
 
-          /**  +++++++++++Line+++++++++++
-          *
-            myLine = new Line(myPoint, myPoint2); //... and combine those to lines...
-            myLine.buildLine(); // using self defined build function; see below
-            lengthArray.push(myLine.length);        
-          */
+
+
+            /**  +++++++++++Line+++++++++++
+            *
+              myLine = new Line(myPoint, myPoint2); //... and combine those to lines...
+              myLine.buildLine(); // using self defined build function; see below
+              lengthArray.push(myLine.length);        
+            */
 
 
         }
