@@ -66,21 +66,21 @@ JL().info("Map ready");
  * Function creating the map.
  * @param event
  */
-var leaflet = function(event) {
+var leaflet = function (event) {
 
     // Add a geojson to Map
-    
+
     if (myLayer !== undefined) {
 
-    map.removeLayer(myLayer); 
-        console.log("remove layer")    
+        map.removeLayer(myLayer);
+        console.log("remove layer")
     }
-    
+
     myLayer = L.geoJson().addTo(map);
 
     myLayer.addData(linienGeojsonFeature);
 
-    
+
 
     var overlayMaps = {
         "Line": myLayer
@@ -101,7 +101,7 @@ var leaflet = function(event) {
 
 
 //by click on the Map-Navigation-Tool set PopUps Markers for the Line
-document.getElementById('map-navigation').onclick = function(e) {
+document.getElementById('map-navigation').onclick = function (e) {
     var lineNr = parseInt(e.target.getAttribute('line-nr')) + 1;
     var posStart = e.target.getAttribute('data-position-start');
     var posEnde = e.target.getAttribute('data-position-ende');
@@ -113,7 +113,7 @@ document.getElementById('map-navigation').onclick = function(e) {
         if (marker1 !== undefined) {
             map.removeLayer(marker1)
             map.removeLayer(marker2)
-        } 
+        }
 
         marker1 = L.marker(posStart, {
             icon: greenIcon

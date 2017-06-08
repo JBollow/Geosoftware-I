@@ -8,13 +8,13 @@ var linienGeojsonFeature = null;
  * It reads the file, checks its value and returns the length of the polyline, represented by the uploaded points
  * @param {event} event form the browser
  */
-document.getElementById("uploadPolylineButton").onchange = function(event) {
+document.getElementById("uploadPolylineButton").onchange = function (event) {
 
     var input = event.target;
     var reader = new FileReader();
 
     // Callback when the file is loaded
-    reader.onload = function() {
+    reader.onload = function () {
         try {
             var filecontent = reader.result; // Loaded content
 
@@ -38,23 +38,23 @@ document.getElementById("uploadPolylineButton").onchange = function(event) {
  * @param {Array} coordinateArray
  */
 function createGeoJson(coordinateArray) {
-    
-    if (linienGeojsonFeature !== null){
-            
-        	$('li').remove();        
+
+    if (linienGeojsonFeature !== null) {
+
+        $('li').remove();
     }
-    
+
     linienGeojsonFeature = '{ "type": "FeatureCollection", "features":[ ';
     for (i = 0; i < coordinateArray.length - 3; i = i + 4) {
         var tiles = '{ "type": "Feature", "properties": {}, "geometry": { "type": "LineString", "coordinates": [ [' + coordinateArray[i + 1] + ',' + coordinateArray[i] + '], [' + coordinateArray[i + 3] + ',' + coordinateArray[i + 2] + '] ] } },';
         linienGeojsonFeature = linienGeojsonFeature + tiles;
-        
 
-        if((i/4)<=2){
-        //Create with JQuery a List Element and set a link for the NavigationTool
-        $('#routes').append("<li><a href=# data-zoom=16 line-nr=" + (i / 4) + " data-position-start=" + coordinateArray[i] + "," + coordinateArray[i + 1] + " data-position-ende=" + coordinateArray[i + 2] + "," + coordinateArray[i + 3] + ">Line " + (i / 4 + 1) + "</a></li>");
+
+        if ((i / 4) <= 2) {
+            //Create with JQuery a List Element and set a link for the NavigationTool
+            $('#routes').append("<li><a href=# data-zoom=16 line-nr=" + (i / 4) + " data-position-start=" + coordinateArray[i] + "," + coordinateArray[i + 1] + " data-position-ende=" + coordinateArray[i + 2] + "," + coordinateArray[i + 3] + ">Line " + (i / 4 + 1) + "</a></li>");
         }
-        
+
         $('#map-navigation').show();
         $('#routes').hide();
         $('#routes').show(500)
