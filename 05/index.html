@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- @author Jan-Patrick Bollow 349891 -->
+    <meta charset="UTF-8" name="Jan-Patrick Bollow" content="Aufgabe 04">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Aufgabe 05</title>
+
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <!-- MY Styesheet -->
+    <link rel="stylesheet" href="Stylesheet.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- loading external scripts -->
+    <!-- API KEY: AIzaSyCXh26SKBmSTwFjhLNqvcIOX-v5o3IRn7k -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXh26SKBmSTwFjhLNqvcIOX-v5o3IRn7k&sensor=true"></script>
+
+    <!-- loading my scripts -->
+    <script src="js/jsnlog.min.js"></script>
+    <script src="js/jsnlog.js"></script>
+    <script src="js/geolocation-marker.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/position.js"></script>
+    <script src="js/blendmap.js"></script>
+
+</head>
+
+<body onload="initMap();initPosition()">
+
+    <!-- div container headline -->
+    <div style="margin-left:10%; padding-left:10px; padding-top:10x; padding-bottom:10px; width:80%;">
+        <h1><b><u>
+        Aufgabe 05
+        </b></u>
+        </h1>
+    </div>
+
+    <!-- div container blendmapcheckbox -->
+    <div class="box" style="height:60px">
+        <form class="form-inline" id="mapblendform">
+            <p>
+                Hide map&nbsp;<input type="checkbox" name="checkfield" id="blendmapbox" onchange="blendmap(this)" />
+                <!-- I hope this counts as two elements -->
+
+                <div id="pos">
+                    <p>locating...</p>
+                </div>
+            </p>
+        </form>
+    </div>
+    <br>
+
+
+    <!-- div container map -->
+    <div id="map"></div>
+
+</body>
+
+<!-- loading external scripts -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+
+<!-- loading my scripts -->
+
+</html>

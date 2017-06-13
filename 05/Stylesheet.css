@@ -1,0 +1,159 @@
+﻿body {
+	background-color: #e0e0e0;
+}
+
+h1 {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 20px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 22px;
+	color: #404040;
+}
+
+h3 {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 15.4px;
+	color: #404040;
+}
+
+p {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+	color: #404040;
+}
+
+blockquote {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 21px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 30px;
+	color: #404040;
+}
+
+pre {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 13px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 18.5714px;
+	color: #404040;
+}
+
+#span1 {
+	width: 100px;
+}
+
+input {
+	background-color: #cccccc;
+	border: none;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 13px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 18.5714px;
+	color: #404040;
+	margin-top: 10x;
+}
+
+input:hover {
+	background-color: #4CAF50;
+	color: white;
+}
+
+input[type=range] {
+	-webkit-appearance: none;
+	width: 100px;
+	margin: 0px;
+	height: 8px;
+}
+
+th,
+td {
+	padding: 15px;
+	text-align: left;
+}
+
+table,
+th,
+td {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 13px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 18.5714px;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+table#t01 tr:nth-child(even) {
+	background-color: #d9d9d9;
+}
+
+table#t01 tr:nth-child(odd) {
+	background-color: #f2f2f2;
+}
+
+#map {
+	height: 100%;
+	background-color: #ffffff;
+	margin-left: 10%;
+	padding-left: 10px;
+	padding-top: 10x;
+	padding-bottom: 1px;
+	border: 1px solid black;
+	width: 70%;
+	height: 700px;
+}
+
+.box {
+	background-color: #ffffff;
+	margin-left: 10%;
+	padding-left: 10px;
+	padding-top: 10x;
+	padding-bottom: 1px;
+	border: 1px solid black;
+	width: 70%;
+}
+
+.button {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+	margin-top: 0px;
+	padding-top: 0x;
+	padding-bottom: 0px;
+	color: #404040;
+	border: none;
+}
+
+.button:hover {
+	background-color: #4CAF50;
+	color: white;
+}
+
+.button:active {
+	background-color: #4CAF50;
+	transform: translateY(2px);
+}
