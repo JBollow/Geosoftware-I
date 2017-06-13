@@ -6,7 +6,7 @@
 //I am using Google Maps API with an additional OSM basemap
 
 var map;
-// Start Location
+// Start location muenster
 var muenster = new google.maps.LatLng(51.960, 7.626);
 
 //Define OSM as base layer in addition to the default Google layers
@@ -24,6 +24,7 @@ var osmMapType = new google.maps.ImageMapType({
 
 });
 
+// Initializing the map with it's elements
 function initMap() {
 
     var mapOptions = {

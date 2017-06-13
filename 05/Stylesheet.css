@@ -114,24 +114,17 @@ table#t01 tr:nth-child(odd) {
 
 #map {
 	height: 100%;
-	background-color: #ffffff;
-	margin-left: 10%;
-	padding-left: 10px;
-	padding-top: 10x;
-	padding-bottom: 1px;
-	border: 1px solid black;
-	width: 70%;
-	height: 700px;
+	width: 100%;
 }
 
 .box {
 	background-color: #ffffff;
 	margin-left: 10%;
 	padding-left: 10px;
-	padding-top: 10x;
-	padding-bottom: 1px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	border: 1px solid black;
-	width: 70%;
+	width: 80%;
 }
 
 .button {

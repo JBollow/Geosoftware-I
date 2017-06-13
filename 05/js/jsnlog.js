@@ -11,6 +11,7 @@
 logger.info("");
  */
 
+// JSNLogger using consoleappender
 var logger = JL();
 var consoleAppender = JL.createConsoleAppender('consoleAppender');
 logger.setOptions({

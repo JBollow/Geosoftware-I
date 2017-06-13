@@ -10,14 +10,14 @@ function initPosition() {
 
         // Output text + moveto button
         function (position) {
-            document.getElementById('pos').innerHTML = '<p>Latitude: ' + position.coords.latitude + '/ Longitude: ' + position.coords.longitude + '&nbsp;&nbsp;<input id="clickMe" type="button" class="button" value="Jump to my location" onclick="moveToLocation(' + position.coords.latitude + "," + position.coords.longitude + ')"/>';
+            document.getElementById('positionbox').innerHTML = '<p>Latitude: ' + Math.round(position.coords.latitude * 10000) / 10000 + '&nbsp;&#x2194;&nbsp;Longitude: ' + Math.round(position.coords.longitude * 10000) / 10000 + '&nbsp;&nbsp;<input type="button" class="button" value="Jump to my location" onclick="moveToLocation(' + position.coords.latitude + "," + position.coords.longitude + ')"/>';
 
             //JSNLog
             logger.info("Location found");
         },
 
         function () {
-            document.getElementById('pos').innerHTML = 'Your location was not found';
+            document.getElementById('positionbox').innerHTML = '<p>Your location was not found</p>';
 
             //JSNLog
             logger.error("Location not found");

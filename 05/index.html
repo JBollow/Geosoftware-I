@@ -27,12 +27,17 @@
 
     <!-- loading external scripts -->
     <!-- API KEY: AIzaSyCXh26SKBmSTwFjhLNqvcIOX-v5o3IRn7k -->
+    <!-- Source:    https://developers.google.com/maps/documentation/javascript/?hl=de -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXh26SKBmSTwFjhLNqvcIOX-v5o3IRn7k&sensor=true"></script>
 
-    <!-- loading my scripts -->
+    <!-- loading local scripts -->
+    <!-- Source: http://jsnlog.com/ -->
     <script src="js/jsnlog.min.js"></script>
-    <script src="js/jsnlog.js"></script>
+    <!-- Source: https://www.npmjs.com/package/geolocation-marker -->
     <script src="js/geolocation-marker.js"></script>
+
+    <!-- loading my scripts -->
+    <script src="js/jsnlog.js"></script>
     <script src="js/map.js"></script>
     <script src="js/position.js"></script>
     <script src="js/blendmap.js"></script>
@@ -45,28 +50,26 @@
     <div style="margin-left:10%; padding-left:10px; padding-top:10x; padding-bottom:10px; width:80%;">
         <h1><b><u>
         Aufgabe 05
-        </b></u>
+        </u></b>
         </h1>
     </div>
 
     <!-- div container blendmapcheckbox -->
-    <div class="box" style="height:60px">
+    <div class="box" style="height:70px">
         <form class="form-inline" id="mapblendform">
-            <p>
-                Hide map&nbsp;<input type="checkbox" name="checkfield" id="blendmapbox" onchange="blendmap(this)" />
-                <!-- I hope this counts as two elements -->
-
-                <div id="pos">
-                    <p>locating...</p>
-                </div>
-            </p>
+            <p>Hide map&nbsp;<input type="checkbox" name="checkfield" id="blendmapbox" onchange="blendmap(this)" /></p>
         </form>
+        <div id="positionbox">
+            <p>locating...</p>
+        </div>
     </div>
+
     <br>
 
-
     <!-- div container map -->
-    <div id="map"></div>
+    <div class="box" style="height:700px;padding-left: 0px;padding-top: 0px;padding-bottom: 0px;">
+        <div id="map"></div>
+    </div>
 
 </body>
 
@@ -78,6 +81,16 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
 
-<!-- loading my scripts -->
+
+<!-- Ablage
+
+        <button style="float:left; margin-right: 10px;" class="button" onclick="">&#x21bb;</button>
+
+-->
+
+<script>
+//JSNLog
+logger.info("Page loaded");
+</script>
 
 </html>
