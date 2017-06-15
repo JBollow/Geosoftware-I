@@ -44,7 +44,7 @@
 
 </head>
 
-<body>
+<body onload="initMap();initPosition()">
 
     <header class="container-fluid">
         <h1 style="color: white;">Aufgabe 05</h1>
@@ -57,10 +57,10 @@
                 <a href="#">Home</a>
             </li>
             <li class="inactive">
-                <a href="map.html">Karte</a>
+                <a href="#">Karte</a>
             </li>
             <li class="inactive">
-                <a href="impressum.html">Impressum</a>
+                <a href="#">Impressum</a>
             </li>
         </ul>
     </nav>
@@ -70,11 +70,25 @@
         <div class="row">
             <aside class="col-sm-3">
 
+                <!-- div container blendmapcheckbox -->
+                <div class="box" style="width: 100% ;height:110px">
+                    <form class="form-inline" id="mapblendform">
+                        <p>Hide map&nbsp;<input type="checkbox" name="checkfield" id="blendmapbox" onchange="blendmap(this)"
+                            /></p>
+                    </form>
+                    <div id="positionbox">
+                        <p>locating...</p>
+                    </div>
+                </div>
 
             </aside>
 
             <section class="col-sm-9">
 
+                <!-- div container map -->
+                <div class="box" style="height:500px;padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;">
+                    <div id="map"></div>
+                </div>
 
             </section>
         </div>
@@ -93,6 +107,13 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
+
+
+<!-- Ablage
+
+        <button style="float:left; margin-right: 10px;" class="button" onclick="">&#x21bb;</button>
+
+-->
 
 <script>
     //JSNLog
