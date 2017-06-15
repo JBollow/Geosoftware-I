@@ -4,7 +4,9 @@
      @copyright 2012, 2015 Chad Killingsworth
      @see https://github.com/ChadKillingsworth/geolocation-marker/blob/master/LICENSE.txt
     */
+
     'use strict';
+    
     var b, d = this;
 
     function g(a, c, e) {

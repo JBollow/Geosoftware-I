@@ -3,6 +3,8 @@
  * 
  */
 
+'use strict';
+
 // Findind my location
 function initPosition() {
 

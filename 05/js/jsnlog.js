@@ -3,6 +3,8 @@
  * 
  */
 
+'use strict';
+
 /**
  * Logs aren't saved local, but visible in console using ConsoleAppender
  * http://jsnlog.com/Documentation/WebConfig/JSNLog/ConsoleAppender 

@@ -95,7 +95,7 @@ footer {
 	line-height: 20px;
 	color: white;
 	position: absolute;
-	bottom: 0;
+	bottom: 0%;
 	width: 100%;
 	text-align: center;
 	background: #888888;
@@ -165,6 +165,54 @@ table#t01 tr:nth-child(even) {
 
 table#t01 tr:nth-child(odd) {
 	background-color: #f2f2f2;
+}
+
+label {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+	margin-top: 0px;
+	text-align: center;
+	padding-top: 0x;
+	padding-bottom: 0px;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #404040;
+	border: none;
+	cursor: pointer;
+	background-color: #cccccc;
+}
+
+label:hover {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+	margin-top: 0px;
+	padding-top: 0x;
+	padding-bottom: 0px;
+	border: none;
+	background-color: #4CAF50;
+	color: white;
+}
+
+label:active {
+	background-color: #4CAF50;
+	transform: translateY(2px);
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
 }
 
 ol {
