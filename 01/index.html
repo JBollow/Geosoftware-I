@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <!-- @author Jan-Patrick Bollow 349891 -->
     <meta charset="UTF-8" name="Jan-Patrick Bollow" content="Aufgabe 01">
@@ -11,60 +12,53 @@
 <script src="distanz.js"></script>
 
 <!-- So wird direkt einmal die Distanz zwischen beiden eingegebenen Punkten berechnet und es muss nicht im js Code sein -->
+
 <body onload="getDistanz()">
 
-<!-- Div Container für die Überschrift -->
-<div style="margin-left:10%; padding-left:10px; padding-top:10x; padding-bottom:10px; width:80%;">
-    <h1><b><u>
+    <!-- Div Container für die Überschrift -->
+    <div style="margin-left:10%; padding-left:10px; padding-top:10x; padding-bottom:10px; width:80%;">
+        <h1><b><u>
         Aufgabe 01
-    </b></u></h1>
-</div>
+    </u></b></h1>
+    </div>
 
 
-<!-- Div Container für Punkt 1 mit Eingabe für Länge und Breite, gesetzt ist ungefähr das Geo -->
-<div style="background-color:#ffffff; margin-left:10%; padding-left:10px; padding-top:10x; padding-bottom:1px;
+    <!-- Div Container für Punkt 1 mit Eingabe für Länge und Breite, gesetzt ist ungefähr das Geo -->
+    <div style="background-color:#ffffff; margin-left:10%; padding-left:10px; padding-top:10x; padding-bottom:1px;
 border: 1px solid black;  width:450px;box-shadow: 10px 10px 5px #888888;">
-    <h1>Punkt 1</h1>
-    <p>
-        Latitude
-        <input type="number" id="lat1" name="lat1" value="51.95019">
-        &nbsp;
-        &#x2194;
-        &nbsp;
-        Longitude
-        <input type="number" id="lon1" name="lon1" value="7.62348">
-    </p>
-</div>
+        <h1>Punkt 1</h1>
+        <p>
+            Latitude
+            <input type="number" id="lat1" name="lat1" value="51.95019"> &nbsp; &#x2194; &nbsp; Longitude
+            <input type="number" id="lon1" name="lon1" value="7.62348">
+        </p>
+    </div>
 
-<br>
+    <br>
 
-<!-- Div Container für Punkt 2 mit Eingabe für Länge und Breite, gesetzt ist Haltern am See -->
-<div style="background-color:#ffffff; margin-left:10%; padding-left:10px; padding-top:10x; padding-bottom:1px;
+    <!-- Div Container für Punkt 2 mit Eingabe für Länge und Breite, gesetzt ist Haltern am See -->
+    <div style="background-color:#ffffff; margin-left:10%; padding-left:10px; padding-top:10x; padding-bottom:1px;
 border: 1px solid black;  width:450px;box-shadow: 10px 10px 5px #888888;">
-    <h1>Punkt 2</h1>
-    <p>
-        Latitude
-        <input type="number" id="lat2" name="lat2" value="51.743429">
-        &nbsp;
-        &#x2194;
-        &nbsp;
-        Longitude
-        <input type="number" id="lon2" name="lon2" value="7.184593">
-    </p>
-</div>
+        <h1>Punkt 2</h1>
+        <p>
+            Latitude
+            <input type="number" id="lat2" name="lat2" value="51.743429"> &nbsp; &#x2194; &nbsp; Longitude
+            <input type="number" id="lon2" name="lon2" value="7.184593">
+        </p>
+    </div>
 
-<br>
+    <br>
 
-<!-- Div Container für den Berechne Abstands Button mit Ergebnis -->
-<div style="background-color:#ffffff; margin-left:10%; padding-left:10px; padding-top:10x; padding-bottom:1px;
+    <!-- Div Container für den Berechne Abstands Button mit Ergebnis -->
+    <div style="background-color:#ffffff; margin-left:10%; padding-left:10px; padding-top:10x; padding-bottom:1px;
 border: 1px solid black;  width:450px;box-shadow: 10px 10px 5px #888888;">
-    <p>
-        <input type="button" onclick="getDistanz()" value="Berechne Abstand">
-        <br>
-        <br>
-        Der Abstand der beiden Punkte beträgt: <span id="dist"></span>
-    </p>
-</div>
+        <p>
+            <input type="button" onclick="getDistanz()" value="Berechne Abstand">
+            <br>
+            <br> Der Abstand der beiden Punkte beträgt: <span id="dist"></span>
+        </p>
+    </div>
 
 </body>
+
 </html>
