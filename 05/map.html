@@ -40,6 +40,7 @@
     <script src="js/jsnlog.js"></script>
     <script src="js/position.js"></script>
     <script src="js/map.js"></script>
+    <script src="js/geojson.js"></script>
 
 </head>
 
@@ -49,7 +50,7 @@
         <h1 style="color: white;">Aufgabe 05</h1>
     </header>
 
-    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <nav class="navbar navbar-default navbar-static-top" style="border: 1px solid black;" role="navigation">
 
         <ul class="nav navbar-nav">
             <li class="inactive">
@@ -78,7 +79,7 @@
 
                     <p>Please upload a GEOJson file below</p>
 
-                    <input type="file" name="file" id="file" class="inputfile" accept="text/plain" onchange="map.data.add(this);">
+                    <input type="file" name="file" id="file" class="inputfile" onchange="ReadFile(event)">
                     <label style="width:100%;" for="file">hallo</label>
 
                 </div>
