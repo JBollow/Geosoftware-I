@@ -232,7 +232,7 @@ a.bunt:active {
 	padding-bottom: 10px;
 	border: 1px solid black;
 	margin-top: 10px;
-}s
+}
 
 .button {
 	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
@@ -250,6 +250,16 @@ a.bunt:active {
 }
 
 .button:hover {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+	margin-top: 0px;
+	padding-top: 0x;
+	padding-bottom: 0px;
+	border: none;
 	background-color: #4CAF50;
 	color: white;
 }
