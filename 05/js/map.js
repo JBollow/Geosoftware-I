@@ -1,5 +1,5 @@
 /**
- * authors: Jan-Patrick Bollow, 349891#
+ * authors: Jan-Patrick Bollow 349891, Anna Formaniuk 427493, Jens
  * 
  */
 
@@ -43,6 +43,7 @@ function initMap() {
     // Marker at myLocation
     var GeoMarker = new GeolocationMarker(map);
 
+    // Jens Marker Infotext
     var contentString = '<div id="content">' +
         '<div id="siteNotice">' +
         '</div>' +
@@ -55,6 +56,7 @@ function initMap() {
         content: contentString
     });
 
+    // Marker Icons
     var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
     var icons = {
         library: {
@@ -62,6 +64,7 @@ function initMap() {
         }
     };
 
+    // Jens Marker
     var marker = new google.maps.Marker({
         position: new google.maps.LatLng(51.938548, 7.591214),
         icon: icons['library'].icon,
@@ -69,10 +72,12 @@ function initMap() {
         title: 'Jens'
     });
 
+    // Popup on click
     marker.addListener('click', function () {
         infowindow.open(map, marker);
     });
 
+    // OSM Basemap
     map.mapTypes.set('OSM', osmMapType);
     map.setMapTypeId('OSM');
 
