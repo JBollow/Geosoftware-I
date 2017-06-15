@@ -1,5 +1,5 @@
 ﻿body {
-	background-color: #e0e0e0;
+	background-color: #d1d1d1;
 	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 	font-size: 10px;
 	font-style: normal;
@@ -79,6 +79,28 @@ pre {
 	color: #404040;
 }
 
+header {
+	width: 100%;
+	margin-top: 0px;
+	text-align: center;
+	background: #cccccc;
+}
+
+footer {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+	color: white;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	background: #888888;
+}
+
 input {
 	background-color: #cccccc;
 	border: none;
@@ -156,6 +178,21 @@ ol {
 	color: #404040;
 }
 
+li.active {
+	padding-left: 0px;
+	padding-right: 0px;
+	text-align: center;
+}
+
+li.inactive {
+	text-align: center;
+}
+
+li.inactive:hover {
+	background-color: #4CAF50;
+	text-align: center;
+}
+
 a {
 	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 	font-size: 13px;
@@ -166,19 +203,19 @@ a {
 	color: #404040;
 }
 
-a:link {
+a.bunt:link {
 	color: #ff66ff;
 }
 
-a:visited {
+a.bunt:visited {
 	color: #00cc99;
 }
 
-a:hover {
+a.bunt:hover {
 	color: #4CAF50;
 }
 
-a:active {
+a.bunt:active {
 	color: #33ccff;
 }
 
@@ -190,11 +227,12 @@ a:active {
 .box {
 	background-color: #ffffff;
 	padding-left: 10px;
+	padding-right: 10px;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	border: 1px solid black;
-	width: 80%;
-}
+	margin-top: 10px;
+}s
 
 .button {
 	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
