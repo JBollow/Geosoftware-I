@@ -330,3 +330,11 @@ img.icon:hover {
 .show {
 	display: block;
 }
+
+.cleantable,
+.cleantable tr,
+.cleantable tbody td,
+.cleantable thead th,
+.cleantable tfoot th {
+	border: none;
+}
