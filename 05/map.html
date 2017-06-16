@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <!-- @author Jan-Patrick Bollow 349891, Anna Formaniuk 427493, Jens -->
+    <!-- @authors Jan-Patrick Bollow 349891, Anna Formaniuk 427493, Jens -->
     <meta charset="UTF-8" name="Jan-Patrick Bollow" content="Aufgabe 05">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,17 +47,22 @@
 <body onload="initPosition();initMap();">
 
     <header class="container-fluid">
-        <h1 style="color: white;">Aufgabe 05</h1>
+        <h1>Aufgabe 05</h1>
     </header>
 
     <!-- Navbarcontainer -->
-    <nav class="navbar navbar-default navbar-static-top" style="border: 1px solid black;" role="navigation">
+    <nav class="navbar navbar-default navbar-static-top" style="border-top: 1px solid black;border-bottom: 1px solid black;"
+        role="navigation">
+
         <ul class="nav navbar-nav">
             <li class="inactive">
                 <a href="index.html">Home</a>
             </li>
             <li class="active">
-                <a href="#">Map</a>
+                <a href="#">Map 1</a>
+            </li>
+            <li class="inactive">
+                <a href="map2.html">Map 2</a>
             </li>
             <li class="inactive">
                 <a href="impressum.html">Impressum</a>
@@ -80,8 +85,8 @@
 
                     <p>Please link a GEOJson file below</p>
 
-                    <input type="text" id="jsonLink" value="https://storage.googleapis.com/mapsdevsite/json/google.json">
-                    <input type="button" class="button" style="width: 50px;" value="Enter" onclick="geoJsonLink()"/>
+                    <input type="text" id="jsonLink" value="https://raw.githubusercontent.com/JBollow/Geosoftware-I/master/05/GeoJSON.txt">
+                    <input type="button" class="button" style="width: 65px;" value="&#x21bb; Enter" onclick="geoJsonLink()" />
 
                 </div>
 
