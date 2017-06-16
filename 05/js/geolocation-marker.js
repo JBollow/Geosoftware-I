@@ -6,7 +6,7 @@
     */
 
     'use strict';
-    
+
     var b, d = this;
 
     function g(a, c, e) {

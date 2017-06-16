@@ -5,19 +5,9 @@
 
 'use strict';
 
-var ReadFile = function (event) {
-
-    // Init
-    var input = event.target;
-    var reader = new FileReader();
-
-    reader.onload = function () {
-        var filecontent = reader.result;
-
-        map.data.loadGeoJson(filecontent);
-
-    };
-
-    // Read the file
-    reader.readAsText(input.files[0]);
+function geoJsonLink() {
+    // getting the link from the textinput
+    var link = $("#jsonLink").val();
+    // pushing the linked geojson to the map
+    map.data.loadGeoJson(link);
 };
