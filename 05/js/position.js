@@ -35,6 +35,7 @@ function moveToLocation(lat, lng) {
     var center = new google.maps.LatLng(lat, lng);
     // using global variable:
     map.panTo(center);
+    map.setZoom(16);
 
     //JSNLog
     logger.info("Moved to my location");
