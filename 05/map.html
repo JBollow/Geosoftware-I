@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <!-- @authors Jan-Patrick Bollow 349891, Anna Formaniuk 427493, Jens Seifert 408076-->
+    <!-- @authors Jan-Patrick Bollow 349891, Anna Formaniuk 427493, Jens Seifert 408076 -->
     <meta charset="UTF-8" name="Jan-Patrick Bollow" content="Aufgabe 05">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,6 +18,9 @@
     <!-- MY Styesheet -->
     <link rel="stylesheet" href="Stylesheet.css">
 
+    <!-- Other Styesheets -->
+    <link rel="stylesheet" href="jquery-ui.css">
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -29,6 +32,9 @@
     <!-- API KEY: AIzaSyCXh26SKBmSTwFjhLNqvcIOX-v5o3IRn7k -->
     <!-- Source:    https://developers.google.com/maps/documentation/javascript/?hl=de -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXh26SKBmSTwFjhLNqvcIOX-v5o3IRn7k&sensor=true"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <!-- loading local scripts -->
     <!-- Source: http://jsnlog.com/ -->
@@ -41,25 +47,7 @@
     <script src="js/position.js"></script>
     <script src="js/map.js"></script>
     <script src="js/geojson.js"></script>
-
-    <!-- resizeable -->
-    <link rel="stylesheet" href="jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-        $(function () {
-            $("#also").resizable({
-                maxHeight: 600,
-                minHeight: 600
-            });
-
-            $("#also2").resizable({
-                maxHeight: 600,
-                minHeight: 600
-            });
-        });
-    </script>
-
+    <script src="js/resize.js"></script>
 
 </head>
 
@@ -78,10 +66,10 @@
                 <a href="index.html">Home</a>
             </li>
             <li class="active">
-                <a href="#">Map 1</a>
+                <a href="#">GeoJSON Loader + Locator</a>
             </li>
             <li class="inactive">
-                <a href="map2.html">Map 2</a>
+                <a href="map2.html">GeoJSON Drawer</a>
             </li>
             <li class="inactive">
                 <a href="impressum.html">Impressum</a>
@@ -93,16 +81,15 @@
     <div class="container-fluid">
         <div class="row">
 
+            <div class="col-sm-12">
 
-
-
-            <section class="col-sm-12">
                 <!-- div container -->
-                <div style="width: 100%; display: table; ">
-                    <!-- div container -->
-                    <div id="also" class="box" style="width: 100px;display: table-cell;">
+                <div style="width: 100%; display: table;">
 
-                        <div  id="positionbox">
+                    <!-- div container -->
+                    <div id="resizebox" class="box" style="width: 100px;display: table-cell;">
+
+                        <div id="positionbox">
                             <p style="width: 175px;">locating...</p>
                         </div>
 
@@ -120,36 +107,30 @@
                                 </td>
                             </tr>
                         </table>
-
                     </div>
 
                     <!-- div container map -->
-                    <div id="also2" class="box" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;display: table-cell; vertical-align: bottom;">
-
+                    <div class="box" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;display: table-cell; vertical-align: bottom;">
                         <div style="height:600px;" id="map"></div>
                     </div>
+
                 </div>
-            </section>
+
+            </div>
+
         </div>
     </div>
-
-    <!-- Footercontainer -->
-    <footer class="container-fluid">
-        Geosoftware 1 SS17
-    </footer>
 
 </body>
 
 <!-- loading external scripts -->
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
 
 <script>
-    //JSNLog
+    // JSNLog
     logger.info("Map loaded");
 </script>
 

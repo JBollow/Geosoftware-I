@@ -1,16 +1,19 @@
 /**
- * authors: Jan-Patrick Bollow 349891, Anna Formaniuk 427493, Jens
+ * authors: Jan-Patrick Bollow 349891, Anna Formaniuk 427493, Jens Seifert 408076
  * 
  */
 
 'use strict';
 
-//I am using Google Maps API with an additional OSM basemap
+/**
+ * We are using Google Maps API with an additional OSM basemap for the geolocation tool
+ * and also the leaflet map, in which we implemented our geojson drawing tool 
+ */
 var map;
 // Start location muenster
 var muenster = new google.maps.LatLng(51.960, 7.626);
 
-//Define OSM as base layer in addition to the default Google layers
+// Define OSM as base layer in addition to the default Google layers
 var osmMapType = new google.maps.ImageMapType({
     getTileUrl: function (coord, zoom) {
         return "http://tile.openstreetmap.org/" +
@@ -81,7 +84,6 @@ function initMap() {
     map.mapTypes.set('OSM', osmMapType);
     map.setMapTypeId('OSM');
 
-    //JSNLog
+    // JSNLog
     logger.info("Map initialized");
-
 }

@@ -1,5 +1,5 @@
 /**
- * authors: Jan-Patrick Bollow 349891, Anna Formaniuk 427493, Jens
+ * authors: Jan-Patrick Bollow 349891, Anna Formaniuk 427493, Jens Seifert 408076
  * 
  */
 
@@ -33,6 +33,7 @@ function initPosition() {
 // Move to my location
 function moveToLocation(lat, lng) {
     var center = new google.maps.LatLng(lat, lng);
+
     // using global variable:
     map.panTo(center);
     map.setZoom(16);

@@ -1,5 +1,5 @@
 /**
- * authors: Jan-Patrick Bollow 349891, Anna Formaniuk 427493, Jens
+ * authors: Jan-Patrick Bollow 349891, Anna Formaniuk 427493, Jens Seifert 408076
  *
  */
 
@@ -24,9 +24,14 @@ var theMap = L.map('leafletMap', {
 });
 JL().info("The map is ready");
 
+/**
+ * Declaring the layers with drawn objects
+ * and adding them to the map
+ */
 var editableLayers = new L.FeatureGroup();
 theMap.addLayer(editableLayers);
 
+// function for a custom marker
 var MyCustomMarker = L.Icon.extend({
     options: {
         shadowUrl: null,
@@ -36,6 +41,7 @@ var MyCustomMarker = L.Icon.extend({
     }
 });
 
+// Leaflet.Draw options
 var options = {
     position: 'topright',
     draw: {
@@ -74,6 +80,7 @@ var options = {
 var drawControl = new L.Control.Draw(options);
 theMap.addControl(drawControl);
 
+// adding created objects to the layer
 theMap.on('draw:created', function (e) {
     var type = e.layerType,
         layer = e.layer;
@@ -90,7 +97,7 @@ theMap.on('draw:created', function (e) {
  @copyright April 19, 2017 Dan Swick
  @see https://bl.ocks.org/danswick/d30c44b081be31aea483
  */
-document.getElementById('export').onclick = function(e) {
+document.getElementById('export').onclick = function (e) {
     // Extract GeoJson from editableLayer
     var data = editableLayers.toGeoJSON();
 

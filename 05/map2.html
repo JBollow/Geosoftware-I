@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <!-- @authors Jan-Patrick Bollow 349891, Anna Formaniuk 427493, Jens -->
+    <!-- @authors Jan-Patrick Bollow 349891, Anna Formaniuk 427493, Jens Seifert 408076 -->
     <meta charset="UTF-8" name="Jan-Patrick Bollow" content="Aufgabe 05">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,12 +28,10 @@
     <!-- leaflet and mapbox -->
     <script src='https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.css' rel='stylesheet' />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
-          integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
-          crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
-            integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
-            crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
+        crossorigin=""></script>
 
     <!--Add draw plugin -->
     <link rel='stylesheet' href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.css' />
@@ -56,10 +54,10 @@
                 <a href="index.html">Home</a>
             </li>
             <li class="inactive">
-                <a href="map.html#">Map 1</a>
+                <a href="map.html#">GeoJSON Loader + Locator</a>
             </li>
             <li class="active">
-                <a href="#">Map 2</a>
+                <a href="#">GeoJSON Drawer</a>
             </li>
             <li class="inactive">
                 <a href="impressum.html">Impressum</a>
@@ -70,32 +68,29 @@
     <!-- Bodycontainer -->
     <div class="container-fluid">
         <div class="row">
-            <aside id="draggablePanelList" class="col-sm-3">
+
+            <div class="col-sm-2">
 
                 <!-- div container -->
-                <div class="box" style="width: 100%;">
-                    <p>Click to load the GeoJSON file</p>
+                <div class="box" style="width: 100%; height:600px;">
 
-                    <a href='#' id='export' style="width: 65px;" value="&#x21bb; Enter"u>Export Features</a>
-                 </div>
-
-             </aside>
-
-             <section class="col-sm-9">
-
-                 <!-- div container map -->
-                <div class="box" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;">
-                    <div style="height:500px;" id="leafletMap"></div>
+                    <p>Click to download the GeoJSON file</p>
+                    <a href='#' id='export' style="width: 65px;" value="&#x21bb; Enter" u>Export Features</a>
                 </div>
 
-            </section>
+            </div>
+
+            <div class="col-sm-10">
+
+                <!-- div container map -->
+                <div class="box" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;">
+                    <div style="height:600px;" id="leafletMap"></div>
+                </div>
+
+            </div>
+
         </div>
     </div>
-
-    <!-- Footercontainer -->
-    <footer class="container-fluid">
-        Geosoftware 1 SS17
-    </footer>
 
 </body>
 
@@ -118,7 +113,7 @@
 <script src="js/geojson.js"></script>
 
 <script>
-    //JSNLog
+    // JSNLog
     logger.info("Map loaded");
 </script>
 

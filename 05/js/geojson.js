@@ -1,5 +1,5 @@
 /**
- * authors: Jan-Patrick Bollow 349891, Anna Formaniuk 427493, Jens
+ * authors: Jan-Patrick Bollow 349891, Anna Formaniuk 427493, Jens Seifert 408076
  * 
  */
 
