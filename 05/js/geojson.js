@@ -14,7 +14,6 @@ function geoJsonLink() {
 
     // setting a style for the GeoJson
     map.data.setStyle({
-        fillColor: '#4CAF50',
         fillOpacity: 0.5,
         strokeColor: '#336633',
         strokeWeight: 2,
