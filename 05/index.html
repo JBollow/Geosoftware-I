@@ -32,6 +32,24 @@
     <!-- loading my scripts -->
     <script src="js/jsnlog.js"></script>
 
+
+    <!-- resizeable -->
+    <link rel="stylesheet" href="jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#also").resizable({     
+            });
+
+            $("#also2").resizable({  
+            });
+        });
+
+        
+    </script>
+
+
 </head>
 
 <body>
@@ -68,6 +86,13 @@
             <section class="col-sm-10">
                 <div class="box">
 
+                    <div style="width: 100%; display: table;">
+                        <div style="display: table-row">
+                            <div id="also" class="ui-widget-content" style="width: 600px; display: table-cell;"> Left </div>
+                            <div id="also2" class="ui-widget-content" style="display: table-cell;"> Right </div>
+                        </div>
+                    </div>
+
                 </div>
             </section>
             <aside class="col-sm-1">
@@ -83,8 +108,8 @@
 </body>
 
 <!-- loading external scripts -->
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"

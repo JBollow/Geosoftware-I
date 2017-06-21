@@ -42,6 +42,25 @@
     <script src="js/map.js"></script>
     <script src="js/geojson.js"></script>
 
+    <!-- resizeable -->
+    <link rel="stylesheet" href="jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#also").resizable({
+                maxHeight: 600,
+                minHeight: 600
+            });
+
+            $("#also2").resizable({
+                maxHeight: 600,
+                minHeight: 600
+            });
+        });
+    </script>
+
+
 </head>
 
 <body onload="initPosition();initMap();">
@@ -73,32 +92,41 @@
     <!-- Bodycontainer -->
     <div class="container-fluid">
         <div class="row">
-            <aside id="draggablePanelList" class="col-sm-3">
 
+
+
+
+            <section class="col-sm-12">
                 <!-- div container -->
-                <div class="box" style="width: 100%;">
-                    <div id="positionbox">
-                        <p>locating...</p>
+                <div style="width: 100%; display: table;">
+                    <!-- div container -->
+                    <div id="also" class="box" style="width: 100px;display: table-cell;">
+
+                        <div id="positionbox">
+                            <p>locating...</p>
+                        </div>
+
+                        <br>
+
+                        <p>Please link a GEOJson file below</p>
+
+                        <table style="width: 100%;" class="cleantable">
+                            <tr>
+                                <td> <input type="text" id="jsonLink" style="width: 100%;" value="https://raw.githubusercontent.com/JBollow/Geosoftware-I/master/05/GeoJSON.txt">
+                                </td>
+                                <td> <input type="button" class="button" style="width: 65px;" value="&#x21bb; Enter" onclick="geoJsonLink()">
+                                </td>
+                            </tr>
+                        </table>
+
+
                     </div>
 
-                    <br>
-
-                    <p>Please link a GEOJson file below</p>
-
-                    <input type="text" id="jsonLink" value="https://raw.githubusercontent.com/JBollow/Geosoftware-I/master/05/GeoJSON.txt">
-                    <input type="button" class="button" style="width: 65px;" value="&#x21bb; Enter" onclick="geoJsonLink()" />
-
+                    <!-- div container map -->
+                    <div id="also2" class="box" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;display: table-cell;">
+                        <div style="height:600px;" id="map"></div>
+                    </div>
                 </div>
-
-            </aside>
-
-            <section class="col-sm-9">
-
-                <!-- div container map -->
-                <div class="box" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;">
-                    <div style="height:500px;" id="map"></div>
-                </div>
-
             </section>
         </div>
     </div>
@@ -112,7 +140,7 @@
 
 <!-- loading external scripts -->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
