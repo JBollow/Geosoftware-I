@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <!-- @authors Jan-Patrick Bollow 349891, Anna Formaniuk 427493, Jens -->
+    <!-- @authors Jan-Patrick Bollow 349891, Anna Formaniuk 427493, Jens Seifert 408076-->
     <meta charset="UTF-8" name="Jan-Patrick Bollow" content="Aufgabe 05">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -98,12 +98,12 @@
 
             <section class="col-sm-12">
                 <!-- div container -->
-                <div style="width: 100%; display: table;">
+                <div style="width: 100%; display: table; ">
                     <!-- div container -->
                     <div id="also" class="box" style="width: 100px;display: table-cell;">
 
-                        <div id="positionbox">
-                            <p>locating...</p>
+                        <div  id="positionbox">
+                            <p style="width: 175px;">locating...</p>
                         </div>
 
                         <br>
@@ -112,18 +112,20 @@
 
                         <table style="width: 100%;" class="cleantable">
                             <tr>
-                                <td> <input type="text" id="jsonLink" style="width: 100%;" value="https://raw.githubusercontent.com/JBollow/Geosoftware-I/master/05/GeoJSON.txt">
+                                <td style="padding:0; margin:0;">
+                                    <input type="text" id="jsonLink" style="width: 100%;" value="https://raw.githubusercontent.com/JBollow/Geosoftware-I/master/05/GeoJSON.txt">
                                 </td>
-                                <td> <input type="button" class="button" style="width: 65px;" value="&#x21bb; Enter" onclick="geoJsonLink()">
+                                <td style="padding:0; margin:0; width: 65px; padding-left:4px;">
+                                    <input type="button" class="button" style="height:20px; width: 65px;" value="&#x21bb; Enter" onclick="geoJsonLink()">
                                 </td>
                             </tr>
                         </table>
 
-
                     </div>
 
                     <!-- div container map -->
-                    <div id="also2" class="box" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;display: table-cell;">
+                    <div id="also2" class="box" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;display: table-cell; vertical-align: bottom;">
+
                         <div style="height:600px;" id="map"></div>
                     </div>
                 </div>

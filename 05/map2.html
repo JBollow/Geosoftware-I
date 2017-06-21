@@ -25,26 +25,23 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <!-- loading external scripts -->
-    <!-- API KEY: AIzaSyCXh26SKBmSTwFjhLNqvcIOX-v5o3IRn7k -->
-    <!-- Source:    https://developers.google.com/maps/documentation/javascript/?hl=de -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXh26SKBmSTwFjhLNqvcIOX-v5o3IRn7k&sensor=true"></script>
+    <!-- leaflet and mapbox -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
+          integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
+            integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
+            crossorigin=""></script>
 
-    <!-- loading local scripts -->
-    <!-- Source: http://jsnlog.com/ -->
-    <script src="js/jsnlog.min.js"></script>
-    <!-- Source: https://www.npmjs.com/package/geolocation-marker -->
-    <script src="js/geolocation-marker.js"></script>
-
-    <!-- loading my scripts -->
-    <script src="js/jsnlog.js"></script>
-    <script src="js/position.js"></script>
-    <script src="js/map.js"></script>
-    <script src="js/geojson.js"></script>
+    <!--Add draw plugin -->
+    <link rel='stylesheet' href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.css' />
+    <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.js'></script>
 
 </head>
 
-<body onload="initPosition();initMap();">
+<body>
 
     <header class="container-fluid">
         <h1>Aufgabe 05</h1>
@@ -77,26 +74,18 @@
 
                 <!-- div container -->
                 <div class="box" style="width: 100%;">
-                    <div id="positionbox">
-                        <p>locating...</p>
-                    </div>
+                    <p>Click to load the GeoJSON file</p>
 
-                    <br>
+                    <a href='#' id='export' style="width: 65px;" value="&#x21bb; Enter"u>Export Features</a>
+                 </div>
 
-                    <p>Please link a GEOJson file below</p>
+             </aside>
 
-                    <input type="text" id="jsonLink" value="https://raw.githubusercontent.com/JBollow/Geosoftware-I/master/05/GeoJSON.txt">
-                    <input type="button" class="button" style="width: 65px;" value="&#x21bb; Enter" onclick="geoJsonLink()" />
+             <section class="col-sm-9">
 
-                </div>
-
-            </aside>
-
-            <section class="col-sm-9">
-
-                <!-- div container map -->
+                 <!-- div container map -->
                 <div class="box" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;">
-                    <div style="height:500px;" id="map"></div>
+                    <div style="height:500px;" id="leafletMap"></div>
                 </div>
 
             </section>
@@ -117,6 +106,16 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
+
+
+<!-- loading local scripts -->
+<!-- Source: http://jsnlog.com/ -->
+<script src="js/jsnlog.min.js"></script>
+
+<!-- loading my scripts -->
+<script src="js/jsnlog.js"></script>
+<script src="js/leafletMap.js"></script>
+<script src="js/geojson.js"></script>
 
 <script>
     //JSNLog
