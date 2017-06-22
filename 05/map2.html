@@ -15,8 +15,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
 
+    <!-- leaflet and mapbox CSS -->
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
+        crossorigin="" />
+
+    <!--Add draw plugin CSS -->
+    <link rel='stylesheet' href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.css' />
+
     <!-- MY Styesheet -->
-    <link rel="stylesheet" href="Stylesheet.css">
+    <link rel="stylesheet" href="css/Stylesheet.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,22 +33,19 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <!-- loading external scripts -->
     <!-- leaflet and mapbox -->
     <script src='https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.css' rel='stylesheet' />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
-        crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
         crossorigin=""></script>
-
     <!--Add draw plugin -->
-    <link rel='stylesheet' href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.css' />
     <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.js'></script>
 
 </head>
 
 <body>
 
+    <!-- Header -->
     <header class="container-fluid">
         <h1>Aufgabe 05</h1>
     </header>
@@ -72,10 +77,10 @@
             <div class="col-sm-2">
 
                 <!-- div container -->
-                <div class="box" style="width: 100%; height:600px;">
+                <div class="box" style="width: 100%; ">
 
                     <p>Click to download the GeoJSON file</p>
-                    <a href='#' id='export' style="width: 65px;" value="&#x21bb; Enter" u>Export Features</a>
+                    <a href="#" class="linkjson" id='export' style="width: 65px;" value="&#x21bb; Enter" u>Export Features</a>
                 </div>
 
             </div>
@@ -102,7 +107,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
 
-
 <!-- loading local scripts -->
 <!-- Source: http://jsnlog.com/ -->
 <script src="js/jsnlog.min.js"></script>
@@ -110,11 +114,10 @@
 <!-- loading my scripts -->
 <script src="js/jsnlog.js"></script>
 <script src="js/leafletMap.js"></script>
-<script src="js/geojson.js"></script>
 
 <script>
     // JSNLog
-    logger.info("Map loaded");
+    logger.info("GeoJSON Drawer");
 </script>
 
 </html>

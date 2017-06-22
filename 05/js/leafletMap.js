@@ -79,6 +79,7 @@ var options = {
 
 var drawControl = new L.Control.Draw(options);
 theMap.addControl(drawControl);
+JL().info("Editing of the elements works only if clicked on a point with coordinates (not the middle of a line, for example)");
 
 // adding created objects to the layer
 theMap.on('draw:created', function (e) {
