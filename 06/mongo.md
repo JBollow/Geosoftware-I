@@ -1,6 +1,6 @@
 Command C:\mongo\bin\
 #1
-mongod --dbpath "Y:\OneDrive\Dokumente\Uni\Uni Münster\SS17\Geosoftware I\Übung\Git\Geosoftware-I\06\page\node\geojsondb\data"
+mongod --dbpath "Y:\OneDrive\Dokumente\Uni\Uni Münster\SS17\Geosoftware I\Übung\06\node\geojsondb\data"
 
 #2
 mongo
