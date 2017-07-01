@@ -1,6 +1,6 @@
 cmd.exe > npm install -g express-generator
 
-cmd.exe Ausführen in "*\geojsondb"
+cmd.exe Ausführen in "*\geojsondb\leaflet_map"
 
 express leaflet_map
 
