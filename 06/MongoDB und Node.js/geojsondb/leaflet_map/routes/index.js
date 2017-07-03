@@ -8,32 +8,32 @@ var router = express.Router();
 
 // I didnt add any logger to my nodejs
 
-/* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('index', {
-    title: 'Express'
-  });
-});
-
-/* GET Userlist page. 
-   Added the Userlist page
+/* GETjson 
+   handles GET request 
 */
 router.get('/getjson', function (req, res) {
+
+  // Set our internal DB variable
   var db = req.db;
+
+  // Set our collection
   var collection = db.get('layercollection');
+  
+  // Query from our DB
   collection.find({}, {}, function (e, docs) {
     res.json(docs);
   });
 });
 
-/* POST to add GeoJSON to the DB
+/* POSTjson
+   Posting json to mongodb
 */
 router.post('/postjson', function (req, res) {
 
   // Set our internal DB variable
   var db = req.db;
 
-  // Get our form values. These rely on the "name" attributes
+  // Get our geojson, this comes from our drawer
   var geojson = req.body;
 
   // Set our collection
@@ -44,10 +44,12 @@ router.post('/postjson', function (req, res) {
     geojson
   }, function (err, doc) {
     if (err) {
+
       // If it failed, return error
       res.send("There was a problem adding the information to the database.");
     } else {
-      // And forward to success page
+      
+      // Or print object id
       res.send(doc._id);
     }
   });

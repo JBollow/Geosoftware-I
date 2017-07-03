@@ -120,6 +120,7 @@ document.getElementById('export').onclick = function (e) {
 
 // Post the geoJSON layer to DB
 document.getElementById('post2db').onclick = function (e) {
+
     // Extract GeoJson from editableLayer
     var data = editableLayers.toGeoJSON();
 
@@ -128,7 +129,7 @@ document.getElementById('post2db').onclick = function (e) {
 
     var senddata = JSON.stringify(data);
 
-    // Post to local mongodb via nodejs
+    // Post to local mongodb via nodejs using our own POST
     $.ajax({
         type: "POST",
         url: "http://localhost:3000/postjson",
@@ -153,6 +154,7 @@ document.getElementById('post2db').onclick = function (e) {
 
 // Get the geoJSON layers from DB 
 document.getElementById('loaddb').onclick = function (e) {
+
     // clearLayers before adding to prevent duplicates
     jsonLayers.clearLayers();
     $("#legendelem").empty();
@@ -163,24 +165,30 @@ document.getElementById('loaddb').onclick = function (e) {
     $('#legend').replaceWith("<h2>Layers:</h2>");
     $('#legendbtn').replaceWith("<input style='width: 100%;' type='button' class='button' value='Remove all layers' onclick='remove()'>");
 
-
+    // Get all GeoJSON from our DB using our GET
     $.ajax({
         type: "GET",
         url: "http://localhost:3000/getjson",
         success: function (response) {
             // JSNLog
             logger.info('Get successful!', response);
+
+            // Using a forEach method iterating over the array of nested objects
             response.forEach(function (entry) {
                 // JSNLog
                 logger.info('JSON.stringify(entry.geojson)', JSON.stringify(entry.geojson));
 
+                // Adding each geojson feature to the jsonLayers
                 L.geoJSON(entry.geojson).addTo(jsonLayers);
-                // Adding the layernames+checkboxes to the legendlist
+
+                // Adding the layernames to the legendlist, + commented checkboxes for something that I was interested in, but maybe never finished
                 $('#legendelem').append("<li><p> <!--<input type='checkbox' checked>--> " + entry.geojson.name + "</p></li>");
 
             });
         },
         error: function (responsedata) {
+
+            // If something fails, cleaning the legend and jsonlayers
             jsonLayers.clearLayers();
             $("#legendelem").empty();
             $("#legenddiv").hide();
@@ -190,6 +198,8 @@ document.getElementById('loaddb').onclick = function (e) {
             logger.error('Failed in!', response);
         }
     }).error(function (responsedata) {
+
+        // If something fails, cleaning the legend and jsonlayers
         jsonLayers.clearLayers();
         $("#legendelem").empty();
         $("#legenddiv").hide();
