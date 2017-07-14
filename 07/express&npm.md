@@ -39,7 +39,7 @@ mkdir data
 
 
 
-##Oder falls alles schon installiert ist, einfach nur
+## Oder falls alles schon installiert ist, einfach nur
 
 > cmd.exe Ausführen in "*\leaflet_map"
 
