@@ -15,12 +15,19 @@ mongo
 use leaflet_map
 
 ### GeoJSON Drawer
+
 db.layercollection.insert()
+
 db.layercollection.remove({})
+
 db.layercollection.find().pretty()
 
 
+
 ### Routing
+
 db.routecollection.insert()
+
 db.routecollection.remove({})
+
 db.routecollection.find().pretty()
