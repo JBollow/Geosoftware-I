@@ -8,6 +8,12 @@ var router = express.Router();
 
 // I didnt add any logger to my nodejs
 
+// You need to start the page manually
+// /* GET home page. */
+// router.get('/', function(req, res, next) {
+//   res.sendFile(__dirname + '/page/index.html');
+// });
+
 /* GETjson 
    handles GET request 
 */
