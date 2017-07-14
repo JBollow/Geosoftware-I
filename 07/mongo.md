@@ -1,14 +1,14 @@
-#Notizen zur mongodb
+# Notizen zur mongodb
 
 > cmd.exe Ausf�hren in "C:\Program Files\MongoDB\Server\3.4\bin"
 
 
-##1
+## 1
 
 > mongod --dbpath "Y:\OneDrive\Dokumente\Uni\Uni Münster\SS17\Geosoftware I\Übung\07\leaflet_map\data"
 
 
-##2
+## 2
 
 mongo
 

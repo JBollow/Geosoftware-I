@@ -1,6 +1,6 @@
-#Notizen zu express&npm
+# Notizen zu express&npm
 
-##Für die erstmalige Installation
+## Für die erstmalige Installation
 cmd.exe > npm install -g express-generator
 
 > Falls express noch nicht installiert ist
