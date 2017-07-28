@@ -1,13 +1,5 @@
-cmd.exe > npm install -g express-generator
-
-cmd.exe Ausführen in "*\geojsondb"
-
-express leaflet_map
-
-
-// edit package.json to:
 {
-  "name": "leaflet-map",
+  "name": "LaVuelta",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -25,11 +17,3 @@ express leaflet_map
     "serve-favicon": "~2.3.2"
   }
 }
-
-cmd.exe Ausführen in "*\geojsondb\leaflet_map"
-
-npm install
-
-mkdir data
-
-npm start

@@ -1,0 +1,419 @@
+﻿html,
+body {
+	height: 100%;
+	overflow: hidden;
+}
+
+body {
+	background-color: #e32821;
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+	color: #404040;
+	margin: 0;
+	padding: 0px;
+}
+
+h1 {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 20px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 22px;
+	color: #404040;
+}
+
+h2 {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 16px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 15.4px;
+	color: #404040;
+}
+
+h3 {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 15.4px;
+	color: #404040;
+}
+
+p {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+	color: #404040;
+}
+
+q {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 14px;
+	font-style: italic;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+	color: #404040;
+}
+
+blockquote {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 21px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 30px;
+	color: #404040;
+}
+
+pre {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 13px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 18.5714px;
+	color: #404040;
+}
+
+header {
+	width: 100%;
+	text-align: left;
+	background: #e32821;
+}
+
+.header img {
+	background: #555;
+	display: inline;
+}
+
+.header h1 {
+	position: relative;
+	display: inline;
+	top: 12px;
+	left: 10px;
+	color: white;
+}
+
+input {
+	background-color: #d9d9d9;
+	border: none;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 13px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 18.5714px;
+	color: #404040;
+	margin-top: 10x;
+}
+
+input:hover {
+	background-color: #d22821;
+	color: white;
+}
+
+input[type=range] {
+	-webkit-appearance: none;
+	width: 100px;
+	margin: 0px;
+	height: 8px;
+}
+
+th {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 13px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	line-height: 18.5714px;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+th,
+td {
+	padding: 15px;
+	text-align: left;
+}
+
+table,
+td {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 13px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 18.5714px;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+table#t01 tr:nth-child(even) {
+	background-color: #d9d9d9;
+}
+
+table#t01 tr:nth-child(odd) {
+	background-color: #f2f2f2;
+}
+
+label {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+	margin-top: 0px;
+	text-align: left;
+	padding-top: 0x;
+	padding-bottom: 0px;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #404040;
+	border: none;
+	cursor: pointer;
+	background-color: white;
+}
+
+label:hover {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+	margin-top: 0px;
+	padding-top: 0x;
+	padding-bottom: 0px;
+	border: none;
+	background-color: #d22821;
+	color: white;
+}
+
+label:active {
+	background-color: #d22821;
+	transform: translateY(2px);
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+ol {
+	list-style-type: upper-roman;
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 13px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 18.5714px;
+	color: #404040;
+}
+
+li.active {
+	text-align: center;
+}
+
+li.inactive {
+	text-align: center;
+}
+
+li.inactive:hover {
+	background-color: #d22821;
+	text-align: center;
+}
+
+a {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 13px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 18.5714px;
+	color: #404040;
+}
+
+a.linkjson:link {
+	background-color: #d9d9d9;
+	padding: 3px 5px;
+	text-decoration: none;
+}
+
+a.linkjson:hover {
+	background-color: #d22821;
+	color: white;
+	padding: 2px 5px;
+	text-decoration: none;
+}
+
+#map {
+	height: 100%;
+	width: 100%;
+}
+
+.box {
+	background-color: #ffffff;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border: 1px solid black;
+	margin-top: 10px;
+}
+
+.button {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+	margin-top: 0px;
+	padding-top: 0x;
+	padding-bottom: 0px;
+	background-color: #d9d9d9;
+	color: #404040;
+	border: none;
+	cursor: pointer;
+}
+
+.button:hover {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+	margin-top: 0px;
+	padding-top: 0x;
+	padding-bottom: 0px;
+	border: none;
+	background-color: #d22821;
+	color: white;
+}
+
+.button:active {
+	background-color: #d22821;
+	transform: translateY(2px);
+}
+
+.buttonwhite {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+	margin-top: 0px;
+	padding-top: 0x;
+	padding-bottom: 0px;
+	background-color: white;
+	color: #404040;
+	border: none;
+	cursor: pointer;
+}
+
+.buttonwhite:hover {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+	margin-top: 0px;
+	padding-top: 0x;
+	padding-bottom: 0px;
+	border: none;
+	background-color: #d22821;
+	color: white;
+}
+
+.buttonwhite:active {
+	background-color: #d22821;
+	transform: translateY(2px);
+}
+
+.buttonnav {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+	margin-top: 10px;
+	margin-right: 5px;
+	background-color: d9d9d9;
+	color: #404040;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+}
+
+.buttonnav:hover {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+	margin-top: 10px;
+	margin-right: 5px;
+	border: none;
+	background-color: #d22821;
+	color: white;
+	width: 100%;
+}
+
+.buttonnav:active {
+	background-color: #d22821;
+	transform: translateY(2px);
+}
+
+.cleantable,
+.cleantable tr,
+.cleantable tbody td,
+.cleantable thead th,
+.cleantable tfoot th {
+	border: none;
+}
+
+.leaflet-popup-tip-container {
+	display: none;
+}
+
+.leaflet-popup-content-wrapper {
+	border-radius: 0px;
+}
+
+.leaflet-routing-container {
+	border-radius: 0px;
+}
+
+.leaflet-control-layers {
+	border-radius: 0px;
+}
+
+.leaflet-container.crosshair-cursor-enabled {
+	cursor: crosshair;
+}
