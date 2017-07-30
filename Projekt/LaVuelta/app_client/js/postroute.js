@@ -35,13 +35,18 @@ map.on('click', function (e) {
 // Post the route to DB
 document.getElementById('post2db').onclick = function (e) {
 
-    // JSNLog: Logs the start and end coordinates
-    JL().info(control.getWaypoints());
+    // JSNLog
+    logger.info(control.getWaypoints());
 
     var JSONtoPOST = {
+        "costing": $('#transport').val(),
+        "language": $('#language').val(),
         "routeName": $("#jsonname").val(),
-        "navigationPoints": control.getWaypoints()
+        "navigationPoints": control.getWaypoints(),
     };
+    
+    // JSNLog
+    logger.info(JSONtoPOST);
 
     // Post to local mongodb via nodejs using our own POST
     $.ajax({

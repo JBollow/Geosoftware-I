@@ -10,7 +10,6 @@
 
     <title>La Vuelta Projekt</title>
 
-
     <!-- favicon -->
     <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/img/apple-icon-60x60.png">
@@ -37,18 +36,16 @@
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 
     <!-- leaflet and mapbox CSS -->
-    <link href="https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
-        crossorigin="" />
+    <!-- <link href="https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.css" rel="stylesheet" /> -->
+    <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="        crossorigin="" /> -->
 
     <!--Add route plugin CSS -->
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css">
-    <link rel="stylesheet" href="style/leaflet-routing-machine.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/perliedman-leaflet-control-geocoder/1.5.4/Control.Geocoder.css"
-    />
+    <!-- <link rel="stylesheet" href="style/leaflet-routing-machine.css" /> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/perliedman-leaflet-control-geocoder/1.5.4/Control.Geocoder.css"/> -->
 
-    <!-- Other Styesheets -->
-    <link rel="stylesheet" href="style/jquery-ui.css">
+    <!-- Mapzen -->
+    <link rel="stylesheet" href="https://mapzen.com/js/0.6/mapzen.css" />
+    <link rel="stylesheet" href="style/lrm-mapzen.css">
 
     <!-- MY Styesheet -->
     <link rel="stylesheet" href="style/Stylesheet.css">
@@ -62,13 +59,16 @@
 
     <!-- loading external scripts -->
     <!-- leaflet and mapbox -->
-    <script src="https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.js"></script>
-    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
-        crossorigin=""></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/perliedman-leaflet-control-geocoder/1.5.4/Control.Geocoder.js"></script>
+    <!-- <script src="https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.js"></script> -->
+     <!-- <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>   -->
 
     <!--Add route plugin -->
-    <script src="js/leaflet-routing-machine.js"></script>
+    <!-- <script src="js/leaflet-routing-machine.js"></script> -->
+    <!--Add mapzen plugin Source: https://github.com/mapzen/lrm-mapzen -->
+     <script src="https://mapzen.com/js/0.6/mapzen.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.5/leaflet-routing-machine.min.js"></script>
+     <script src="js/lrm-mapzen.js"></script> 
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/perliedman-leaflet-control-geocoder/1.5.4/Control.Geocoder.js"></script> 
 
 </head>
 
@@ -144,7 +144,30 @@
 
                 <!-- div container map -->
                 <div class="box" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;">
-                    <div style="height:772px;" id="map"></div>
+                    <div align="center">
+                        <p style="display:inline"><b>Transportation:</b></p>
+                        <select id="transport" onchange="reloadTransport()">
+                    <option value="auto">Automobil</option>
+                    <option value="pedestrian">Pedestrian</option>                    
+                    <option value="multimodal">Transit</option>
+                    <option value="bicycle">Bicycle</option>
+                    </select>
+
+                        <p style="display:inline; padding-left: 20px"><b>Language:</b></p>
+                        <select id="language" onchange="reloadLanguage()">
+                    <option value="de-DE" >Deutsch</option>
+                    <option value="en-US">English</option>
+                    <option value="es-ES">El español</option>
+                    <option value="fr-FR">Français</option>
+                    <option value="it-IT">Italiano</option>
+                    <option value="ru-RU">Русский язык</option>
+                    <option value="hi-IN">हिन्दी</option>
+                    </select>
+
+                        <input type="button" class="buttonwhite" value="Reload &#x21bb;" onclick="remover()" style=" margin-left: 20px">
+
+                    </div>
+                    <div style="height:750px;" id="map"></div>
                 </div>
 
             </div>
@@ -168,6 +191,7 @@
 <script src="js/jsnlog.min.js"></script>
 
 <!-- loading my scripts -->
+<script src="js/gettime.js"></script>
 <script src="js/jsnlog.js"></script>
 <script src="js/leaflet.js"></script>
 <script src="js/leaflet_route.js"></script>

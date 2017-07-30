@@ -31,7 +31,7 @@ var OpenStreetMap_DE = L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde
 var map = L.map('map', {
     center: [40.417, -3.704],
     zoom: 6,
-    layers: [CartoDB_DarkMatter]
+    layers: [CartoDB_DarkMatter],
 });
 
 var baseMaps = {

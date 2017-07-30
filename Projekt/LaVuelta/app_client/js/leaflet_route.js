@@ -4,19 +4,71 @@
 
 'use strict';
 
+L.Mapzen.apiKey = 'mapzen-Viyke6a';
+
+var control = true;
+
 /**
  * Initializing routing control
  */
-var control = L.Routing.control({
-    waypoints: [null],
-    routeWhileDragging: true,
-    show: true,
-    position: 'topright',
-    autoRoute: true,
-    geocoder: L.Control.Geocoder.nominatim()
-}).addTo(map);
-// JSNLog
-logger.info("Routing control is ready");
+var control = reloadControl($('#language').val(), $('#transport').val());
+
+function reloadControl(language, tansportation) {
+    // Mapzen
+    control = L.Routing.control({
+        waypoints: [null],
+        routeWhileDragging: true,
+        showAlternatives: true,
+        fitSelectedRoutes: true,
+        reverseWaypoints: true,
+        show: true,
+        position: 'bottomleft',
+        autoRoute: true,
+        geocoder: L.Control.Geocoder.nominatim(),
+        geocoder: L.Control.Geocoder.mapzen('mapzen-Viyke6a'),
+        router: L.Routing.mapzen('mapzen-Viyke6a', {
+            routeLine: function (route, options) {
+                return L.Routing.mapzenLine(route, options);
+            },
+            directions_options: {
+                language: language
+            },
+            costing: tansportation,
+        }),
+        formatter: new L.Routing.mapzenFormatter(),
+        summaryTemplate: '<div class="route-info {costing}">{distance}, {time}</div>'
+    }).addTo(map);
+    return control;
+    // JSNLog
+    logger.info("Mapzen is ready");
+}
+
+// Reload language
+function reloadLanguage() {
+    control.getRouter().options.directions_options.language = $('#language').val();
+    // JSNLog
+    logger.info("Language changed to: " + control.getRouter().options.directions_options.language);
+    control.remove();
+    reloadControl($('#language').val(), $('#transport').val());
+}
+
+// Reload transportation
+function reloadTransport() {
+    control.getRouter().options.costing = $('#transport').val();
+    // JSNLog
+    logger.info("Transportation changed to: " + control.getRouter().options.costing);
+    control.remove();
+    reloadControl($('#language').val(), $('#transport').val());
+}
+
+function remover() {
+    control.remove();
+    // JSNLog
+    logger.info("Control removed");
+    reloadControl($('#language').val(), $('#transport').val());
+    // JSNLog
+    logger.info("Control rebuild");
+}
 
 // Get the route from DB 
 document.getElementById('loaddb').onclick = function (e) {
@@ -43,7 +95,7 @@ document.getElementById('loaddb').onclick = function (e) {
             response.forEach(function (entry) {
 
                 // Ich habe ein Monster erschaffen, sorry, aber das war die Lösung die ich schon lange im Kopf hatte
-                $('#legendelem').append("<li><p><input name='routes' type='radio' id=" + entry._id + "> " + entry.geojson.routeName + "</p></li><script>$('#" + entry._id + "').change(function(){if($(this).is(':checked')){control.show();$('#checkroute').prop('checked',true);var id=$(this).attr('id');control.getPlan().setWaypoints({latLng:L.latLng([null])});$.ajax({type:'GET',url:'http://localhost:3000/getroute',success:function(response){response.forEach(function(entry){if(entry._id==id){control.setWaypoints(entry.geojson.navigationPoints);}});},error:function(responsedata){control.getPlan().setWaypoints({latLng:L.latLng([null])});alert('Failed!');}}).error(function(responsedata){control.getPlan().setWaypoints({latLng:L.latLng([null])});alert('Failed!');});}});</script>");
+                $('#legendelem').append("<li><p><input name='routes' type='radio' id=" + entry._id + "> " + entry.geojson.routeName + "</p></li><script>$('#" + entry._id + "').change(function(){if($(this).is(':checked')){control.show();$('#checkroute').prop('checked',true);var id=$(this).attr('id');control.getPlan().setWaypoints({latLng:L.latLng([null])});$.ajax({type:'GET',url:'http://localhost:3000/getroute',success:function(response){response.forEach(function(entry){if(entry._id==id){control.remove();reloadControl(entry.geojson.language,entry.geojson.costing);control.setWaypoints(entry.geojson.navigationPoints);}});},error:function(responsedata){control.getPlan().setWaypoints({latLng:L.latLng([null])});alert('Failed!');}}).error(function(responsedata){control.getPlan().setWaypoints({latLng:L.latLng([null])});alert('Failed!');});}});logger.info('Changed route');</script>");
             });
         },
 
@@ -87,7 +139,23 @@ function removeroute() {
 $("#checkroute").change(function () {
     if ($(this).is(':checked')) {
         control.show();
+        // JSNLog
+        logger.info("Show control");
     } else {
         control.hide();
+        // JSNLog
+        logger.info("Hide control");
     }
 });
+
+
+// Locator found in a Mapzen example
+var locator = L.Mapzen.locator();
+locator.addTo(map);
+// JSNLog
+logger.info("Locator loaded");
+
+// Mapzen errorControl
+L.Routing.errorControl(control).addTo(map);
+// JSNLog
+logger.info("ErrorControl loaded");
