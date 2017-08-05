@@ -32,7 +32,7 @@ map.on('click', function (e) {
     });
 });
 
-// Post the route to DB
+// Post the route to DB as route
 document.getElementById('post2db').onclick = function (e) {
 
     // JSNLog

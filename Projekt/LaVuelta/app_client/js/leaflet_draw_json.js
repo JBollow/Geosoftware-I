@@ -49,7 +49,7 @@ document.getElementById('jsonloaddb').onclick = function (e) {
                 L.geoJSON(entry.geojson).addTo(jsonLayers);
 
                 // Adding the layernames to the legendlist, + commented checkboxes for something that I was interested in, but maybe never finished
-                $('#jsonlegendelem').append("<li><p>" + entry.geojson.name + "</p></li>");
+                $('#jsonlegendelem').append("<li><p style='font-size: 14px;'>" + entry.geojson.name + "</p></li>");
 
             });
         },

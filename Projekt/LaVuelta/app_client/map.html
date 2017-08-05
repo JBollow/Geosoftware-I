@@ -50,6 +50,9 @@
     <link rel="stylesheet" href="https://mapzen.com/js/0.6/mapzen.css" />
     <link rel="stylesheet" href="style/lrm-mapzen.css">
 
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!-- MY Styesheet -->
     <link rel="stylesheet" href="style/Stylesheet.css">
 
@@ -79,88 +82,87 @@
 </head>
 
 <body>
-
-    <!-- Header -->
-    <header class="container-fluid">
-        <div class="header">
-            <img src="img/images.png" alt="">
-            <h1 style="font-size: 40px;font-weight: 500;">Project</h1>
+    <div class="jumbotron jumbotron-main" id="home">
+        <div id="particles-js">
+            <canvas class="particles-js-canvas-el" width="1409" height="319" style="width: 100%; height: 100%;"></canvas>
         </div>
-    </header>
 
-    <!-- Navbarcontainer -->
-    <nav class="navbar navbar-default navbar-static-top" style="border-top: 1px solid black;border-bottom: 1px solid black;"
-        role="navigation">
+        <!-- Header -->
+        <header class="container-fluid">
+            <h4>LΛ VUELTΛ</h4>
+        </header>
 
-        <ul class="nav navbar-nav">
-            <li class="inactive">
-                <a href="index.html">Home</a>
-            </li>
-            <li class="active">
-                <a href="#">Stages</a>
-            </li>
-            <li class="inactive">
-                <a href="map2.html">Feature Editor</a>
-            </li>
-            <li class="inactive">
-                <a href="map3.html">Route Editor</a>
-            </li>
-            <li class="inactive">
-                <a href="impressum.html">Impressum</a>
-            </li>
-        </ul>
-    </nav>
+        <!-- Navbarcontainer -->
+        <nav class="navbar navbar-default navbar-static-top" style="border-top: 1px solid black;border-bottom: 1px solid black;"
+            role="navigation">
 
-    <!-- Bodycontainer -->
-    <div class="container-fluid">
-        <div class="row">
-            <aside class="col-sm-3">
-                <!-- div container -->
-                <div class="box" style="width: 100%; ">
+            <ul class="nav navbar-nav">
+                <li class="inactive">
+                    <a class="hvr-shutter-out-vertical" href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                </li>
+                <li class="active">
+                    <a href="#"><i class="fa fa-map-o" aria-hidden="true"></i> Stages</a>
+                </li>
+                <li class="inactive">
+                    <a class="hvr-shutter-out-vertical" href="map2.html"><i class="fa fa-paint-brush" aria-hidden="true"></i> Feature Editor</a>
+                </li>
+                <li class="inactive">
+                    <a class="hvr-shutter-out-vertical" href="map3.html"><i class="fa fa-map-marker" aria-hidden="true"></i> Route Editor</a>
+                </li>
+                <li class="inactive">
+                    <a class="hvr-shutter-out-vertical" href="impressum.html"><b>§</b> Impressum</a>
+                </li>
+            </ul>
+        </nav>
 
-                    <input type="button" class="button" value="Load Features" id="jsonloaddb" style="width: 100%;">
+        <!-- Bodycontainer -->
+        <div class="container-fluid">
+            <div class="row">
+                <aside class="col-sm-3">
+                    <!-- div container -->
+                    <div class="box" style="width: 100%; ">
+                        <button type="button" class="button" value="" id="jsonloaddb" style="width: 100%;"><i class="fa fa-cloud-download" aria-hidden="true"></i> Load Features</button>
+                        <div id="jsonlegenddiv">
+                            <p id="jsonlegend"></p>
+                        </div>
+                        <ul style="list-style-type: none;margin-left: 5px;" id="jsonlegendelem"></ul>
+                        <div id="jsonlegendbtndiv">
+                            <p id="jsonlegendbtn"></p>
+                        </div>
 
-                    <div id="jsonlegenddiv">
-                        <p id="jsonlegend"></p>
                     </div>
-                    <ul style="list-style-type: none;" id="jsonlegendelem"></ul>
-                    <div id="jsonlegendbtndiv">
-                        <p id="jsonlegendbtn"></p>
+
+                    <!-- div container -->
+                    <div class="box" style="width: 100%; ">
+
+                        <button type="button" class="button" value="" id="loaddb" style="width: 100%;"><i class="fa fa-cloud-download" aria-hidden="true"></i> Load Routes</button>
+                        <div id="legenddiv">
+                            <p id="legend"></p>
+                        </div>
+                        <form action="">
+                            <ul style="list-style-type: none;margin-left: 5px;" id="legendelem"></ul>
+                        </form>
+                        <div id="legendbtndiv">
+                            <p id="legendbtn"></p>
+                        </div>
+                        <br>
+                        <p style="font-size: 14px; display:inline;"><input type="checkbox" id="checkroute"> Show routing control</p>
+                    </div>
+                </aside>
+
+                <section class="col-sm-9">
+
+
+                    <!-- div container map -->
+                    <div class="box" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;">
+                        <div id="map"></div>
                     </div>
 
-                </div>
+                </section>
 
-                <!-- div container -->
-                <div class="box" style="width: 100%; ">
-                    <input type="button" class="button" value="Load Routes" id="loaddb" style="width: 100%;">
-
-                    <div id="legenddiv">
-                        <p id="legend"></p>
-                    </div>
-                    <form action="">
-                        <ul style="list-style-type: none;" id="legendelem"></ul>
-                    </form>
-                    <div id="legendbtndiv">
-                        <p id="legendbtn"></p>
-                    </div>
-                    <br>
-                    <p><input type="checkbox" id="checkroute"> Show routing control</p>
-                </div>
-            </aside>
-
-            <section class="col-sm-9">
-
-
-                <!-- div container map -->
-                <div class="box" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;">
-                    <div style="height:772px;" id="map"></div>
-                </div>
-
-            </section>
-
+            </div>
         </div>
     </div>
-
 </body>
 
 <!-- loading external scripts -->
@@ -175,6 +177,11 @@
 <!-- loading local scripts -->
 <!-- Source: http://jsnlog.com/ -->
 <script src="js/jsnlog.min.js"></script>
+
+<!-- particles -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="https://threejs.org/examples/js/libs/stats.min.js"></script>
+<script src="js/particles.js"></script>
 
 <!-- loading my scripts -->
 <script src="js/gettime.js"></script>

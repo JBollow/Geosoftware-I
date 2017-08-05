@@ -46,8 +46,30 @@ var overlayMaps = {
     // "Cities": cities
 };
 L.control.layers(baseMaps, overlayMaps, {
-    position: 'topleft'
+    position: 'bottomright'
 }).addTo(map);
+
+// Autoscale map
+$(window).on("resize", function () {
+    if ($(window).width() > 767) {
+        $("#map").height($(window).height() - (210 + $(window).height() * 0)).width($(window).width() - (32 + $(window).width() * 0.25));
+        map.invalidateSize();
+    } else {
+
+        if ($(window).width() > 507) {
+            $("#map").height($(window).height() - (625 + $(window).height() * 0)).width($(window).width() - (32 + $(window).width() * 0));
+            map.invalidateSize();
+        } else {
+            if ($(window).width() > 314) {
+                $("#map").height($(window).height() - (645 + $(window).height() * 0)).width($(window).width() - (32 + $(window).width() * 0));
+                map.invalidateSize();
+            } else {
+                $("#map").height($(window).height() - (665 + $(window).height() * 0)).width($(window).width() - (32 + $(window).width() * 0));
+                map.invalidateSize();
+            }
+        }
+    }
+}).trigger("resize");
 
 // JSNLog
 logger.info("The map is ready");

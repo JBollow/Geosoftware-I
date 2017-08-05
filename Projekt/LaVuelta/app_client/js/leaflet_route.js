@@ -45,20 +45,27 @@ function reloadControl(language, tansportation) {
 
 // Reload language
 function reloadLanguage() {
+    var waypoints = control.getWaypoints();
+    // JSNLog
+    logger.info(waypoints);
     control.getRouter().options.directions_options.language = $('#language').val();
     // JSNLog
     logger.info("Language changed to: " + control.getRouter().options.directions_options.language);
     control.remove();
     reloadControl($('#language').val(), $('#transport').val());
+    control.setWaypoints(waypoints);
 }
 
 // Reload transportation
 function reloadTransport() {
+    var waypoints = control.getWaypoints();
+    // JSNLog
     control.getRouter().options.costing = $('#transport').val();
     // JSNLog
     logger.info("Transportation changed to: " + control.getRouter().options.costing);
     control.remove();
     reloadControl($('#language').val(), $('#transport').val());
+    control.setWaypoints(waypoints);
 }
 
 function remover() {
@@ -69,6 +76,7 @@ function remover() {
     // JSNLog
     logger.info("Control rebuild");
 }
+
 
 // Get the route from DB 
 document.getElementById('loaddb').onclick = function (e) {
@@ -95,7 +103,7 @@ document.getElementById('loaddb').onclick = function (e) {
             response.forEach(function (entry) {
 
                 // Ich habe ein Monster erschaffen, sorry, aber das war die Lösung die ich schon lange im Kopf hatte
-                $('#legendelem').append("<li><p><input name='routes' type='radio' id=" + entry._id + "> " + entry.geojson.routeName + "</p></li><script>$('#" + entry._id + "').change(function(){if($(this).is(':checked')){control.show();$('#checkroute').prop('checked',true);var id=$(this).attr('id');control.getPlan().setWaypoints({latLng:L.latLng([null])});$.ajax({type:'GET',url:'http://localhost:3000/getroute',success:function(response){response.forEach(function(entry){if(entry._id==id){control.remove();reloadControl(entry.geojson.language,entry.geojson.costing);control.setWaypoints(entry.geojson.navigationPoints);}});},error:function(responsedata){control.getPlan().setWaypoints({latLng:L.latLng([null])});alert('Failed!');}}).error(function(responsedata){control.getPlan().setWaypoints({latLng:L.latLng([null])});alert('Failed!');});}});logger.info('Changed route');</script>");
+                $('#legendelem').append("<li><p style='font-size: 14px;'><input name='routes' type='radio' id=" + entry._id + "> " + entry.geojson.routeName + "</p></li><script>$('#" + entry._id + "').change(function(){if($(this).is(':checked')){control.show();$('#checkroute').prop('checked',true);var id=$(this).attr('id');control.getPlan().setWaypoints({latLng:L.latLng([null])});$.ajax({type:'GET',url:'http://localhost:3000/getroute',success:function(response){response.forEach(function(entry){if(entry._id==id){control.remove();reloadControl(entry.geojson.language,entry.geojson.costing);$('#transport').val(entry.geojson.costing);$('#language').val(entry.geojson.language);control.setWaypoints(entry.geojson.navigationPoints);}});},error:function(responsedata){control.getPlan().setWaypoints({latLng:L.latLng([null])});alert('Failed!');}}).error(function(responsedata){control.getPlan().setWaypoints({latLng:L.latLng([null])});alert('Failed!');});}});logger.info('Changed route');</script>");
             });
         },
 

@@ -43,6 +43,9 @@
     <!--Add draw plugin CSS -->
     <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.css" />
 
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!-- MY Stylesheet -->
     <link rel="stylesheet" href="style/Stylesheet.css">
 
@@ -56,7 +59,8 @@
     <!-- loading external scripts -->
     <!-- leaflet and mapbox -->
     <!-- <script src="https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.js"></script> -->
-     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="        crossorigin=""></script> 
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
+        crossorigin=""></script>
 
     <!--Add draw plugin -->
     <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.js"></script>
@@ -64,97 +68,89 @@
 </head>
 
 <body>
-
-    <!-- Header -->
-    <header class="container-fluid">
-        <div class="header">
-            <img src="img/images.png" alt="">
-            <h1 style="font-size: 40px;font-weight: 500;">Project</h1>
+    <div class="jumbotron jumbotron-main" id="home">
+        <div id="particles-js">
+            <canvas class="particles-js-canvas-el" width="1409" height="319" style="width: 100%; height: 100%;"></canvas>
         </div>
-    </header>
 
-    <!-- Navbarcontainer -->
-    <nav class="navbar navbar-default navbar-static-top" style="border-top: 1px solid black;border-bottom: 1px solid black;"
-        role="navigation">
+        <!-- Header -->
+        <header class="container-fluid">
+            <h4>LΛ VUELTΛ</h4>
+        </header>
 
-        <ul class="nav navbar-nav">
-            <li class="inactive">
-                <a href="index.html">Home</a>
-            </li>
-            <li class="inactive">
-                <a href="map.html#">Stages</a>
-            </li>
-            <li class="active">
-                <a href="#">Feature Editor</a>
-            </li>
-            <li class="inactive">
-                <a href="map3.html">Route Editor</a>
-            </li>
-            <li class="inactive">
-                <a href="impressum.html">Impressum</a>
-            </li>
-        </ul>
-    </nav>
+        <!-- Navbarcontainer -->
+        <nav class="navbar navbar-default navbar-static-top" style="border-top: 1px solid black;border-bottom: 1px solid black;"
+            role="navigation">
 
-    <!-- Bodycontainer -->
-    <div class="container-fluid">
-        <div class="row">
+            <ul class="nav navbar-nav">
+                <li class="inactive">
+                    <a class="hvr-shutter-out-vertical" href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                </li>
+                <li class="inactive">
+                    <a class="hvr-shutter-out-vertical" href="map.html#"><i class="fa fa-map-o" aria-hidden="true"></i> Stages</a>
+                </li>
+                <li class="active">
+                    <a href="#"><i class="fa fa-paint-brush" aria-hidden="true"></i> Feature Editor</a>
+                </li>
+                <li class="inactive">
+                    <a class="hvr-shutter-out-vertical" href="map3.html"><i class="fa fa-map-marker" aria-hidden="true"></i> Route Editor</a>
+                </li>
+                <li class="inactive">
+                    <a class="hvr-shutter-out-vertical" href="impressum.html"><b>§</b> Impressum</a>
+                </li>
+            </ul>
+        </nav>
 
-            <div class="col-sm-3">
+        <!-- Bodycontainer -->
+        <div class="container-fluid">
+            <div class="row">
 
-                <!-- div container -->
-                <div class="box" style="width: 100%; ">
-                    <p><b>Click to download the GeoJSON feature or post it to the DB</b></p>
+                <div class="col-sm-3">
 
-                    <table style="width: 100%;" class="cleantable">
-                        <tr>
-                            <td style="padding:0; margin:0;">
-                                <input type="button" class="button" value="Post to DB" id="post2db" style="width: 100%;">
-                            </td>
-                            <td style="padding:0; margin:0; width: 109px; padding-left:4px;">
-                                <a href="#" class="linkjson" id="export" value="&#x21bb; Enter">
-                                    <nobr>Export Features</nobr>
-                                </a>
-                            </td>
-                        </tr>
-                    </table>
-                    <br>
-                    <p>Name your feature!</p>
-                    <input type="text" id="jsonname" style="width: 100%;" value="Featurename">
+                    <!-- div container -->
+                    <div class="box" style="width: 100%;">
+                        <label class="trans"><input type="text" id="jsonname" required/><div class="label-text">Featurename</div></label><br>
+                        <p style="font-size: 14px;">Save your feature:</p>
+                        <table class="cleantable" style="width: 100%;padding:0px;">
+                            <tr>
+                                <td style="width: 50%;padding: 0px;"><button type="button" class="button" value="to DB" id="post2db" style="margin: 0px;width: 100%;"><i class="fa fa-cloud-upload" aria-hidden="true"></i> to DB</button></td>
+                                <td style="width: 50%;padding: 0px 0px 0px 1px;">
+                                    <a href="#" class="linkjson" id="export">
+                                        <p class="linkjsonp"><i class="fa fa-download" aria-hidden="true"></i> to file</p>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- div container -->
+                    <div class="box" style="width: 100%; ">
+                        <button type="button" class="button" value="" id="jsonloaddb" style="width: 100%;"><i class="fa fa-cloud-download" aria-hidden="true"></i> Load Features</button>
+                        <div id="jsonlegenddiv">
+                            <p id="jsonlegend"></p>
+                        </div>
+                        <ul style="list-style-type: none;margin-left: 5px;" id="jsonlegendelem"></ul>
+                        <div id="jsonlegendbtndiv">
+                            <p id="jsonlegendbtn"></p>
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <!-- div container -->
-                <div class="box" style="width: 100%; ">
+                <div class="col-sm-9">
 
-                    <p>Click to load GeoJSON features from DB</p>
-
-                    <input type="button" class="button" value="Load from DB" id="jsonloaddb" style="width: 100%;">
-
-                    <div id="jsonlegenddiv">
-                        <p id="jsonlegend"></p>
-                    </div>
-                    <ul style="list-style-type: none;" id="jsonlegendelem"></ul>
-                    <div id="jsonlegendbtndiv">
-                        <p id="jsonlegendbtn"></p>
+                    <!-- div container map -->
+                    <div class="box" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;">
+                        <input type="button" class="buttonwhite" value="Clean edit" onclick="removeedit()" style="width: 100%;">
+                        <div id="map"></div>
                     </div>
 
                 </div>
 
             </div>
-
-            <div class="col-sm-9">
-
-                <!-- div container map -->
-                <div class="box" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;">
-                    <input type="button" class="buttonwhite" value="Clean edit" onclick="removeedit()" style="width: 100%;">
-                    <div style="height:750px;" id="map"></div>
-                </div>
-
-            </div>
-
         </div>
     </div>
-
 </body>
 
 <!-- loading external scripts -->
@@ -169,6 +165,11 @@
 <!-- loading local scripts -->
 <!-- Source: http://jsnlog.com/ -->
 <script src="js/jsnlog.min.js"></script>
+
+<!-- particles -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="https://threejs.org/examples/js/libs/stats.min.js"></script>
+<script src="js/particles.js"></script>
 
 <!-- loading my scripts -->
 <script src="js/gettime.js"></script>

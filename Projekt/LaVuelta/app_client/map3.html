@@ -47,6 +47,9 @@
     <link rel="stylesheet" href="https://mapzen.com/js/0.6/mapzen.css" />
     <link rel="stylesheet" href="style/lrm-mapzen.css">
 
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!-- MY Styesheet -->
     <link rel="stylesheet" href="style/Stylesheet.css">
 
@@ -60,101 +63,106 @@
     <!-- loading external scripts -->
     <!-- leaflet and mapbox -->
     <!-- <script src="https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.js"></script> -->
-     <!-- <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>   -->
+    <!-- <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>   -->
 
     <!--Add route plugin -->
     <!-- <script src="js/leaflet-routing-machine.js"></script> -->
     <!--Add mapzen plugin Source: https://github.com/mapzen/lrm-mapzen -->
-     <script src="https://mapzen.com/js/0.6/mapzen.js"></script> 
+    <script src="https://mapzen.com/js/0.6/mapzen.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.5/leaflet-routing-machine.min.js"></script>
-     <script src="js/lrm-mapzen.js"></script> 
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/perliedman-leaflet-control-geocoder/1.5.4/Control.Geocoder.js"></script> 
+    <script src="js/lrm-mapzen.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/perliedman-leaflet-control-geocoder/1.5.4/Control.Geocoder.js"></script>
 
 </head>
 
 <body>
-
-    <!-- Header -->
-    <header class="container-fluid">
-        <div class="header">
-            <img src="img/images.png" alt="">
-            <h1 style="font-size: 40px;font-weight: 500;">Project</h1>
+    <div class="jumbotron jumbotron-main" id="home">
+        <div id="particles-js">
+            <canvas class="particles-js-canvas-el" width="1409" height="319" style="width: 100%; height: 100%;"></canvas>
         </div>
-    </header>
 
-    <!-- Navbarcontainer -->
-    <nav class="navbar navbar-default navbar-static-top" style="border-top: 1px solid black;border-bottom: 1px solid black;"
-        role="navigation">
+        <!-- Header -->
+        <header class="container-fluid">
+            <h4>LΛ VUELTΛ</h4>
+        </header>
 
-        <ul class="nav navbar-nav">
-            <li class="inactive">
-                <a href="index.html">Home</a>
-            </li>
-            <li class="inactive">
-                <a href="map.html#">Stages</a>
-            </li>
-            <li class="inactive">
-                <a href="map2.html">Feature Editor</a>
-            </li>
-            <li class="active">
-                <a href="#">Route Editor</a>
-            </li>
-            <li class="inactive">
-                <a href="impressum.html">Impressum</a>
-            </li>
-        </ul>
-    </nav>
+        <!-- Navbarcontainer -->
+        <nav class="navbar navbar-default navbar-static-top" style="border-top: 1px solid black;border-bottom: 1px solid black;"
+            role="navigation">
 
-    <!-- Bodycontainer -->
-    <div class="container-fluid">
-        <div class="row">
+            <ul class="nav navbar-nav">
+                <li class="inactive">
+                    <a class="hvr-shutter-out-vertical" href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                </li>
+                <li class="inactive">
+                    <a class="hvr-shutter-out-vertical" href="map.html#"><i class="fa fa-map-o" aria-hidden="true"></i> Stages</a>
+                </li>
+                <li class="inactive">
+                    <a class="hvr-shutter-out-vertical" href="map2.html"><i class="fa fa-paint-brush" aria-hidden="true"></i> Feature Editor</a>
+                </li>
+                <li class="active">
+                    <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Route Editor</a>
+                </li>
+                <li class="inactive">
+                    <a class="hvr-shutter-out-vertical" href="impressum.html"><b>§</b> Impressum</a>
+                </li>
+            </ul>
+        </nav>
 
-            <div class="col-sm-3">
+        <!-- Bodycontainer -->
+        <div class="container-fluid">
+            <div class="row">
 
-                <!-- div container -->
-                <div class="box" style="width: 100%; ">
-                    <p><b>Click to post your route to the DB</b></p>
-                    <input type="button" class="button" value="Post to DB" id="post2db" style="width: 100%;">
-                    <br><br>
-                    <p>Name your route!</p>
-                    <input type="text" id="jsonname" style="width: 100%;" value="Routename">
+                <div class="col-sm-3">
+
+                    <!-- div container -->
+                    <div class="box" style="width: 100%; ">
+
+                        <label class="trans"><input type="text" id="jsonname" required/><div class="label-text">Routename</div></label><br>
+                        <p style="font-size: 14px;">Save your route to the DB as:</p>
+                        <table class="cleantable" style="width: 100%; padding: 0px;">
+                            <tr>
+                                <td style="width: 50%;padding: 0px;"><button type="button" class="button" value="Route" id="post2db" style="margin: 0px;width: 100%;">
+                                <i class="fa fa-cloud-upload" aria-hidden="true"></i> Route</button>
+                                </td>
+                                <td style="width: 50%;padding: 0px;"><button type="button" class="button" value="Feature" id="post2dbasjson" style="margin-left: 1px;width: 100%;">
+                                <i class="fa fa-cloud-upload" aria-hidden="true"></i> Feature</button></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- div container -->
+                    <div class="box" style="width: 100%; ">
+                        <button type="button" class="button" value="" id="loaddb" style="width: 100%;"><i class="fa fa-cloud-download" aria-hidden="true"></i> Load Routes</button>
+
+                        <div id="legenddiv">
+                            <p id="legend"></p>
+                        </div>
+                        <form action="">
+                            <ul style="list-style-type: none;margin-left: 5px;" id="legendelem"></ul>
+                        </form>
+                        <div id="legendbtndiv">
+                            <p id="legendbtn"></p>
+                        </div>
+                    </div>
+
                 </div>
 
-                <!-- div container -->
-                <div class="box" style="width: 100%; ">
+                <div class="col-sm-9">
 
-                    <p>Click to load routes from DB</p>
-
-                    <input type="button" class="button" value="Load from DB" id="loaddb" style="width: 100%;">
-
-                    <div id="legenddiv">
-                        <p id="legend"></p>
-                    </div>
-                    <form action="">
-                        <ul style="list-style-type: none;" id="legendelem"></ul>
-                    </form>
-                    <div id="legendbtndiv">
-                        <p id="legendbtn"></p>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-sm-9">
-
-                <!-- div container map -->
-                <div class="box" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;">
-                    <div align="center">
-                        <p style="display:inline"><b>Transportation:</b></p>
-                        <select id="transport" onchange="reloadTransport()">
+                    <!-- div container map -->
+                    <div class="box" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;">
+                        <div align="center">
+                            <p style="font-size: 14px;display:inline"><b>Transportation:</b></p>
+                            <select id="transport" onchange="reloadTransport()">
                     <option value="auto">Automobil</option>
-                    <option value="pedestrian">Pedestrian</option>                    
-                    <option value="multimodal">Transit</option>
+                    <option value="pedestrian">Pedestrian</option>               
                     <option value="bicycle">Bicycle</option>
+                    <option value="multimodal">Transit (BETA)</option>
                     </select>
 
-                        <p style="display:inline; padding-left: 20px"><b>Language:</b></p>
-                        <select id="language" onchange="reloadLanguage()">
+                            <p style="font-size: 14px;display:inline; padding-left: 20px"><b>Language:</b></p>
+                            <select id="language" onchange="reloadLanguage()">
                     <option value="de-DE" >Deutsch</option>
                     <option value="en-US">English</option>
                     <option value="es-ES">El español</option>
@@ -164,17 +172,17 @@
                     <option value="hi-IN">हिन्दी</option>
                     </select>
 
-                        <input type="button" class="buttonwhite" value="Reload &#x21bb;" onclick="remover()" style=" margin-left: 20px">
+                            <input type="button" class="buttonwhite" value="Reload &#x21bb;" onclick="remover()" style=" margin-left: 20px">
 
+                        </div>
+                        <div id="map"></div>
                     </div>
-                    <div style="height:750px;" id="map"></div>
+
                 </div>
 
             </div>
-
         </div>
     </div>
-
 </body>
 
 <!-- loading external scripts -->
@@ -190,12 +198,21 @@
 <!-- Source: http://jsnlog.com/ -->
 <script src="js/jsnlog.min.js"></script>
 
+<!-- particles -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="https://threejs.org/examples/js/libs/stats.min.js"></script>
+<script src="js/particles.js"></script>
+
 <!-- loading my scripts -->
+<script src="js/modernizr.custom.js"></script>
+<script src="js/classie.js"></script>
+<script src="js/modalEffects.js"></script>
 <script src="js/gettime.js"></script>
 <script src="js/jsnlog.js"></script>
 <script src="js/leaflet.js"></script>
 <script src="js/leaflet_route.js"></script>
 <script src="js/postroute.js"></script>
+<script src="js/postroutetojson.js"></script>
 
 <script>
     // JSNLog
