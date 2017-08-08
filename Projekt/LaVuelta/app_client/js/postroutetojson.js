@@ -71,52 +71,106 @@ function RouteToGeoJSON(route) {
 
 
 // Post the route to DB as json
-document.getElementById('post2dbasjson').onclick = function (e) {
+function post2dbasjson() {
 
-	// JSNLog
-	logger.info("JSON.stringify(routeactive)");
-	logger.info(JSON.stringify(routeactive));
-	logger.info("JSON.stringify(routeactive.waypoints)");
-	logger.info(JSON.stringify(routeactive.waypoints));
-	logger.info("RouteToGeoJSON(routeactive)");
-	logger.info(RouteToGeoJSON(routeactive));
+	if (control.getWaypoints()[1].latLng == null) {
+		// JSNLog
+		logger.error('No route', );
+		sweetAlert('No route!', 'Please make a route first', 'error');
 
+	} else {
 
-	if (routeactive) {
+		var namearray = [];
+		var name = $("#jsonname").val();
 
 		// JSNLog
-		logger.info("routeactive!");
+		logger.info('Name is!');
+		logger.info(name);
 
-		var routejson = RouteToGeoJSON(routeactive);
+		if (name != "") {
 
-		routejson.name = $("#jsonname").val();
 
-		var sendroutejson = JSON.stringify(routejson);
+			// Get all GeoJSON names from our DB using our GET
+			$.ajax({
+				type: "GET",
+				url: "http://localhost:3000/getjson",
+				success: function (response) {
+					// JSNLog
+					logger.info('Get successful!');
+					logger.info(response);
+					// Using a forEach method iterating over the array of nested objects
+					response.forEach(function (entry) {
+						namearray.push(entry.geojson.name);
+					});
 
-		// submit via ajax
-		$.ajax({
-			type: "POST",
-			url: "http://localhost:3000/postjson",
-			dataType: 'json',
-			contentType: 'application/json',
-			traditional: true,
-			cache: false,
-			processData: false,
-			data: sendroutejson,
-			success: function () {
-				alert($("#jsonname").val() + " added to DB");
+					// JSNLog
+					logger.info(namearray);
+					logger.info(name);
+
+					if ($.inArray(name, namearray) == -1) {
+						if (routeactive) {
+
+							// JSNLog
+							logger.info("routeactive!");
+
+							var routejson = RouteToGeoJSON(routeactive);
+
+							routejson.name = $("#jsonname").val();
+
+							var sendroutejson = JSON.stringify(routejson);
+
+							// submit via ajax
+							$.ajax({
+								type: "POST",
+								url: "http://localhost:3000/postjson",
+								dataType: 'json',
+								contentType: 'application/json',
+								traditional: true,
+								cache: false,
+								processData: false,
+								data: sendroutejson,
+								success: function () {
+									swal("Success!", $("#jsonname").val() + " added to FeatureDB", "success")
+									// JSNLog
+									logger.info("Post successful!");
+								},
+								error: function (XMLHttpRequest, textStatus, errorThrown) {
+									sweetAlert("Oops...", "Route " + $("#jsonname").val() + " is too large!", "error");
+									// JSNLog
+									logger.error("Posting failed!");
+								},
+								timeout: 3000
+							});
+							return false;
+						} else {
+							logger.error("routeactive is false :(");
+							sweetAlert("Oops...", "The routing service has a problem, please try again later.", "error");
+						}
+
+					} else {
+						// JSNLog
+						logger.error('Name already in use!', name);
+						sweetAlert('Featurename already in use!', 'Please use another name for your feature.', 'error');
+					}
+				},
+				error: function (responsedata) {
+					sweetAlert('Oops...', 'Something went wrong!', 'error');
+					// JSNLog
+					logger.error('Failed in!', response);
+				},
+				timeout: 3000
+			}).error(function (responsedata) {
+				sweetAlert('Oops...', 'Something went wrong!', 'error');
 				// JSNLog
-				logger.info("Post successful!");
-			},
-			error: function (XMLHttpRequest, textStatus, errorThrown) {
-				alert("Failed!");
-				// JSNLog
-				logger.error("Posting failed!");
-			}
-		});
-		// JSNLog
-		logger.error("no routeactive!");
-		return false;
+				logger.error('Failed out!', response);
+			});
+
+		} else {
+			// JSNLog
+			logger.error('No name', name);
+			sweetAlert('No featurename!', 'Please name your feature.', 'error');
+		}
+
+
 	}
-
 };

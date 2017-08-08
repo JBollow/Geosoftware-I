@@ -1,0 +1,301 @@
+/**
+ *  @author Jan-Patrick Bollow 349891
+ */
+
+// Delete all routes
+function deleteallfeature() {
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:3000/getjson",
+        success: function (response) {
+            if (response.length == 0) {
+                sweetAlert('Oops...', 'There are no features to delete!', 'error');
+            } else {
+                swal({
+                        title: "Delete all features?",
+                        text: "To delete all features write 'delete features':",
+                        type: "input",
+                        showCancelButton: true,
+                        closeOnConfirm: false,
+                        animation: "slide-from-top",
+                        inputPlaceholder: "Write something"
+                    },
+                    function (inputValue) {
+                        if (inputValue === false) return false;
+                        if (inputValue === "delete features") {
+                            swal("Features deleted!", "All features were deleted from the DB");
+                            $.ajax({
+                                type: "GET",
+                                url: "http://localhost:3000/deletealljson",
+                                success: function () {
+                                    // JSNLog
+                                    logger.info('Delete successful!');
+                                },
+                                error: function () {
+                                    sweetAlert('Oops...', 'Something went wrong!', 'error');
+                                    // JSNLog
+                                    logger.error('Failed!');
+                                }
+                            }).error(function () {
+                                sweetAlert('Oops...', 'Something went wrong!', 'error');
+                                // JSNLog
+                                logger.error('Failed!');
+                            });
+                            removelayer();
+                            return true
+                        } else {
+                            swal.showInputError("You need to write 'delete features' to delete all features");
+                            return false
+                        }
+                    });
+            }
+        },
+        error: function (responsedata) {
+            sweetAlert('Oops...', 'Something went wrong!', 'error');
+            // JSNLog
+            logger.error('Failed in!');
+        }
+    }).error(function (responsedata) {
+        // JSNLog
+        logger.error('Failed out!');
+    });
+}
+
+// Delete features function
+function deletefeature(clicked_id) {
+    swal({
+            title: "Delete this feature?",
+            text: "You will not be able to recover it!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel plx!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function (isConfirm) {
+            if (isConfirm) {
+                swal("Deleted!", "Your feature has been deleted.", "success");
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:3000/deletejson/" + clicked_id,
+                    success: function () {
+                        // JSNLog
+                        logger.info('Delete successful!');
+                    },
+                    error: function () {
+                        sweetAlert('Oops...', 'Something went wrong!', 'error');
+                        // JSNLog
+                        logger.error('Failed!');
+                    }
+                }).error(function () {
+                    sweetAlert('Oops...', 'Something went wrong!', 'error');
+                    // JSNLog
+                    logger.error('Failed!');
+                });
+                $("#jsonlegendelem").empty();
+                getjson();
+            } else {
+                swal("Cancelled", "Your feature is safe :)", "error");
+            }
+        });
+}
+
+// Delete route function
+function editfeature(clicked_id) {
+    swal({
+            title: "Override this feature?",
+            text: "The original will be overwritten!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, overwrite it!",
+            cancelButtonText: "No, cancel plx!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function (isConfirm) {
+            if (isConfirm) {
+
+                var namearray = [];
+                var name = $("#jsonname").val();
+
+                // JSNLog
+                logger.info('Name is!');
+                logger.info(name);
+
+                if (name != "") {
+                    // Get all GeoJSON names from our DB using our GET
+                    $.ajax({
+                        type: "GET",
+                        url: "http://localhost:3000/getjson",
+                        success: function (response) {
+                            // JSNLog
+                            logger.info('Get successful!');
+
+                            // Using a forEach method iterating over the array of nested objects
+                            response.forEach(function (entry) {
+                                namearray.push(entry.geojson.name);
+                            });
+
+                            // JSNLog
+                            logger.info("namearray");
+                            logger.info(namearray);
+                            logger.info("name");
+                            logger.info(name);
+
+                            if ($.inArray(name, namearray) == -1) {
+                                logger.info("bam");
+                                // Extract GeoJson from editableLayer
+                                var data = editableLayers.toGeoJSON();
+
+                                // Add a name to the layer
+                                data.name = name;
+
+                                var senddata = JSON.stringify(data);
+
+                                // Post to local mongodb
+                                $.ajax({
+                                    type: "POST",
+                                    url: "http://localhost:3000/postjson",
+                                    dataType: 'json',
+                                    contentType: 'application/json',
+                                    data: senddata,
+                                    traditional: true,
+                                    cache: false,
+                                    processData: false,
+                                    success: function () {
+                                        swal("Success!", name + " added to FeatureDB", "success")
+                                        // JSNLog
+                                        logger.info("Post successful!");
+                                        $("#jsonlegendelem").empty();
+                                        getjson();
+                                    },
+                                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                        sweetAlert('Oops...', 'Something went wrong!', 'error');
+                                        // JSNLog
+                                        logger.error("Posting failed!");
+                                    },
+                                    timeout: 3000
+                                });
+                                $.ajax({
+                                    type: "GET",
+                                    url: "http://localhost:3000/deletejson/" + clicked_id,
+                                    success: function () {
+                                        // JSNLog
+                                        logger.info('Delete successful!');
+                                    },
+                                    error: function () {
+                                        sweetAlert('Oops...', 'Something went wrong!', 'error');
+                                        // JSNLog
+                                        logger.error('Failed!');
+                                    }
+                                }).error(function () {
+                                    sweetAlert('Oops...', 'Something went wrong!', 'error');
+                                    // JSNLog
+                                    logger.error('Failed!');
+                                });
+                            } else {
+                                $.ajax({
+                                    type: 'GET',
+                                    url: 'http://localhost:3000/getjson',
+                                    success: function (response) {
+                                        response.forEach(function (entry) {
+                                            logger.info("entry");
+                                            logger.info(entry);
+                                            logger.info(entry.geojson.name);
+                                            if (entry.geojson.routeName == name) {
+                                                // Post to local mongodb
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: "http://localhost:3000/postjson",
+                                                    dataType: 'json',
+                                                    contentType: 'application/json',
+                                                    data: senddata,
+                                                    traditional: true,
+                                                    cache: false,
+                                                    processData: false,
+                                                    success: function () {
+                                                        swal("Success!", name + " added to FeatureDB", "success")
+                                                        // JSNLog
+                                                        logger.info("Post successful!");
+                                                        $("#jsonlegendelem").empty();
+                                                        getjson();
+                                                    },
+                                                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                                        sweetAlert('Oops...', 'Something went wrong!', 'error');
+                                                        // JSNLog
+                                                        logger.error("Posting failed!");
+                                                    },
+                                                    timeout: 3000
+                                                });
+                                                $.ajax({
+                                                    type: "GET",
+                                                    url: "http://localhost:3000/deletejson/" + clicked_id,
+                                                    success: function () {
+                                                        // JSNLog
+                                                        logger.info('Delete successful!');
+                                                    },
+                                                    error: function () {
+                                                        sweetAlert('Oops...', 'Something went wrong!', 'error');
+                                                        // JSNLog
+                                                        logger.error('Failed!');
+                                                    }
+                                                }).error(function () {
+                                                    sweetAlert('Oops...', 'Something went wrong!', 'error');
+                                                    // JSNLog
+                                                    logger.error('Failed!');
+                                                });
+                                            } else {
+                                                // JSNLog
+                                                logger.error('Name already in use!', name);
+                                                sweetAlert('Routeename already in use!', 'Please use another name for your route.', 'error');
+                                            }
+                                        });
+                                    },
+                                    timeout: 3000,
+                                    error: function (responsedata) {
+                                        control.getPlan().setWaypoints({
+                                            latLng: L.latLng([null])
+                                        });
+                                        sweetAlert('Oops...', 'Something went wrong!', 'error');
+                                    }
+                                }).error(function (responsedata) {
+                                    control.getPlan().setWaypoints({
+                                        latLng: L.latLng([null])
+                                    });
+                                    sweetAlert('Oops...', 'Something went wrong!', 'error');
+                                });
+                            }
+                        },
+                        error: function (responsedata) {
+                            sweetAlert('Oops...', 'Something went wrong!', 'error');
+                            // JSNLog
+                            logger.error('Failed in!', response);
+                        },
+                        timeout: 3000
+                    }).error(function (responsedata) {
+                        sweetAlert('Oops...', 'Something went wrong!', 'error');
+                        // JSNLog
+                        logger.error('Failed out!', response);
+                    });
+
+
+
+                } else {
+                    // JSNLog
+                    logger.error('No name', name);
+                    sweetAlert('No featurename!', 'Please name your feature.', 'error');
+                }
+
+
+
+            } else {
+                swal("Cancelled", "Your feature is safe :)", "error");
+            }
+        });
+}
+
+// JSNLog
+logger.info("delete_edit_json loaded");

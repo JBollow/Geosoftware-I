@@ -11,22 +11,22 @@
     <title>La Vuelta Projekt</title>
 
     <!-- favicon -->
-    <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/img/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/img/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/img/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/img/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/img/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
-    <link rel="manifest" href="/img/manifest.json">
+    <link rel="apple-touch-icon" sizes="57x57" href="img/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="img/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="manifest" href="img/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/img/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="img/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
     <!-- Bootstrap -->
@@ -48,6 +48,10 @@
 
     <!-- MY Stylesheet -->
     <link rel="stylesheet" href="style/Stylesheet.css">
+
+    <!-- Sweetalert -->
+    <link rel="stylesheet" type="text/css" href="style/sweetalert.css">
+    <script src="js/sweetalert.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn"t work if you view the page via file:// -->
@@ -79,10 +83,9 @@
         </header>
 
         <!-- Navbarcontainer -->
-        <nav class="navbar navbar-default navbar-static-top" style="border-top: 1px solid black;border-bottom: 1px solid black;"
-            role="navigation">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation">
 
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav" style="border-top: 1px solid black;border-bottom: 1px solid black;border-right: 1px solid black;">
                 <li class="inactive">
                     <a class="hvr-shutter-out-vertical" href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                 </li>
@@ -105,16 +108,26 @@
         <div class="container-fluid">
             <div class="row">
 
+                <div class="col-sm-9">
+
+                    <!-- div container map -->
+                    <div class="box" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;">
+                        <input type="button" class="buttonwhite" value="Clean edit" onclick="removeedit()" style="width: 100%;">
+                        <div id="map" style="margin-top: -2px;"></div>
+                    </div>
+
+                </div>
+
                 <div class="col-sm-3">
 
                     <!-- div container -->
                     <div class="box" style="width: 100%;">
                         <label class="trans"><input type="text" id="jsonname" required/><div class="label-text">Featurename</div></label><br>
                         <p style="font-size: 14px;">Save your feature:</p>
-                        <table class="cleantable" style="width: 100%;padding:0px;">
+                        <table class="cleantable">
                             <tr>
-                                <td style="width: 50%;padding: 0px;"><button type="button" class="button" value="to DB" id="post2db" style="margin: 0px;width: 100%;"><i class="fa fa-cloud-upload" aria-hidden="true"></i> to DB</button></td>
-                                <td style="width: 50%;padding: 0px 0px 0px 1px;">
+                                <td><button type="button" class="button" value="to DB" id="post2db" onclick="postjson()" style="margin: 0px;width: 100%;"><i class="fa fa-cloud-upload" aria-hidden="true"></i> to DB</button></td>
+                                <td style="padding: 0px 0px 0px 1px;">
                                     <a href="#" class="linkjson" id="export">
                                         <p class="linkjsonp"><i class="fa fa-download" aria-hidden="true"></i> to file</p>
                                     </a>
@@ -125,25 +138,46 @@
 
                     <!-- div container -->
                     <div class="box" style="width: 100%; ">
-                        <button type="button" class="button" value="" id="jsonloaddb" style="width: 100%;"><i class="fa fa-cloud-download" aria-hidden="true"></i> Load Features</button>
+
+                        <p style="font-size: 14px;">Load external features:</p>
+
+                        <input type="text" id="jsonlink" placeholder="GeoJSON Link..." style="width: 100%;">
+                        <table class="cleantable">
+                            <tr>
+                                <td style="padding-bottom: 5px;"><button type="button" class="button jsonupbtn" value="" id="jsonlinkbtn"><i class="fa fa-external-link" aria-hidden="true"></i> GeoJSON from link to map </button></td>
+                                <td style="padding: 0px 0px 5px 1px;"><button type="button" class="button jsonupbtn" value="" id="jsonlink2dbbtn"><i class="fa fa-cloud-upload" aria-hidden="true"></i> GeoJSON from link to DB</button></button>
+                                </td>
+                            </tr>
+                        </table>
+                        <br>
+                        <input type="text" id="jsontext" placeholder="GeoJSON text..." style="width: 100%">
+                        <table class="cleantable">
+                            <tr>
+                                <td style="padding-bottom: 5px;"><button type="button" class="button jsonupbtn" value="" id="jsontextbtn"><i class="fa fa-file-text-o" aria-hidden="true"></i> GeoJSON from text to map</button></td>
+                                <td style="padding: 0px 0px 5px 1px;"><button type="button" class="button jsonupbtn" value="" id="jsontext2dbbtn"><i class="fa fa-cloud-upload" aria-hidden="true"></i> GeoJSON from text to DB</button></button>
+                                </td>
+                            </tr>
+                        </table>
+                        <br>
+
+                        <button type="file" class="button jsonupbtn" value="" id="jsonfilebtn"><i class="fa fa-upload" aria-hidden="true"></i> Import GeoJSON from file</button>
+
+
+                    </div>
+
+                    <!-- div container -->
+                    <div class="box boxscroll1" style="width: 100%; ">
+                        <button type="button" class="button" value="" id="jsonloaddb" onclick="getjson()" style="width: 100%;"><i class="fa fa-cloud-download" aria-hidden="true"></i> Reload features</button>
                         <div id="jsonlegenddiv">
                             <p id="jsonlegend"></p>
                         </div>
-                        <ul style="list-style-type: none;margin-left: 5px;" id="jsonlegendelem"></ul>
+                        <form action="">
+                            <ul class="title-content-list" style="list-style-type: none;margin-left: 5px;width: 100%;" id="jsonlegendelem"></ul>
+                        </form>
                         <div id="jsonlegendbtndiv">
                             <p id="jsonlegendbtn"></p>
                         </div>
 
-                    </div>
-
-                </div>
-
-                <div class="col-sm-9">
-
-                    <!-- div container map -->
-                    <div class="box" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;">
-                        <input type="button" class="buttonwhite" value="Clean edit" onclick="removeedit()" style="width: 100%;">
-                        <div id="map"></div>
                     </div>
 
                 </div>
@@ -176,10 +210,14 @@
 <script src="js/jsnlog.js"></script>
 <script src="js/leaflet.js"></script>
 <script src="js/leaflet_draw.js"></script>
-<script src="js/leaflet_draw_json.js"></script>
+<script src="js/getjson.js"></script>
 <script src="js/postjson.js"></script>
+<script src="js/allpages.js"></script>
+<script src="js/delete_edit_json.js"></script>
+<script src="js/autoscale.js"></script>
 
 <script>
+    getjson();
     // JSNLog
     logger.info("Feature Editor loaded!");
 </script>

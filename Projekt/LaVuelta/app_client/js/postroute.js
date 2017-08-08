@@ -2,71 +2,101 @@
  *  @author Jan-Patrick Bollow 349891
  */
 
-// Interaction function
-function createButton(label, container) {
-    var btn = L.DomUtil.create('button', '', container);
-    btn.setAttribute('class', 'buttonnav');
-    btn.innerHTML = label;
-    return btn;
-}
-
-map.on('click', function (e) {
-    control.show();
-    var container = L.DomUtil.create('div'),
-        startBtn = createButton('Start from this location', container),
-        destBtn = createButton('Go to this location', container);
-
-    L.popup()
-        .setContent(container)
-        .setLatLng(e.latlng)
-        .openOn(map);
-
-    L.DomEvent.on(startBtn, 'click', function () {
-        control.spliceWaypoints(0, 1, e.latlng);
-        map.closePopup();
-    });
-
-    L.DomEvent.on(destBtn, 'click', function () {
-        control.spliceWaypoints(control.getWaypoints().length - 1, 1, e.latlng);
-        map.closePopup();
-    });
-});
-
 // Post the route to DB as route
-document.getElementById('post2db').onclick = function (e) {
+function postroute() {
 
-    // JSNLog
-    logger.info(control.getWaypoints());
+    if (control.getWaypoints()[1].latLng == null) {
+        // JSNLog
+        logger.error('No route', );
+        sweetAlert('No route!', 'Please make a route first', 'error');
 
-    var JSONtoPOST = {
-        "costing": $('#transport').val(),
-        "language": $('#language').val(),
-        "routeName": $("#jsonname").val(),
-        "navigationPoints": control.getWaypoints(),
-    };
-    
-    // JSNLog
-    logger.info(JSONtoPOST);
+    } else {
+        var namearray = [];
+        var name = $("#jsonname").val();
 
-    // Post to local mongodb via nodejs using our own POST
-    $.ajax({
-        type: "POST",
-        url: "http://localhost:3000/postroute",
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify(JSONtoPOST),
-        traditional: true,
-        cache: false,
-        processData: false,
-        success: function () {
-            alert($("#jsonname").val() + " added to DB");
+        // JSNLog
+        logger.info('Name is!');
+        logger.info(name);
+
+        if (name != "") {
+
+
+            // Get all GeoJSON names from our DB using our GET
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:3000/getroute",
+                success: function (response) {
+                    // JSNLog
+                    logger.info('Get successful!', response);
+
+                    // Using a forEach method iterating over the array of nested objects
+                    response.forEach(function (entry) {
+                        namearray.push(entry.geojson.routeName);
+                    });
+
+                    // JSNLog
+                    logger.info(namearray);
+
+                    if ($.inArray(name, namearray) == -1) {
+                        // JSNLog
+                        logger.info(control.getWaypoints());
+
+                        var JSONtoPOST = {
+                            "costing": $('#transport').val(),
+                            "language": $('#language').val(),
+                            "routeName": $("#jsonname").val(),
+                            "navigationPoints": control.getWaypoints(),
+                        };
+
+                        // JSNLog
+                        logger.info(JSONtoPOST);
+
+                        // Post to local mongodb via nodejs using our own POST
+                        $.ajax({
+                            type: "POST",
+                            url: "http://localhost:3000/postroute",
+                            dataType: 'json',
+                            contentType: 'application/json',
+                            data: JSON.stringify(JSONtoPOST),
+                            traditional: true,
+                            cache: false,
+                            processData: false,
+                            success: function () {
+                                swal("Success!", $("#jsonname").val() + " added to RouteDB", "success")
+                                // JSNLog
+                                logger.info("Post successful!");
+                                getroute();
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                sweetAlert('Oops...', 'Something went wrong!', 'error');
+                                // JSNLog
+                                logger.error("Posting failed!");
+                            },
+                            timeout: 3000
+                        });
+
+                    } else {
+                        // JSNLog
+                        logger.error('Name already in use!', name);
+                        sweetAlert('Routeename already in use!', 'Please use another name for your route.', 'error');
+                    }
+                },
+                error: function (responsedata) {
+                    sweetAlert('Oops...', 'Something went wrong!', 'error');
+                    // JSNLog
+                    logger.error('Failed in!', response);
+                },
+                timeout: 3000
+            }).error(function (responsedata) {
+                sweetAlert('Oops...', 'Something went wrong!', 'error');
+                // JSNLog
+                logger.error('Failed out!', response);
+            });
+
+        } else {
             // JSNLog
-            logger.info("Post successful!");
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert("Failed!");
-            // JSNLog
-            logger.error("Posting failed!");
+            logger.error('No name', name);
+            sweetAlert('No routeename!', 'Please name your route.', 'error');
         }
-    });
+    }
 };

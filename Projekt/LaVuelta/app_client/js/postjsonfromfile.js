@@ -22,7 +22,7 @@ document.getElementById('export').onclick = function (e) {
 };
 
 // Post the geoJSON layer to DB
-function postjson() {
+document.getElementById('post2db').onclick = function (e) {
 
     var namearray = [];
     var name = $("#jsonname").val();
@@ -72,7 +72,6 @@ function postjson() {
                         processData: false,
                         success: function () {
                             swal("Success!", name + " added to FeatureDB", "success")
-                            getjson();
                             // JSNLog
                             logger.info("Post successful!");
                         },

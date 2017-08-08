@@ -11,22 +11,22 @@
     <title>La Vuelta Projekt</title>
 
     <!-- favicon -->
-    <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/img/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/img/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/img/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/img/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/img/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
-    <link rel="manifest" href="/img/manifest.json">
+    <link rel="apple-touch-icon" sizes="57x57" href="img/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="img/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="manifest" href="img/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/img/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="img/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
     <!-- Bootstrap -->
@@ -55,6 +55,10 @@
 
     <!-- MY Styesheet -->
     <link rel="stylesheet" href="style/Stylesheet.css">
+
+    <!-- Sweetalert -->
+    <link rel="stylesheet" type="text/css" href="style/sweetalert.css">
+    <script src="js/sweetalert.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn"t work if you view the page via file:// -->
@@ -93,10 +97,9 @@
         </header>
 
         <!-- Navbarcontainer -->
-        <nav class="navbar navbar-default navbar-static-top" style="border-top: 1px solid black;border-bottom: 1px solid black;"
-            role="navigation">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation">
 
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav" style="border-top: 1px solid black;border-bottom: 1px solid black;border-right: 1px solid black;">
                 <li class="inactive">
                     <a class="hvr-shutter-out-vertical" href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                 </li>
@@ -118,13 +121,46 @@
         <!-- Bodycontainer -->
         <div class="container-fluid">
             <div class="row">
+
+                <section class="col-sm-9">
+                    <!-- div container map -->
+                    <div class="box" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;">
+                        <div align="center">
+                            <p style="font-size: 14px;display:inline"><b>Transportation:</b></p>
+                            <select id="transport" onchange="reloadTransport()">
+                    <option value="auto">Automobil</option>
+                    <option value="pedestrian">Pedestrian</option>               
+                    <option value="bicycle">Bicycle</option>
+                    <option value="multimodal">Transit (BETA)</option>
+                    </select>
+
+                            <p style="font-size: 14px;display:inline; padding-left: 20px"><b>Language:</b></p>
+                            <select id="language" onchange="reloadLanguage()">
+                    <option value="de-DE" >Deutsch</option>
+                    <option value="en-US">English</option>
+                    <option value="es-ES">El español</option>
+                    <option value="fr-FR">Français</option>
+                    <option value="it-IT">Italiano</option>
+                    <option value="ru-RU">Русский язык</option>
+                    <option value="hi-IN">हिन्दी</option>
+                    </select>
+                           
+                        </div>
+
+                        <div id="map"></div>
+                    </div>
+
+                </section>
+
                 <aside class="col-sm-3">
                     <!-- div container -->
-                    <div class="box" style="width: 100%; ">
-                        <button type="button" class="button" value="" id="jsonloaddb" style="width: 100%;"><i class="fa fa-cloud-download" aria-hidden="true"></i> Load Features</button>
+                    <div class="box boxscroll">
+                        <button type="button" class="button" value="" id="jsonloaddb" onclick="getjsonshort()" style="width: 100%;"><i class="fa fa-cloud-download" aria-hidden="true"></i> Reload Features</button>
+
                         <div id="jsonlegenddiv">
                             <p id="jsonlegend"></p>
                         </div>
+
                         <ul style="list-style-type: none;margin-left: 5px;" id="jsonlegendelem"></ul>
                         <div id="jsonlegendbtndiv">
                             <p id="jsonlegendbtn"></p>
@@ -133,32 +169,21 @@
                     </div>
 
                     <!-- div container -->
-                    <div class="box" style="width: 100%; ">
+                    <div class="box boxscroll" style="width: 100%; ">
+                        <button type="button" class="button" value="" id="loaddb" style="width: 100%;" onclick="getrouteshort()"><i class="fa fa-cloud-download" aria-hidden="true"></i> Reload Routes</button>
 
-                        <button type="button" class="button" value="" id="loaddb" style="width: 100%;"><i class="fa fa-cloud-download" aria-hidden="true"></i> Load Routes</button>
                         <div id="legenddiv">
                             <p id="legend"></p>
                         </div>
                         <form action="">
-                            <ul style="list-style-type: none;margin-left: 5px;" id="legendelem"></ul>
+                            <ul class="title-content-list" style="list-style-type: none;margin-left: 5px;width: 100%;" id="legendelem"></ul>
                         </form>
                         <div id="legendbtndiv">
                             <p id="legendbtn"></p>
                         </div>
-                        <br>
-                        <p style="font-size: 14px; display:inline;"><input type="checkbox" id="checkroute"> Show routing control</p>
                     </div>
+
                 </aside>
-
-                <section class="col-sm-9">
-
-
-                    <!-- div container map -->
-                    <div class="box" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;">
-                        <div id="map"></div>
-                    </div>
-
-                </section>
 
             </div>
         </div>
@@ -184,14 +209,19 @@
 <script src="js/particles.js"></script>
 
 <!-- loading my scripts -->
-<script src="js/gettime.js"></script>
 <script src="js/jsnlog.js"></script>
+<script src="js/allpages.js"></script>
+<script src="js/gettime.js"></script>
 <script src="js/leaflet.js"></script>
-<script src="js/leaflet_draw_json.js"></script>
 <script src="js/leaflet_route.js"></script>
+<script src="js/getjson_short.js"></script>
+<script src="js/getroute_short.js"></script>
+<script src="js/autoscale.js"></script>
+
 <script>
     control.hide();
-    map.removeControl(drawControl);
+    getrouteshort();
+    getjsonshort();
     // JSNLog
     logger.info("Stages loaded!");
 </script>

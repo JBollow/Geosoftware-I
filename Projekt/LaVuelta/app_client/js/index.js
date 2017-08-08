@@ -104,5 +104,78 @@ router.post('/postroute', function (req, res) {
   });
 });
 
+// Delete json
+router.get('/deletejson/:id', function (req, res) {
+
+  var db = req.db;
+
+  var uid = req.params.id.toString();
+  var collection = db.get('layercollection');
+
+  collection.remove({
+    "_id": uid
+  }, function (err, result) {
+    res.send((result === 1) ? {
+      msg: 'Deleted'
+    } : {
+      msg: 'error: ' + err
+    });
+  });
+
+});
+
+// Delete route
+router.get('/deleteroute/:id', function (req, res) {
+
+  var db = req.db;
+
+  var uid = req.params.id.toString();
+  var collection = db.get('routecollection');
+
+  collection.remove({
+    "_id": uid
+  }, function (err, result) {
+    res.send((result === 1) ? {
+      msg: 'Deleted'
+    } : {
+      msg: 'error: ' + err
+    });
+  });
+
+});
+
+// Delete all json
+router.get('/deletealljson', function (req, res) {
+
+  var db = req.db;
+  var collection = db.get('layercollection');
+
+  collection.remove({
+  }, function (err, result) {
+    res.send((result === 1) ? {
+      msg: 'Deleted'
+    } : {
+      msg: 'error: ' + err
+    });
+  });
+
+});
+
+// Delete all route
+router.get('/deleteallroute', function (req, res) {
+
+  var db = req.db;
+  var collection = db.get('routecollection');
+
+  collection.remove({
+  }, function (err, result) {
+    res.send((result === 1) ? {
+      msg: 'Deleted'
+    } : {
+      msg: 'error: ' + err
+    });
+  });
+
+});
 
 module.exports = router;

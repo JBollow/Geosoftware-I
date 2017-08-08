@@ -11,22 +11,22 @@
     <title>La Vuelta Projekt</title>
 
     <!-- favicon -->
-    <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/img/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/img/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/img/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/img/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/img/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
-    <link rel="manifest" href="/img/manifest.json">
+    <link rel="apple-touch-icon" sizes="57x57" href="img/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="img/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="manifest" href="img/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/img/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="img/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
     <!-- Bootstrap -->
@@ -52,6 +52,10 @@
 
     <!-- MY Styesheet -->
     <link rel="stylesheet" href="style/Stylesheet.css">
+
+    <!-- Sweetalert -->
+    <link rel="stylesheet" type="text/css" href="style/sweetalert.css">
+    <script src="js/sweetalert.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn"t work if you view the page via file:// -->
@@ -87,10 +91,9 @@
         </header>
 
         <!-- Navbarcontainer -->
-        <nav class="navbar navbar-default navbar-static-top" style="border-top: 1px solid black;border-bottom: 1px solid black;"
-            role="navigation">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation">
 
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav" style="border-top: 1px solid black;border-bottom: 1px solid black;border-right: 1px solid black;">
                 <li class="inactive">
                     <a class="hvr-shutter-out-vertical" href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                 </li>
@@ -112,41 +115,6 @@
         <!-- Bodycontainer -->
         <div class="container-fluid">
             <div class="row">
-
-                <div class="col-sm-3">
-
-                    <!-- div container -->
-                    <div class="box" style="width: 100%; ">
-
-                        <label class="trans"><input type="text" id="jsonname" required/><div class="label-text">Routename</div></label><br>
-                        <p style="font-size: 14px;">Save your route to the DB as:</p>
-                        <table class="cleantable" style="width: 100%; padding: 0px;">
-                            <tr>
-                                <td style="width: 50%;padding: 0px;"><button type="button" class="button" value="Route" id="post2db" style="margin: 0px;width: 100%;">
-                                <i class="fa fa-cloud-upload" aria-hidden="true"></i> Route</button>
-                                </td>
-                                <td style="width: 50%;padding: 0px;"><button type="button" class="button" value="Feature" id="post2dbasjson" style="margin-left: 1px;width: 100%;">
-                                <i class="fa fa-cloud-upload" aria-hidden="true"></i> Feature</button></td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <!-- div container -->
-                    <div class="box" style="width: 100%; ">
-                        <button type="button" class="button" value="" id="loaddb" style="width: 100%;"><i class="fa fa-cloud-download" aria-hidden="true"></i> Load Routes</button>
-
-                        <div id="legenddiv">
-                            <p id="legend"></p>
-                        </div>
-                        <form action="">
-                            <ul style="list-style-type: none;margin-left: 5px;" id="legendelem"></ul>
-                        </form>
-                        <div id="legendbtndiv">
-                            <p id="legendbtn"></p>
-                        </div>
-                    </div>
-
-                </div>
 
                 <div class="col-sm-9">
 
@@ -172,7 +140,7 @@
                     <option value="hi-IN">हिन्दी</option>
                     </select>
 
-                            <input type="button" class="buttonwhite" value="Reload &#x21bb;" onclick="remover()" style=" margin-left: 20px">
+                            <input type="button" class="buttonwhite" id="removebtn1" value="Reload &#x21bb;" onclick="remover()" style="margin-left: 20px">
 
                         </div>
                         <div id="map"></div>
@@ -180,6 +148,40 @@
 
                 </div>
 
+                <div class="col-sm-3">
+
+                    <!-- div container -->
+                    <div class="box" style="width: 100%; ">
+
+                        <label class="trans"><input type="text" id="jsonname" required/><div class="label-text">Routename</div></label><br>
+                        <p style="font-size: 14px;">Save your route to the DB as:</p>
+                        <table class="cleantable" style="width: 100%; padding: 0px;">
+                            <tr>
+                                <td style="width: 50%;padding: 0px;"><button type="button" class="button jsonupbtn" value="Route" onclick="postroute()" id="post2db"
+                                        style="margin: 0px;width: 100%;">
+                                <i class="fa fa-cloud-upload" aria-hidden="true"></i> Route</button>
+                                </td>
+                                <td style="width: 50%;padding: 0px;"><button type="button" class="button jsonupbtn" value="Feature" id="post2dbasjson" onclick="post2dbasjson();" style="margin-left: 1px;width: 100%;">
+                                <i class="fa fa-cloud-upload" aria-hidden="true"></i> Feature</button></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- div container -->
+                    <div class="box boxscroll2" style="width: 100%; ">
+                        <button type="button" class="button" value="" id="loaddb" style="width: 100%;" onclick="getroute()"><i class="fa fa-cloud-download" aria-hidden="true"></i> Reload routes</button>
+
+                        <div id="legenddiv">
+                            <p id="legend"></p>
+                        </div>
+                        <form action="">
+                            <ul class="title-content-list" style="list-style-type: none;margin-left: 5px;width: 100%;" id="legendelem"></ul>
+                        </form>
+                        <div id="legendbtndiv">
+                            <p id="legendbtn"></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -204,17 +206,23 @@
 <script src="js/particles.js"></script>
 
 <!-- loading my scripts -->
+<script src="js/jsnlog.js"></script>
+<script src="js/allpages.js"></script>
 <script src="js/modernizr.custom.js"></script>
 <script src="js/classie.js"></script>
 <script src="js/modalEffects.js"></script>
 <script src="js/gettime.js"></script>
-<script src="js/jsnlog.js"></script>
 <script src="js/leaflet.js"></script>
 <script src="js/leaflet_route.js"></script>
+<script src="js/leaflet_route_interact.js"></script>
+<script src="js/getroute.js"></script>
 <script src="js/postroute.js"></script>
 <script src="js/postroutetojson.js"></script>
+<script src="js/delete_edit_route.js"></script>
+<script src="js/autoscale.js"></script>
 
 <script>
+    getroute();
     // JSNLog
     logger.info("Route Editor loaded!");
 </script>

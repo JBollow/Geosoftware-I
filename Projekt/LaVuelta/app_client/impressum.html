@@ -12,22 +12,22 @@
 
 
     <!-- favicon -->
-    <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/img/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/img/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/img/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/img/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/img/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
-    <link rel="manifest" href="/img/manifest.json">
+    <link rel="apple-touch-icon" sizes="57x57" href="img/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="img/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="manifest" href="img/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/img/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="img/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
     <!-- Bootstrap -->
@@ -40,6 +40,10 @@
 
     <!-- MY Styesheet -->
     <link rel="stylesheet" href="style/Stylesheet.css">
+
+    <!-- Sweetalert -->
+    <link rel="stylesheet" type="text/css" href="style/sweetalert.css">
+    <script src="js/sweetalert.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn"t work if you view the page via file:// -->
@@ -62,10 +66,9 @@
         </header>
 
         <!-- Navbarcontainer -->
-        <nav class="navbar navbar-default navbar-static-top" style="border-top: 1px solid black;border-bottom: 1px solid black;"
-            role="navigation">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation">
 
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav" style="border-top: 1px solid black;border-bottom: 1px solid black;border-right: 1px solid black;">
                 <li class="inactive">
                     <a class="hvr-shutter-out-vertical" href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                 </li>
@@ -88,7 +91,7 @@
         <div class="container-fluid">
             <div class="row">
 
-                <section class="col-sm-12">
+                <section class="col-sm-8">
                     <div class="box">
 
                         <h2><strong>Impressum</strong></h2>
@@ -106,8 +109,11 @@
                     <div class="box">
 
                         <h2><strong>Infos zur Page</strong></h2>
-                        <p style="font-size: 14px;">Es gibt leider immer noch Bugs in der Navigation, das liegt meist an dem verwendeten Dienst Mapzen
-                            der Valhalla verwendet.<br> Besonders schlecht funktioniert die Navigation mit Zügen.</p>
+                        <p style="font-size: 14px;">Es gibt leider immer noch Bugs in der Navigation. (Mapzen/Valhalla)
+                            <br>Bei der Navigation für Rad oder zu Fuß wird bei einer zu großen Distanz keien Route berechnet.
+                            <br>Besonders schlecht aber funktioniert die Navigation mit Zügen.
+
+                        </p>
 
                     </div>
                 </section>
@@ -136,6 +142,7 @@
 
 <!-- loading my scripts -->
 <script src="js/jsnlog.js"></script>
+<script src="js/allpages.js"></script>
 
 <script>
     // JSNLog
