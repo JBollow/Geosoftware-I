@@ -187,6 +187,8 @@ function editroute(clicked_id) {
                                         success: function () {
                                             // JSNLog
                                             logger.info('Delete successful!');
+                                            $("#legendelem").empty();
+                                            getroute();
                                         },
                                         error: function () {
                                             sweetAlert('Oops...', 'Something went wrong!', 'error');
@@ -198,8 +200,6 @@ function editroute(clicked_id) {
                                         // JSNLog
                                         logger.error('Failed!');
                                     });
-                                    $("#legendelem").empty();
-                                    getroute();
                                 } else {
                                     $.ajax({
                                         type: 'GET',
@@ -207,64 +207,67 @@ function editroute(clicked_id) {
                                         success: function (response) {
                                             response.forEach(function (entry) {
                                                 logger.info("entry");
-                                                logger.info(entry);
+                                                logger.info(entry._id);
                                                 logger.info(entry.geojson.routeName);
-                                                if (entry.geojson.routeName == name) {
-                                                    // Delete
-                                                    $.ajax({
-                                                        type: "GET",
-                                                        url: "http://localhost:3000/deleteroute/" + clicked_id,
-                                                        success: function () {
-                                                            // JSNLog
-                                                            logger.info('Delete successful!');
-                                                        },
-                                                        error: function () {
+                                                
+                                                if (entry._id == clicked_id) {
+                                                    if (entry.geojson.routeName == name) {
+                                                        // Delete
+                                                        $.ajax({
+                                                            type: "GET",
+                                                            url: "http://localhost:3000/deleteroute/" + clicked_id,
+                                                            success: function () {
+                                                                // JSNLog
+                                                                logger.info('Delete successful!');
+                                                            },
+                                                            error: function () {
+                                                                sweetAlert('Oops...', 'Something went wrong!', 'error');
+                                                                // JSNLog
+                                                                logger.error('Failed!');
+                                                            }
+                                                        }).error(function () {
                                                             sweetAlert('Oops...', 'Something went wrong!', 'error');
                                                             // JSNLog
                                                             logger.error('Failed!');
-                                                        }
-                                                    }).error(function () {
-                                                        sweetAlert('Oops...', 'Something went wrong!', 'error');
+                                                        });
+                                                        // Overwrite
                                                         // JSNLog
-                                                        logger.error('Failed!');
-                                                    });
-                                                    // Overwrite
-                                                    // JSNLog
-                                                    logger.info(control.getWaypoints());
-                                                    var JSONtoPOST = {
-                                                        "costing": $('#transport').val(),
-                                                        "language": $('#language').val(),
-                                                        "routeName": $("#jsonname").val(),
-                                                        "navigationPoints": control.getWaypoints(),
-                                                    };
-                                                    // JSNLog
-                                                    logger.info(JSONtoPOST);
-                                                    // Post to local mongodb via nodejs using our own POST
-                                                    $.ajax({
-                                                        type: "POST",
-                                                        url: "http://localhost:3000/postroute",
-                                                        dataType: 'json',
-                                                        contentType: 'application/json',
-                                                        data: JSON.stringify(JSONtoPOST),
-                                                        traditional: true,
-                                                        cache: false,
-                                                        processData: false,
-                                                        success: function () {
-                                                            swal("Success!", $("#jsonname").val() + " added to RouteDB", "success")
-                                                            // JSNLog
-                                                            logger.info("Post successful!");
-                                                        },
-                                                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                                            sweetAlert('Oops...', 'Something went wrong!', 'error');
-                                                            // JSNLog
-                                                            logger.error("Posting failed!");
-                                                        },
-                                                        timeout: 3000
-                                                    });
-                                                } else {
-                                                    // JSNLog
-                                                    logger.error('Name already in use!', name);
-                                                    sweetAlert('Routeename already in use!', 'Please use another name for your route.', 'error');
+                                                        logger.info(control.getWaypoints());
+                                                        var JSONtoPOST = {
+                                                            "costing": $('#transport').val(),
+                                                            "language": $('#language').val(),
+                                                            "routeName": $("#jsonname").val(),
+                                                            "navigationPoints": control.getWaypoints(),
+                                                        };
+                                                        // JSNLog
+                                                        logger.info(JSONtoPOST);
+                                                        // Post to local mongodb via nodejs using our own POST
+                                                        $.ajax({
+                                                            type: "POST",
+                                                            url: "http://localhost:3000/postroute",
+                                                            dataType: 'json',
+                                                            contentType: 'application/json',
+                                                            data: JSON.stringify(JSONtoPOST),
+                                                            traditional: true,
+                                                            cache: false,
+                                                            processData: false,
+                                                            success: function () {
+                                                                swal("Success!", $("#jsonname").val() + " added to RouteDB", "success")
+                                                                // JSNLog
+                                                                logger.info("Post successful!");
+                                                            },
+                                                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                                                sweetAlert('Oops...', 'Something went wrong!', 'error');
+                                                                // JSNLog
+                                                                logger.error("Posting failed!");
+                                                            },
+                                                            timeout: 3000
+                                                        });
+                                                    } else {
+                                                        // JSNLog
+                                                        logger.error('Name already in use!', name);
+                                                        sweetAlert('Routeename already in use!', 'Please use another name for your route.', 'error');
+                                                    }
                                                 }
                                             });
                                         },

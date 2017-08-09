@@ -3,6 +3,15 @@
 ###############################################################################
 #                                                                             #
 #                                                                             #
+#             Step 0: Powershell                                              #
+#                                                                             #
+#                     in order for powershellscripts to work                  #
+#                     it has to be enabled                                    #
+#                     run powershell with admin rights                        #
+#                                                                             #
+#                     set-executionpolicy remotesigned                        #
+#                                                                             #
+#                                                                             #
 #             Step 1: Installation                                            #
 #                                                                             #
 #                     execute Install.exe                                     #
@@ -26,3 +35,4 @@
 ###############################################################################
 ##############                     Have fun!                     ##############
 ###############################################################################
+

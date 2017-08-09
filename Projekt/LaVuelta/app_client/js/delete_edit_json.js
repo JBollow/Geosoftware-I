@@ -2,7 +2,7 @@
  *  @author Jan-Patrick Bollow 349891
  */
 
-// Delete all routes
+// Delete all features
 function deleteallfeature() {
     $.ajax({
         type: "GET",
@@ -102,7 +102,7 @@ function deletefeature(clicked_id) {
         });
 }
 
-// Delete route function
+// Delete feature function
 function editfeature(clicked_id) {
     swal({
             title: "Override this feature?",
@@ -205,52 +205,62 @@ function editfeature(clicked_id) {
                                             logger.info("entry");
                                             logger.info(entry);
                                             logger.info(entry.geojson.name);
-                                            if (entry.geojson.routeName == name) {
-                                                // Post to local mongodb
-                                                $.ajax({
-                                                    type: "POST",
-                                                    url: "http://localhost:3000/postjson",
-                                                    dataType: 'json',
-                                                    contentType: 'application/json',
-                                                    data: senddata,
-                                                    traditional: true,
-                                                    cache: false,
-                                                    processData: false,
-                                                    success: function () {
-                                                        swal("Success!", name + " added to FeatureDB", "success")
-                                                        // JSNLog
-                                                        logger.info("Post successful!");
-                                                        $("#jsonlegendelem").empty();
-                                                        getjson();
-                                                    },
-                                                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                                        sweetAlert('Oops...', 'Something went wrong!', 'error');
-                                                        // JSNLog
-                                                        logger.error("Posting failed!");
-                                                    },
-                                                    timeout: 3000
-                                                });
-                                                $.ajax({
-                                                    type: "GET",
-                                                    url: "http://localhost:3000/deletejson/" + clicked_id,
-                                                    success: function () {
-                                                        // JSNLog
-                                                        logger.info('Delete successful!');
-                                                    },
-                                                    error: function () {
+                                            if (entry._id == clicked_id) {
+                                                if (entry.geojson.name == name) {
+                                                    // Extract GeoJson from editableLayer
+                                                    var data = editableLayers.toGeoJSON();
+
+                                                    // Add a name to the layer
+                                                    data.name = name;
+
+                                                    var senddata = JSON.stringify(data);
+
+                                                    // Post to local mongodb
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: "http://localhost:3000/postjson",
+                                                        dataType: 'json',
+                                                        contentType: 'application/json',
+                                                        data: senddata,
+                                                        traditional: true,
+                                                        cache: false,
+                                                        processData: false,
+                                                        success: function () {
+                                                            swal("Success!", name + " added to FeatureDB", "success")
+                                                            // JSNLog
+                                                            logger.info("Post successful!");
+                                                            $("#jsonlegendelem").empty();
+                                                            getjson();
+                                                        },
+                                                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                                            sweetAlert('Oops...', 'Something went wrong!', 'error');
+                                                            // JSNLog
+                                                            logger.error("Posting failed!");
+                                                        },
+                                                        timeout: 3000
+                                                    });
+                                                    $.ajax({
+                                                        type: "GET",
+                                                        url: "http://localhost:3000/deletejson/" + clicked_id,
+                                                        success: function () {
+                                                            // JSNLog
+                                                            logger.info('Delete successful!');
+                                                        },
+                                                        error: function () {
+                                                            sweetAlert('Oops...', 'Something went wrong!', 'error');
+                                                            // JSNLog
+                                                            logger.error('Failed!');
+                                                        }
+                                                    }).error(function () {
                                                         sweetAlert('Oops...', 'Something went wrong!', 'error');
                                                         // JSNLog
                                                         logger.error('Failed!');
-                                                    }
-                                                }).error(function () {
-                                                    sweetAlert('Oops...', 'Something went wrong!', 'error');
+                                                    });
+                                                } else {
                                                     // JSNLog
-                                                    logger.error('Failed!');
-                                                });
-                                            } else {
-                                                // JSNLog
-                                                logger.error('Name already in use!', name);
-                                                sweetAlert('Routeename already in use!', 'Please use another name for your route.', 'error');
+                                                    logger.error('Name already in use!', name);
+                                                    sweetAlert('Featureename already in use!', 'Please use another name for your feature.', 'error');
+                                                }
                                             }
                                         });
                                     },
