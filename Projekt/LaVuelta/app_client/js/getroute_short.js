@@ -86,7 +86,7 @@ function routeselector(clicked_id) {
                         $('#transport').val(entry.geojson.costing);
                         $('#language').val(entry.geojson.language);
                         control.setWaypoints(entry.geojson.navigationPoints);
-                        $('#jsonname').attr('value', entry.geojson.routeName);
+                        $('#jsonname').val(entry.geojson.routeName);
                     }
                 });
             },

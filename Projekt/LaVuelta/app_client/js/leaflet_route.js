@@ -87,7 +87,7 @@ function removeroute() {
     $("#legendbtndiv").hide();
     $('#legend').hide();
     $("#checkroute").prop("checked", false);
-    $('#jsonname').removeAttr('value');
+    $('#jsonname').val('');
 };
 
 // show/hide function for routecontrol 

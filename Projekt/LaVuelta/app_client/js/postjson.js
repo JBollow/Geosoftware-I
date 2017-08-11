@@ -28,6 +28,7 @@ function postjson() {
 
     var namearray = [];
     var name = $("#jsonname").val();
+    logger.info()
 
     // JSNLog
     logger.info('Name is!');

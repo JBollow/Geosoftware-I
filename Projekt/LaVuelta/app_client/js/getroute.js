@@ -9,7 +9,7 @@ function getroute() {
 
     // clearLayers before adding to prevent duplicates
     $("#legendelem").empty();
-    $('#jsonname').removeAttr('value');
+    $('#jsonname').val('');
 
     // Get all GeoJSON from our DB using our GET
     $.ajax({
@@ -84,7 +84,7 @@ function routeselector(clicked_id) {
                         $('#transport').val(entry.geojson.costing);
                         $('#language').val(entry.geojson.language);
                         control.setWaypoints(entry.geojson.navigationPoints);
-                        $('#jsonname').attr('value', entry.geojson.routeName);
+                        $('#jsonname').val(entry.geojson.routeName);
                     }
                 });
             },

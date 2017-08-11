@@ -32,7 +32,7 @@ function deleteallroute() {
                                 success: function () {
                                     // JSNLog
                                     logger.info('Delete successful!');
-                                    $('#jsonname').removeAttr('value');
+                                    $('#jsonname').val('');
                                     logger.info("bam");
                                     logger.info("http://localhost:3000/deleteallroute/");
                                 },
@@ -89,7 +89,7 @@ function deleteroute(clicked_id) {
                     success: function () {
                         // JSNLog
                         logger.info('Delete successful!');
-                        $('#jsonname').removeAttr('value');
+                        $('#jsonname').val('');
                     },
                     error: function () {
                         sweetAlert('Oops...', 'Something went wrong!', 'error');
