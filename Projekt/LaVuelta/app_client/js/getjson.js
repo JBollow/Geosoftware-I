@@ -98,3 +98,5 @@ function removelayer() {
     // JSNLog
     logger.info("JsonLayers removed, legend hidden");
 };
+
+// Import JSON from Link

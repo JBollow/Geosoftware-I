@@ -4,6 +4,8 @@
 
 'use strict';
 
+var errors;
+
 /*
  save from leaflet draw to local disk
  @copyright April 19, 2017 Dan Swick
@@ -55,34 +57,46 @@ function postjson() {
                     // Extract GeoJson from editableLayer
                     var data = editableLayers.toGeoJSON();
 
-                    // Add a name to the layer
-                    data.name = name;
+                    errors = geojsonhint.hint(data);
+                    logger.info("Errors:");
+                    logger.info(errors);
 
-                    var senddata = JSON.stringify(data);
+                    if (errors === undefined || errors.length == 0) {
 
-                    // Post to local mongodb
-                    $.ajax({
-                        type: "POST",
-                        url: "http://localhost:3000/postjson",
-                        dataType: 'json',
-                        contentType: 'application/json',
-                        data: senddata,
-                        traditional: true,
-                        cache: false,
-                        processData: false,
-                        success: function () {
-                            swal("Success!", name + " added to FeatureDB", "success")
-                            getjson();
-                            // JSNLog
-                            logger.info("Post successful!");
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            sweetAlert('Oops...', 'Something went wrong!', 'error');
-                            // JSNLog
-                            logger.error("Posting failed!");
-                        },
-                        timeout: 3000
-                    });
+                        // Add a name to the layer
+                        data.name = name;
+
+                        var senddata = JSON.stringify(data);
+
+                        // Post to local mongodb
+                        $.ajax({
+                            type: "POST",
+                            url: "http://localhost:3000/postjson",
+                            dataType: 'json',
+                            contentType: 'application/json',
+                            data: senddata,
+                            traditional: true,
+                            cache: false,
+                            processData: false,
+                            success: function () {
+                                swal("Success!", name + " added to FeatureDB", "success")
+                                getjson();
+                                // JSNLog
+                                logger.info("Post successful!");
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                sweetAlert('Oops...', 'Something went wrong!', 'error');
+                                // JSNLog
+                                logger.error("Posting failed!");
+                            },
+                            timeout: 3000
+                        });
+
+                    } else {
+                        sweetAlert('Oops...', 'There is something wrong with with this GeoJSON!', 'error');
+                        // JSNLog
+                        logger.info('Error in GeoJSON!');
+                    }
 
                 } else {
                     // JSNLog

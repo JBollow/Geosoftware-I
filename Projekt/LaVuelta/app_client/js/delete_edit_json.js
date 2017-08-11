@@ -2,6 +2,10 @@
  *  @author Jan-Patrick Bollow 349891
  */
 
+'use strict';
+
+var errors;
+
 // Delete all features
 function deleteallfeature() {
     $.ajax({
@@ -210,52 +214,65 @@ function editfeature(clicked_id) {
                                                     // Extract GeoJson from editableLayer
                                                     var data = editableLayers.toGeoJSON();
 
-                                                    // Add a name to the layer
-                                                    data.name = name;
+                                                    errors = geojsonhint.hint(data);
+                                                    logger.info("Errors:");
+                                                    logger.info(errors);
 
-                                                    var senddata = JSON.stringify(data);
+                                                    if (errors === undefined || errors.length == 0) {
 
-                                                    // Post to local mongodb
-                                                    $.ajax({
-                                                        type: "POST",
-                                                        url: "http://localhost:3000/postjson",
-                                                        dataType: 'json',
-                                                        contentType: 'application/json',
-                                                        data: senddata,
-                                                        traditional: true,
-                                                        cache: false,
-                                                        processData: false,
-                                                        success: function () {
-                                                            swal("Success!", name + " added to FeatureDB", "success")
-                                                            // JSNLog
-                                                            logger.info("Post successful!");
-                                                            $("#jsonlegendelem").empty();
-                                                            getjson();
-                                                        },
-                                                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                                            sweetAlert('Oops...', 'Something went wrong!', 'error');
-                                                            // JSNLog
-                                                            logger.error("Posting failed!");
-                                                        },
-                                                        timeout: 3000
-                                                    });
-                                                    $.ajax({
-                                                        type: "GET",
-                                                        url: "http://localhost:3000/deletejson/" + clicked_id,
-                                                        success: function () {
-                                                            // JSNLog
-                                                            logger.info('Delete successful!');
-                                                        },
-                                                        error: function () {
+                                                        // Add a name to the layer
+                                                        data.name = name;
+
+                                                        var senddata = JSON.stringify(data);
+
+                                                        // Post to local mongodb
+                                                        $.ajax({
+                                                            type: "POST",
+                                                            url: "http://localhost:3000/postjson",
+                                                            dataType: 'json',
+                                                            contentType: 'application/json',
+                                                            data: senddata,
+                                                            traditional: true,
+                                                            cache: false,
+                                                            processData: false,
+                                                            success: function () {
+                                                                swal("Success!", name + " added to FeatureDB", "success")
+                                                                // JSNLog
+                                                                logger.info("Post successful!");
+                                                                $("#jsonlegendelem").empty();
+                                                                getjson();
+                                                            },
+                                                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                                                sweetAlert('Oops...', 'Something went wrong!', 'error');
+                                                                // JSNLog
+                                                                logger.error("Posting failed!");
+                                                            },
+                                                            timeout: 3000
+                                                        });
+                                                        $.ajax({
+                                                            type: "GET",
+                                                            url: "http://localhost:3000/deletejson/" + clicked_id,
+                                                            success: function () {
+                                                                // JSNLog
+                                                                logger.info('Delete successful!');
+                                                            },
+                                                            error: function () {
+                                                                sweetAlert('Oops...', 'Something went wrong!', 'error');
+                                                                // JSNLog
+                                                                logger.error('Failed!');
+                                                            }
+                                                        }).error(function () {
                                                             sweetAlert('Oops...', 'Something went wrong!', 'error');
                                                             // JSNLog
                                                             logger.error('Failed!');
-                                                        }
-                                                    }).error(function () {
-                                                        sweetAlert('Oops...', 'Something went wrong!', 'error');
+                                                        });
+
+                                                    } else {
+                                                        sweetAlert('Oops...', 'There is something wrong with with this GeoJSON!', 'error');
                                                         // JSNLog
-                                                        logger.error('Failed!');
-                                                    });
+                                                        logger.info('Error in GeoJSON!');
+                                                    }
+
                                                 } else {
                                                     // JSNLog
                                                     logger.error('Name already in use!', name);

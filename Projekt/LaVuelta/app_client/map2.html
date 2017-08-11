@@ -66,6 +66,9 @@
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
         crossorigin=""></script>
 
+    <!-- GeoJSON Validation Source:https://github.com/mapbox/geojsonhint -->
+    <script src="https://unpkg.com/@mapbox/geojsonhint@latest/geojsonhint.js"></script>
+
     <!--Add draw plugin -->
     <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.js"></script>
 
@@ -112,17 +115,22 @@
 
                     <!-- div container map -->
                     <div class="box" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;">
-                        <input type="button" class="buttonwhite" value="Clean edit" onclick="removeedit()" style="width: 100%;">
+                        <table class="cleantable">
+                            <tr>
+                                <td style="padding-bottom: 0px;"><input type="button" class="buttonwhite" value="Clean edit" onclick="removeedit()" style="width: 100%;"></td>
+                                <td style="padding: 0px 0px 0px 1px;"><input type="button" class="buttonwhite" value="Clean features" onclick="geojsonLayer.clearLayers();jsonLayers.clearLayers();"
+                                        style="width: 100%;"></td>
+                            </tr>
+                        </table>
                         <div id="map" style="margin-top: -2px;"></div>
                     </div>
-
                 </div>
 
                 <div class="col-sm-3">
 
                     <!-- div container -->
                     <div class="box" style="width: 100%;">
-                        <label class="trans"><input type="text" id="jsonname" required/><div class="label-text">Featurename</div></label><br>
+                        <label class="trans"><input type="text" id="jsonname" required/><div class="label-text">Featurename!</div></label><br>
                         <p style="font-size: 14px;">Save your feature:</p>
                         <table class="cleantable">
                             <tr>
@@ -144,25 +152,30 @@
                         <input type="text" id="jsonlink" placeholder="GeoJSON Link..." style="width: 100%;">
                         <table class="cleantable">
                             <tr>
-                                <td style="padding-bottom: 5px;"><button type="button" class="button jsonupbtn" value="" id="jsonlinkbtn"><i class="fa fa-external-link" aria-hidden="true"></i> GeoJSON from link to map </button></td>
-                                <td style="padding: 0px 0px 5px 1px;"><button type="button" class="button jsonupbtn" value="" id="jsonlink2dbbtn"><i class="fa fa-cloud-upload" aria-hidden="true"></i> GeoJSON from link to DB</button></button>
-                                </td>
+                                <td style="padding-bottom: 5px;"><button type="button" class="button jsonupbtn" value="" id="jsonlinkbtn" onclick="importjsonlink();"><i class="fa fa-external-link" aria-hidden="true"></i> GeoJSON from link to map </button></td>
+                                <td style="padding: 0px 0px 5px 1px;"><button type="button" class="button jsonupbtn" value="" id="jsonlink2dbbtn" onclick="uploadjsonlink();"><i class="fa fa-cloud-upload" aria-hidden="true"></i> GeoJSON from link to DB</button></td>
                             </tr>
                         </table>
                         <br>
                         <input type="text" id="jsontext" placeholder="GeoJSON text..." style="width: 100%">
                         <table class="cleantable">
                             <tr>
-                                <td style="padding-bottom: 5px;"><button type="button" class="button jsonupbtn" value="" id="jsontextbtn"><i class="fa fa-file-text-o" aria-hidden="true"></i> GeoJSON from text to map</button></td>
-                                <td style="padding: 0px 0px 5px 1px;"><button type="button" class="button jsonupbtn" value="" id="jsontext2dbbtn"><i class="fa fa-cloud-upload" aria-hidden="true"></i> GeoJSON from text to DB</button></button>
-                                </td>
+                                <td style="padding-bottom: 5px;"><button type="button" class="button jsonupbtn" value="" id="jsontextbtn" onclick="importjsontext();"><i class="fa fa-file-text-o" aria-hidden="true"></i> GeoJSON from text to map</button></td>
+                                <td style="padding: 0px 0px 5px 1px;"><button type="button" class="button jsonupbtn" value="" id="jsontext2dbbtn" onclick="uploadjsontext();"><i class="fa fa-cloud-upload" aria-hidden="true"></i> GeoJSON from text to DB</button></td>
                             </tr>
                         </table>
                         <br>
 
-                        <button type="file" class="button jsonupbtn" value="" id="jsonfilebtn"><i class="fa fa-upload" aria-hidden="true"></i> Import GeoJSON from file</button>
-
-
+                        <table class="cleantable">
+                            <tr>
+                                <td style="padding-bottom: 5px;">
+                                    <label for="importjsonfile" class="custom-file-upload"><i class="fa fa-upload" aria-hidden="true"></i> GeoJSON from file to map</label><input
+                                        id="importjsonfile" type="file" onchange="importjsonfile();" /></td>
+                                <td style="padding: 0px 0px 5px 1px;"><label for="uploadjsonfile" class="custom-file-upload"><i class="fa fa-cloud-upload" aria-hidden="true"></i> GeoJSON from file to DB</label><input
+                                        id="uploadjsonfile" type="file" onchange="uploadjsonfile();" />
+                                </td>
+                            </tr>
+                        </table>
                     </div>
 
                     <!-- div container -->
@@ -177,11 +190,9 @@
                         <div id="jsonlegendbtndiv">
                             <p id="jsonlegendbtn"></p>
                         </div>
-
                     </div>
 
                 </div>
-
             </div>
         </div>
     </div>
@@ -212,6 +223,7 @@
 <script src="js/leaflet_draw.js"></script>
 <script src="js/getjson.js"></script>
 <script src="js/postjson.js"></script>
+<script src="js/importjson.js"></script>
 <script src="js/allpages.js"></script>
 <script src="js/delete_edit_json.js"></script>
 <script src="js/autoscale.js"></script>

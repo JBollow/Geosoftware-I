@@ -4,7 +4,7 @@
 
 'use strict';
 
-var routeactive;
+var routeactive, errors;
 
 // event listener
 // Source: https://gis.stackexchange.com/questions/186757/leaflet-routing-machine-how-to-export-route-details-and-coordinates-in-json-g
@@ -115,33 +115,46 @@ function post2dbasjson() {
 
 							var routejson = RouteToGeoJSON(routeactive);
 
-							routejson.name = $("#jsonname").val();
+							errors = geojsonhint.hint(routejson);
+							logger.info("Errors:");
+							logger.info(errors);
 
-							var sendroutejson = JSON.stringify(routejson);
+							if (errors === undefined || errors.length == 0) {
 
-							// submit via ajax
-							$.ajax({
-								type: "POST",
-								url: "http://localhost:3000/postjson",
-								dataType: 'json',
-								contentType: 'application/json',
-								traditional: true,
-								cache: false,
-								processData: false,
-								data: sendroutejson,
-								success: function () {
-									swal("Success!", $("#jsonname").val() + " added to FeatureDB", "success")
-									// JSNLog
-									logger.info("Post successful!");
-								},
-								error: function (XMLHttpRequest, textStatus, errorThrown) {
-									sweetAlert("Oops...", "Route " + $("#jsonname").val() + " is too large!", "error");
-									// JSNLog
-									logger.error("Posting failed!");
-								},
-								timeout: 3000
-							});
-							return false;
+								routejson.name = $("#jsonname").val();
+
+								var sendroutejson = JSON.stringify(routejson);
+
+								// submit via ajax
+								$.ajax({
+									type: "POST",
+									url: "http://localhost:3000/postjson",
+									dataType: 'json',
+									contentType: 'application/json',
+									traditional: true,
+									cache: false,
+									processData: false,
+									data: sendroutejson,
+									success: function () {
+										swal("Success!", $("#jsonname").val() + " added to FeatureDB", "success")
+										// JSNLog
+										logger.info("Post successful!");
+									},
+									error: function (XMLHttpRequest, textStatus, errorThrown) {
+										sweetAlert("Oops...", "Route " + $("#jsonname").val() + " can not be posted, it might be too large!", "error");
+										// JSNLog
+										logger.error("Posting failed!");
+									},
+									timeout: 3000
+								});
+								return false;
+
+							} else {
+								sweetAlert('Oops...', 'There is something wrong with with this GeoJSON!', 'error');
+								// JSNLog
+								logger.info('Error in GeoJSON!');
+							}
+
 						} else {
 							logger.error("routeactive is false :(");
 							sweetAlert("Oops...", "The routing service has a problem, please try again later.", "error");
@@ -152,6 +165,99 @@ function post2dbasjson() {
 						logger.error('Name already in use!', name);
 						sweetAlert('Featurename already in use!', 'Please use another name for your feature.', 'error');
 					}
+				},
+				error: function (responsedata) {
+					sweetAlert('Oops...', 'Something went wrong!', 'error');
+					// JSNLog
+					logger.error('Failed in!', response);
+				},
+				timeout: 3000
+			}).error(function (responsedata) {
+				sweetAlert('Oops...', 'Something went wrong!', 'error');
+				// JSNLog
+				logger.error('Failed out!', response);
+			});
+
+		} else {
+			// JSNLog
+			logger.error('No name', name);
+			sweetAlert('No featurename!', 'Please name your feature.', 'error');
+		}
+
+
+	}
+};
+
+// Save route to geojson file
+function exportroutetogeojson() {
+	var data;
+
+	if (control.getWaypoints()[1].latLng == null) {
+		// JSNLog
+		logger.error('No route', );
+		sweetAlert('No route!', 'Please make a route first', 'error');
+
+	} else {
+
+		var namearray = [];
+		var name = $("#jsonname").val();
+
+		// JSNLog
+		logger.info('Name is!');
+		logger.info(name);
+
+		if (name != "") {
+
+			// Get all GeoJSON names from our DB using our GET
+			$.ajax({
+				type: "GET",
+				url: "http://localhost:3000/getjson",
+				success: function (response) {
+					// JSNLog
+					logger.info('Get successful!');
+					logger.info(response);
+					// Using a forEach method iterating over the array of nested objects
+					response.forEach(function (entry) {
+						namearray.push(entry.geojson.name);
+					});
+
+					if (routeactive) {
+
+						// JSNLog
+						logger.info("routeactive!");
+
+						var routejson = RouteToGeoJSON(routeactive);
+
+						errors = geojsonhint.hint(routejson);
+						logger.info("Errors:");
+						logger.info(errors);
+
+						if (errors === undefined || errors.length == 0) {
+
+							routejson.name = $("#jsonname").val();
+
+							data = routejson;
+
+							// Stringify the GeoJson
+							var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
+
+							// Create export
+							document.getElementById('exportroute').setAttribute('href', 'data:' + convertedData);
+							document.getElementById('exportroute').setAttribute('download', 'data.geojson');
+
+							return false;
+
+						} else {
+							sweetAlert('Oops...', 'There is something wrong with with this GeoJSON!', 'error');
+							// JSNLog
+							logger.info('Error in GeoJSON!');
+						}
+
+					} else {
+						logger.error("routeactive is false :(");
+						sweetAlert("Oops...", "The routing service has a problem, please try again later.", "error");
+					}
+
 				},
 				error: function (responsedata) {
 					sweetAlert('Oops...', 'Something went wrong!', 'error');

@@ -77,6 +77,9 @@
     <script src="js/lrm-mapzen.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/perliedman-leaflet-control-geocoder/1.5.4/Control.Geocoder.js"></script>
 
+    <!-- GeoJSON Validation Source:https://github.com/mapbox/geojsonhint -->
+    <script src="https://unpkg.com/@mapbox/geojsonhint@latest/geojsonhint.js"></script>
+
 </head>
 
 <body>
@@ -153,7 +156,7 @@
                     <!-- div container -->
                     <div class="box" style="width: 100%; ">
 
-                        <label class="trans"><input type="text" id="jsonname" required/><div class="label-text">Routename</div></label><br>
+                        <label class="trans"><input type="text" id="jsonname" required/><div class="label-text">Routename!</div></label><br>
                         <p style="font-size: 14px;">Save your route to the DB as:</p>
                         <table class="cleantable" style="width: 100%; padding: 0px;">
                             <tr>
@@ -161,10 +164,15 @@
                                         style="margin: 0px;width: 100%;">
                                 <i class="fa fa-cloud-upload" aria-hidden="true"></i> Route</button>
                                 </td>
-                                <td style="width: 50%;padding: 0px;"><button type="button" class="button jsonupbtn" value="Feature" id="post2dbasjson" onclick="post2dbasjson();" style="margin-left: 1px;width: 100%;">
+                                <td style="width: 50%;padding: 0px;"><button type="button" class="button jsonupbtn" value="Feature" id="post2dbasjson" onclick="post2dbasjson();"
+                                        style="margin-left: 1px;width: 100%;">
                                 <i class="fa fa-cloud-upload" aria-hidden="true"></i> Feature</button></td>
                             </tr>
                         </table>
+                        <br>
+                        <a href="#" class="linkjson" id="exportroute" onclick="exportroutetogeojson();">
+                            <p class="linkjsonp"><i class="fa fa-download" aria-hidden="true"></i> Download as feature</p>
+                        </a>
                     </div>
 
                     <!-- div container -->

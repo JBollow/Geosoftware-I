@@ -67,7 +67,7 @@
         <!-- Navbarcontainer -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation">
 
-            <ul class="nav navbar-nav"  style="border-top: 1px solid black;border-bottom: 1px solid black;border-right: 1px solid black;">
+            <ul class="nav navbar-nav" style="border-top: 1px solid black;border-bottom: 1px solid black;border-right: 1px solid black;">
                 <li class="active">
                     <a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                 </li>
@@ -89,15 +89,40 @@
         <!-- Bodycontainer -->
         <div class="container-fluid">
             <div class="row">
-
                 <section class="col-sm-8">
-                    <!-- <div class="box">
-                        
-                    </div> -->
-                </section>
+                    <div class="box">
+                        <h2><b>Admin tools:</b></h2>
 
+                        <br>
+                        <a target="_blank" class="linkjson" href="http://localhost:3000/deletealljson">
+                            <p class="linkjsonp"><i class="fa fa-trash" aria-hidden="true"></i> Delete all features from DB</p>
+                        </a>
+                        <br>
+                        <a target="_blank" class="linkjson" href="http://localhost:3000/deleteallroute">
+                            <p class="linkjsonp"><i class="fa fa-trash" aria-hidden="true"></i> Delete all routes from DB</p>
+                        </a>
+                    </div>
+                    <br>
+                    <div class="box">
+                        <h2><b>Features:</b></h2>
+                        <br>
+                        <p style="font-size: 14px;">
+                            <b>Stages</b>: Shows features and routes, routes has language and transportation settings, geolocation
+                            marker, 3 basemaps<br><br>
+                            <b>Feature Editor</b>: Shows features, feature drawer, naming features, edit features, overrite
+                            feature, delete one/all features, save drawing as feature to db/file, import feature from url/text/file,
+                            upload feature to db from url/text/file, input validation name/url/text/file, geojson validation
+                            for all features, 3 basemaps<br><br>
+                            <b>Route Editor</b>: Shows routes, routes has language and transportation(multimodal) settings,
+                            geolocation marker, naming routes, upload routes to db as route/feature, overrite routes, delete
+                            one/all routes, geocoding for waypoints, 2-n waypoints possible, click on map allows setting
+                            start/end, 3 basemaps<br>
+                        </p>
+                    </div>
+                </section>
             </div>
         </div>
+
     </div>
 </body>
 

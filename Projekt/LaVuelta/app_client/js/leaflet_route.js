@@ -103,12 +103,18 @@ $("#checkroute").change(function () {
     }
 });
 
-
-// Locator found in a Mapzen example
-var locator = L.Mapzen.locator();
-locator.addTo(map);
-// JSNLog
-logger.info("Locator loaded");
+// Source: https://github.com/domoritz/leaflet-locatecontrol
+var lc = L.control.locate({
+    position: 'topleft',
+    flyTo: true,
+    cacheLocation: true,
+    strings: {
+        title: "Show my position"
+    },
+    locateOptions: {
+        enableHighAccuracy: true
+    }
+}).addTo(map);
 
 // Mapzen errorControl
 L.Routing.errorControl(control).addTo(map);

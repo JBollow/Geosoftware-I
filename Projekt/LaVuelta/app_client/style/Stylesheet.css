@@ -710,3 +710,15 @@ label.trans input:valid+.label-text {
 	-webkit-transform: translateY(-45px);
 	transform: translateY(-45px);
 }
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: hidden;
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+    padding: 0px 0px 0px 10px;
+    cursor: pointer;
+}

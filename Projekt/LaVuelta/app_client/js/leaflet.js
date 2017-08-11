@@ -8,14 +8,8 @@
  * Initializing the map
  */
 
-// Layers
-// Marker
-// var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
-//     denver = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
-//     aurora = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.'),
-//     golden = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.');
-
-// var cities = L.layerGroup([littleton, denver, aurora, golden]);
+//  Layer
+var overlayMaps = {};
 
 // Basemaps
 var OpenMapSurfer_Grayscale = L.tileLayer('http://korona.geog.uni-heidelberg.de/tiles/roadsg/x={x}&y={y}&z={z}', {
@@ -42,9 +36,6 @@ var baseMaps = {
 
 L.DomUtil.addClass(map._container, 'crosshair-cursor-enabled');
 
-var overlayMaps = {
-    // "Cities": cities
-};
 L.control.layers(baseMaps, overlayMaps, {
     position: 'bottomright'
 }).addTo(map);
