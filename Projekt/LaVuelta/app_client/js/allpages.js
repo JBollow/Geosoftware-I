@@ -5,7 +5,7 @@
 // scrollbar body
 $(window).on("resize", function () {
     if ($(window).width() > 767) {
-        $('body').css('overflow-y', 'hidden');
+        $('body').css('overflow-y', 'auto');
         // JSNLog
         logger.info("Scrollbar disabled");
     } else {

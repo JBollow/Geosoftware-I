@@ -10,6 +10,7 @@
  */
 // Added extra jsonLayer for DB layers
 var jsonLayers = new L.FeatureGroup();
+var group = [];
 map.addLayer(jsonLayers);
 
 // Get the geoJSON layers from DB 
@@ -18,6 +19,13 @@ function getjsonshort() {
     // clearLayers before adding to prevent duplicates
     jsonLayers.clearLayers();
     $("#jsonlegendelem").empty();
+
+    // Clears the control Layers
+    if (group) {
+        group.forEach(function (entry) {
+            controlLayers.removeLayer(entry);
+        })
+    };
 
     // Get all GeoJSON from our DB using our GET
     $.ajax({
@@ -30,25 +38,32 @@ function getjsonshort() {
                 jsonLayers.clearLayers();
                 $("#jsonlegendelem").empty();
                 $("#jsonlegenddiv").hide();
-                $("#jsonlegendbtndiv").hide();                
-        
+                $("#jsonlegendbtndiv").hide();
+
             } else {
 
                 // Using a forEach method iterating over the array of nested objects
                 response.forEach(function (entry) {
 
-                    var id = new L.FeatureGroup();
+                    var id = entry._id;
+                    var name = entry.geojson.name;
+                    var geojsonLayer = L.geoJSON(entry.geojson);
+
                     map.addLayer(jsonLayers);
 
-                    // var jsonLayers = new L.FeatureGroup();
-                    // map.addLayer(jsonLayers);
+                    // Adding each geojson feature to the jsonLayers and controlLayers
+                    geojsonLayer.addTo(jsonLayers);
 
-                    // JSNLog
-                    // logger.info('JSON.stringify(entry.geojson)');
-                    // logger.info(JSON.stringify(entry.geojson));
+                    // Adds a reference to the geojson into an array used by the control Layer clearer
+                    group.push(geojsonLayer);
 
-                    // Adding each geojson feature to the jsonLayers
-                    L.geoJSON(entry.geojson).addTo(jsonLayers);
+                    // Add controlLayer
+                    controlLayers.addOverlay(geojsonLayer, name);
+
+                    // Add popup
+                    geojsonLayer.bindPopup(entry.geojson.properties.popupContent, {
+                        maxWidth: "auto"
+                    });
 
                     // Adding the layernames to the legendlist, + commented checkboxes for something that I was interested in, but maybe never finished
                     $('#jsonlegendelem').append("<li><p style='font-size: 14px;'>" + entry.geojson.name + "</p></li>");
@@ -91,6 +106,14 @@ function getjsonshort() {
 // Removing all layers and hiding the legend
 function removelayer() {
     jsonLayers.clearLayers();
+
+    // Clears the control Layers
+    if (group) {
+        group.forEach(function (entry) {
+            controlLayers.removeLayer(entry);
+        })
+    };
+
     $("#jsonlegendelem").empty();
     $("#jsonlegenddiv").hide();
     $("#jsonlegendbtndiv").hide();

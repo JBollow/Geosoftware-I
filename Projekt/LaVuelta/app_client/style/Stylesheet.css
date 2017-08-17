@@ -3,7 +3,7 @@
 }
 
 body {
-	height: 100%;
+	
 	overflow: hidden;
 	background-color: #4f17b0;
 	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
@@ -288,7 +288,9 @@ li {
 	margin-top: 10px;
 }
 
-.boxscroll,.boxscroll1,.boxscroll2 {
+.boxscroll,
+.boxscroll1,
+.boxscroll2 {
 	overflow-y: auto;
 	overflow-x: hidden;
 	width: 100%;
@@ -472,6 +474,16 @@ tr {
 	height: 100%;
 }
 
+.cleantable2,
+.cleantable2 tr,
+.cleantable2 tbody td,
+.cleantable2 thead th,
+.cleantable2 tfoot th {
+	border: none;
+	padding: 0px;
+	height: 100%;
+}
+
 .leaflet-popup-tip-container {
 	display: none;
 }
@@ -512,10 +524,18 @@ tr {
 	margin: 0;
 }
 
+.jumbotron.jumbotron-main2 {
+	height: calc(100vh + 90px);
+	width: 100%;
+	padding-top: 0;
+	padding-bottom: 0;
+	position: relative;
+}
+
 #particles-js {
 	position: absolute;
-	width: 100%;
-	height: 100%;
+	width: 105%;
+	height: 105%;
 	background-image: url("");
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -712,13 +732,14 @@ label.trans input:valid+.label-text {
 }
 
 input[type="file"] {
-    display: none;
+	display: none;
 }
+
 .custom-file-upload {
-    border: hidden;
+	border: hidden;
 	display: inline-block;
 	height: 100%;
 	width: 100%;
-    padding: 0px 0px 0px 10px;
-    cursor: pointer;
+	padding: 0px 0px 0px 10px;
+	cursor: pointer;
 }

@@ -82,6 +82,8 @@ function post2dbasjson() {
 
 		var namearray = [];
 		var name = $("#jsonname").val();
+		var text = $("#jsonpopuptext").val();
+		var bild = $("#jsonbild").val();
 
 		// JSNLog
 		logger.info('Name is!');
@@ -122,6 +124,13 @@ function post2dbasjson() {
 							if (errors === undefined || errors.length == 0) {
 
 								routejson.name = $("#jsonname").val();
+
+								var properties = {
+									popupContent: "<h2>" + name + "</h2><hr><img style='max-width:200px;max-height:100%;' src=" + bild + "><p style='font-size: 14px;'>" + text + "</p>"
+								};
+
+								// Add properties
+								routejson.properties = properties;
 
 								var sendroutejson = JSON.stringify(routejson);
 

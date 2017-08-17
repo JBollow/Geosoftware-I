@@ -8,8 +8,6 @@
  * Initializing the map
  */
 
-//  Layer
-var overlayMaps = {};
 
 // Basemaps
 var OpenMapSurfer_Grayscale = L.tileLayer('http://korona.geog.uni-heidelberg.de/tiles/roadsg/x={x}&y={y}&z={z}', {
@@ -34,9 +32,12 @@ var baseMaps = {
     "OSM DE": OpenStreetMap_DE
 };
 
+var overlayMaps = {};
+
 L.DomUtil.addClass(map._container, 'crosshair-cursor-enabled');
 
-L.control.layers(baseMaps, overlayMaps, {
+// Control Layer
+var controlLayers = L.control.layers(baseMaps, overlayMaps, {
     position: 'bottomright'
 }).addTo(map);
 

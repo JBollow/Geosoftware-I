@@ -10,6 +10,7 @@
  */
 // Added extra jsonLayer for DB layers
 var jsonLayers = new L.FeatureGroup();
+var group = [];
 map.addLayer(jsonLayers);
 
 // Get the geoJSON layers from DB 
@@ -18,6 +19,13 @@ function getjson() {
     // clearLayers before adding to prevent duplicates
     jsonLayers.clearLayers();
     $("#jsonlegendelem").empty();
+
+    // Clears the control Layers
+    if (group) {
+        group.forEach(function (entry) {
+            controlLayers.removeLayer(entry);
+        })
+    };
 
     // Get all GeoJSON from our DB using our GET
     $.ajax({
@@ -32,26 +40,35 @@ function getjson() {
                 $("#jsonlegendelem").empty();
                 $("#jsonlegenddiv").hide();
                 $("#jsonlegendbtndiv").hide();
-                
+
             } else {
+                map.addLayer(jsonLayers);
+
                 // Using a forEach method iterating over the array of nested objects
                 response.forEach(function (entry) {
 
-                    var id = new L.FeatureGroup();
-                    map.addLayer(jsonLayers);
+                    var id = entry._id;
+                    var name = entry.geojson.name;
+                    var geojsonLayer = L.geoJSON(entry.geojson);
 
-                    // var jsonLayers = new L.FeatureGroup();
-                    // map.addLayer(jsonLayers);
+                    controlLayers.removeLayer(geojsonLayer);
 
-                    // JSNLog
-                    // logger.info('JSON.stringify(entry.geojson)');
-                    // logger.info(JSON.stringify(entry.geojson));
+                    // Adding each geojson feature to the jsonLayers and controlLayers
+                    geojsonLayer.addTo(jsonLayers);
 
-                    // Adding each geojson feature to the jsonLayers
-                    L.geoJSON(entry.geojson).addTo(jsonLayers);
+                    // Adds a reference to the geojson into an array used by the control Layer clearer
+                    group.push(geojsonLayer);
+
+                    // Add controlLayer
+                    controlLayers.addOverlay(geojsonLayer, name);
+
+                    // Add popup
+                    geojsonLayer.bindPopup(entry.geojson.properties.popupContent, {
+                        maxWidth: "auto"
+                    });
 
                     // Adding the layernames to the legendlist, + commented checkboxes for something that I was interested in, but maybe never finished
-                    $('#jsonlegendelem').append("<li style='height: 30px;width: 100%;'><div class='title'><p style='font-size: 14px;display: inline;'>" + entry.geojson.name + "</p></div><div class='content'><button class='delbutton' type='button' id='" + entry._id + "' onclick='editfeature(this.id)'><i class='fa fa-pencil' aria-hidden='true'></i></button><button class='delbutton' type='button' id='" + entry._id + "' onclick='deletefeature(this.id)'><i class='fa fa-trash' aria-hidden='true'></i></button></div></li>");
+                    $('#jsonlegendelem').append("<li style='height: 30px;width: 100%;'><div class='title'><p style='font-size: 14px;display: inline;'>" + name + "</p></div><div class='content'><button class='delbutton' type='button' id='" + id + "' onclick='editfeature(this.id)'><i class='fa fa-pencil' aria-hidden='true'></i></button><button class='delbutton' type='button' id='" + id + "' onclick='deletefeature(this.id)'><i class='fa fa-trash' aria-hidden='true'></i></button></div></li>");
                 });
 
                 // Adding a legend + removebutton
@@ -89,14 +106,21 @@ function getjson() {
     logger.info(jsonLayers);
 };
 
+
 // Removing all layers and hiding the legend
 function removelayer() {
     jsonLayers.clearLayers();
+
+    // Clears the control Layers
+    if (group) {
+        group.forEach(function (entry) {
+            controlLayers.removeLayer(entry);
+        })
+    };
+
     $("#jsonlegendelem").empty();
     $("#jsonlegenddiv").hide();
     $("#jsonlegendbtndiv").hide();
     // JSNLog
     logger.info("JsonLayers removed, legend hidden");
 };
-
-// Import JSON from Link

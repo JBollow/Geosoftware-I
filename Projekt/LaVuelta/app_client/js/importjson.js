@@ -95,6 +95,13 @@ function uploadjsonlink() {
                                 // Add a name to the layer
                                 data.name = name;
 
+                                var properties = {
+                                    popupContent: "<h2>" + name + "</h2><hr><img style='max-width:200px;max-height:100%;' src=" + bild + "><p style='font-size: 14px;'>" + text + "</p>"
+                                };
+
+                                // Add properties
+                                data.properties = properties;
+
                                 var senddata = JSON.stringify(data);
 
                                 // Post to local mongodb
@@ -233,6 +240,13 @@ function uploadjsontext() {
                             // Add a name to the layer
                             data.name = name;
 
+                            var properties = {
+                                popupContent: "<h2>" + name + "</h2><hr><img style='max-width:200px;max-height:100%;' src=" + bild + "><p style='font-size: 14px;'>" + text + "</p>"
+                            };
+
+                            // Add properties
+                            data.properties = properties;
+
                             var senddata = JSON.stringify(data);
 
                             // Post to local mongodb
@@ -361,6 +375,13 @@ function uploadjsonfile() {
 
                             // Add a name to the layer
                             data.name = name;
+
+                            var properties = {
+                                popupContent: "<h2>" + name + "</h2><hr><img style='max-width:200px;max-height:100%;' src=" + bild + "><p style='font-size: 14px;'>" + text + "</p>"
+                            };
+
+                            // Add properties
+                            data.properties = properties;
 
                             var senddata = JSON.stringify(data);
 
