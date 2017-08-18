@@ -3,7 +3,6 @@
 }
 
 body {
-	
 	overflow: hidden;
 	background-color: #4f17b0;
 	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
@@ -535,7 +534,7 @@ tr {
 #particles-js {
 	position: absolute;
 	width: 105%;
-	height: 105%;
+	height: 115%;
 	background-image: url("");
 	background-repeat: no-repeat;
 	background-size: cover;

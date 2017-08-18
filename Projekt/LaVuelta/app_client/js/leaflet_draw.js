@@ -79,6 +79,9 @@ map.on('draw:created', function (e) {
 function removeedit() {
     editableLayers.clearLayers();
     map.addLayer(editableLayers);
+    $('#jsonname').val("");
+    $('#jsonpopuptext').val("");
+    $('#jsonbild').val("");
     // JSNLog
     logger.info("Removed editableLayers");
 };

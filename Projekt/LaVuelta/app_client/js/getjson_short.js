@@ -42,6 +42,8 @@ function getjsonshort() {
 
             } else {
 
+                map.addLayer(jsonLayers);
+
                 // Using a forEach method iterating over the array of nested objects
                 response.forEach(function (entry) {
 
@@ -49,7 +51,7 @@ function getjsonshort() {
                     var name = entry.geojson.name;
                     var geojsonLayer = L.geoJSON(entry.geojson);
 
-                    map.addLayer(jsonLayers);
+                    controlLayers.removeLayer(geojsonLayer);
 
                     // Adding each geojson feature to the jsonLayers and controlLayers
                     geojsonLayer.addTo(jsonLayers);

@@ -338,9 +338,6 @@ function uploadjsonfile() {
     reader.onload = function (event) {
         data = JSON.parse(event.target.result);
         errors = geojsonhint.hint(data);
-        logger.info("Errors:");
-        logger.info(errors);
-
 
         if (errors === undefined || errors.length == 0) {
             // From my post

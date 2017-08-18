@@ -73,6 +73,9 @@ function remover() {
     // JSNLog
     logger.info("Control removed");
     reloadControl($('#language').val(), $('#transport').val());
+    $('#jsonname').val('');
+    $('#jsonpopuptext').val("");
+    $('#jsonbild').val("");
     // JSNLog
     logger.info("Control rebuild");
 }
@@ -88,6 +91,8 @@ function removeroute() {
     $('#legend').hide();
     $("#checkroute").prop("checked", false);
     $('#jsonname').val('');
+    $('#jsonpopuptext').val("");
+    $('#jsonbild').val("");
 };
 
 // show/hide function for routecontrol 

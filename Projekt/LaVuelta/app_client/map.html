@@ -83,6 +83,9 @@
     <script src="js/lrm-mapzen.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/perliedman-leaflet-control-geocoder/1.5.4/Control.Geocoder.js"></script>
 
+    <!-- GeoJSON Validation Source:https://github.com/mapbox/geojsonhint -->
+    <script src="https://unpkg.com/@mapbox/geojsonhint@latest/geojsonhint.js"></script>
+
 </head>
 
 <body>
@@ -144,7 +147,8 @@
                     <option value="ru-RU">Русский язык</option>
                     <option value="hi-IN">हिन्दी</option>
                     </select>
-                           
+
+                            <input type="button" class="buttonwhite" id="removebtn1" value="Reload &#x21bb;" onclick="remover(); control.hide();" style="margin-left: 20px">
                         </div>
 
                         <div id="map"></div>
@@ -155,7 +159,7 @@
                 <aside class="col-sm-3">
                     <!-- div container -->
                     <div class="box boxscroll">
-                        <button type="button" class="button" value="" id="jsonloaddb" onclick="getjsonshort()" style="width: 100%;"><i class="fa fa-cloud-download" aria-hidden="true"></i> Reload Features</button>
+                        <button type="button" class="button" value="" id="jsonloaddb" onclick="getjsonshort()" style="width: 100%;"><i class="fa fa-cloud-download" aria-hidden="true"></i> Reload features</button>
 
                         <div id="jsonlegenddiv">
                             <p id="jsonlegend"></p>
@@ -170,7 +174,7 @@
 
                     <!-- div container -->
                     <div class="box boxscroll" style="width: 100%; ">
-                        <button type="button" class="button" value="" id="loaddb" style="width: 100%;" onclick="getrouteshort()"><i class="fa fa-cloud-download" aria-hidden="true"></i> Reload Routes</button>
+                        <button type="button" class="button" value="" id="loaddb" style="width: 100%;" onclick="getrouteshort()"><i class="fa fa-cloud-download" aria-hidden="true"></i> Reload routes</button>
 
                         <div id="legenddiv">
                             <p id="legend"></p>
@@ -183,6 +187,34 @@
                         </div>
                     </div>
 
+                    <!-- div container -->
+                    <div class="box boxscroll">
+
+                        <button type="button" class="button" value="" id="stageloaddb" onclick="getstage()" style="width: 100%;"><i class="fa fa-cloud-download" aria-hidden="true"></i> Reload stages</button></td>
+
+                        <div id="stagelegenddiv">
+                            <p id="stagelegend"></p>
+                        </div>
+
+                        <ul style="list-style-type: none;margin-left: 5px;" id="stagelegendelem"></ul>
+                        <div id="stagelegendbtndiv">
+                            <p id="stagelegendbtn"></p>
+                        </div>
+                    </div>
+
+                    <!-- div container -->
+                    <div class="box boxscroll">
+
+                        <table class="cleantable">
+                            <tr>
+                                <td style="padding-bottom: 5px;"><label for="importjsonfile" class="custom-file-upload" style="font-size: 14px; text-align: center;"><i class="fa fa-upload" aria-hidden="true"></i> Import stages</label><input
+                                        id="importjsonfile" type="file" onchange="importstage();" /></td>
+                                <td style="padding: 0px 0px 5px 1px;"><label for="uploadjsonfile" class="custom-file-upload" style="font-size: 14px; text-align: center;"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Upload stages</label><input
+                                        id="uploadjsonfile" type="file" onchange="uploadstage();" /></td>
+                            </tr>
+                        </table>
+
+                    </div>
                 </aside>
 
             </div>
@@ -214,7 +246,10 @@
 <script src="js/gettime.js"></script>
 <script src="js/leaflet.js"></script>
 <script src="js/leaflet_route.js"></script>
+<script src="js/leaflet_route_interact.js"></script>
 <script src="js/getjson_short.js"></script>
+<script src="js/getstage.js"></script>
+<script src="js/poststage.js"></script>
 <script src="js/getroute_short.js"></script>
 <script src="js/autoscale.js"></script>
 
@@ -222,6 +257,7 @@
     control.hide();
     getrouteshort();
     getjsonshort();
+    getstage();
     // JSNLog
     logger.info("Stages loaded!");
 </script>

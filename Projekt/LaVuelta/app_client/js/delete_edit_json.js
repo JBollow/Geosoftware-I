@@ -124,6 +124,8 @@ function editfeature(clicked_id) {
 
                 var namearray = [];
                 var name = $("#jsonname").val();
+                var text = $("#jsonpopuptext").val();
+                var bild = $("#jsonbild").val();
 
                 // JSNLog
                 logger.info('Name is!');
@@ -156,6 +158,13 @@ function editfeature(clicked_id) {
 
                                 // Add a name to the layer
                                 data.name = name;
+
+                                var properties = {
+                                    popupContent: "<h2>" + name + "</h2><hr><img style='max-width:200px;max-height:100%;' src=" + bild + "><p style='font-size: 14px;'>" + text + "</p>"
+                                };
+
+                                // Add properties
+                                data.properties = properties;
 
                                 var senddata = JSON.stringify(data);
 

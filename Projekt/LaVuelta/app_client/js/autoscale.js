@@ -6,7 +6,7 @@
 $(window).on("resize", function () {
     var x;
     if ($(window).width() > 767) {
-        x = (($(window).height() - 183) * 0.5);        
+        x = (($(window).height() - 213) * 0.33);        
         $('.boxscroll').css('max-height', x + 'px');
     } else {
         x = 300;

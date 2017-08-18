@@ -42,6 +42,7 @@ function getjson() {
                 $("#jsonlegendbtndiv").hide();
 
             } else {
+
                 map.addLayer(jsonLayers);
 
                 // Using a forEach method iterating over the array of nested objects
@@ -121,6 +122,9 @@ function removelayer() {
     $("#jsonlegendelem").empty();
     $("#jsonlegenddiv").hide();
     $("#jsonlegendbtndiv").hide();
+    $('#jsonpopuptext').val("");
+    $('#jsonbild').val("");
+    $('#jsonname').val("");
     // JSNLog
     logger.info("JsonLayers removed, legend hidden");
 };
