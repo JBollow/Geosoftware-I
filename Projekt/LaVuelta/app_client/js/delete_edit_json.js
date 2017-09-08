@@ -126,6 +126,8 @@ function editfeature(clicked_id) {
                 var name = $("#jsonname").val();
                 var text = $("#jsonpopuptext").val();
                 var bild = $("#jsonbild").val();
+                var link = $("#jsonweblink").val();
+                var linkname = $("#jsonweblinkname").val();
 
                 // JSNLog
                 logger.info('Name is!');
@@ -160,7 +162,7 @@ function editfeature(clicked_id) {
                                 data.name = name;
 
                                 var properties = {
-                                    popupContent: "<h2>" + name + "</h2><hr><img style='max-width:200px;max-height:100%;' src=" + bild + "><p style='font-size: 14px;'>" + text + "</p>"
+                                    popupContent: "<h2>" + name + "</h2><hr><img style='max-width:200px;max-height:100%;' src=" + bild + "><p style='font-size: 14px;'>" + text + "<br><br><a target='_blank' href=" + link + ">" + linkname + "</a></p>"
                                 };
 
                                 // Add properties

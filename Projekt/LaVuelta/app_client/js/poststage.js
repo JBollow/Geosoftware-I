@@ -87,3 +87,13 @@ function uploadstage() {
         });
     }
 };
+
+// Post stage from stage editor
+function poststage() {
+
+};
+
+// Exports stage from stage editor to file
+function exportstage() {
+
+};

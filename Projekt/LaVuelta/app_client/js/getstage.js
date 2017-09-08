@@ -41,7 +41,7 @@ function getstage() {
                 $("#stagelegendbtndiv").hide();
             } else {
 
-                
+
                 response.forEach(function (entry) {
 
                     var array = entry.geojson.stage;
@@ -128,12 +128,25 @@ function importstage() {
         // Parse data to object
         var object = JSON.parse(data);
 
+        logger.info(object);
+
         // Use array in object.stage
         var array = object.stage;
+
+        logger.info(array);
+
         var stages = L.layerGroup([]);
+
         // shifting name from array
         var stagename = array[0];
+
+        logger.info(stagename);
+
         array.shift();
+
+        logger.info("shift");
+
+        logger.info(array);
 
         stageLayers.addLayer(stages);
         map.addLayer(stageLayers);
@@ -156,7 +169,7 @@ function importstage() {
         });
 
         // Add controlLayer
-        controlLayers.addOverlay(stages, stagename +" [imported]");
+        controlLayers.addOverlay(stages, stagename + " [imported]");
 
         // Adds a reference to the geojson into an array used by the control Layer clearer
         group.push(stages);

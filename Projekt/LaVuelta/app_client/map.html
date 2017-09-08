@@ -116,6 +116,9 @@
                     <a class="hvr-shutter-out-vertical" href="map3.html"><i class="fa fa-map-marker" aria-hidden="true"></i> Route Editor</a>
                 </li>
                 <li class="inactive">
+                    <a class="hvr-shutter-out-vertical" href="map4.html"><i class="fa fa-bicycle" aria-hidden="true"></i> Stage Editor</a>
+                </li>
+                <li class="inactive">
                     <a class="hvr-shutter-out-vertical" href="impressum.html"><b>§</b> Impressum</a>
                 </li>
             </ul>
@@ -190,7 +193,7 @@
                     <!-- div container -->
                     <div class="box boxscroll">
 
-                        <button type="button" class="button" value="" id="stageloaddb" onclick="getstage()" style="width: 100%;"><i class="fa fa-cloud-download" aria-hidden="true"></i> Reload stages</button></td>
+                        <button type="button" class="button" value="" id="stageloaddb" onclick="getstage()" style="width: 100%;"><i class="fa fa-cloud-download" aria-hidden="true"></i> Reload stages</button>
 
                         <div id="stagelegenddiv">
                             <p id="stagelegend"></p>
@@ -202,19 +205,6 @@
                         </div>
                     </div>
 
-                    <!-- div container -->
-                    <div class="box boxscroll">
-
-                        <table class="cleantable">
-                            <tr>
-                                <td style="padding-bottom: 5px;"><label for="importjsonfile" class="custom-file-upload" style="font-size: 14px; text-align: center;"><i class="fa fa-upload" aria-hidden="true"></i> Import stages</label><input
-                                        id="importjsonfile" type="file" onchange="importstage();" /></td>
-                                <td style="padding: 0px 0px 5px 1px;"><label for="uploadjsonfile" class="custom-file-upload" style="font-size: 14px; text-align: center;"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Upload stages</label><input
-                                        id="uploadjsonfile" type="file" onchange="uploadstage();" /></td>
-                            </tr>
-                        </table>
-
-                    </div>
                 </aside>
 
             </div>

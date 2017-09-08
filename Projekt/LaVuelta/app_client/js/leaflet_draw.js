@@ -42,12 +42,7 @@ var options = {
             }
         },
         circle: false,
-        rectangle: {
-            shapeOptions: {
-                clickable: false,
-                color: '#e32821'
-            }
-        },
+        rectangle: false,
         marker: {
             icon: new MyCustomMarker()
         }

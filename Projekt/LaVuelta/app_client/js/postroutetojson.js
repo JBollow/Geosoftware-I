@@ -84,6 +84,8 @@ function post2dbasjson() {
 		var name = $("#jsonname").val();
 		var text = $("#jsonpopuptext").val();
 		var bild = $("#jsonbild").val();
+		var link = $("#jsonweblink").val();
+		var linkname = $("#jsonweblinkname").val();
 
 		// JSNLog
 		logger.info('Name is!');
@@ -126,7 +128,7 @@ function post2dbasjson() {
 								routejson.name = $("#jsonname").val();
 
 								var properties = {
-									popupContent: "<h2>" + name + "</h2><hr><img style='max-width:200px;max-height:100%;' src=" + bild + "><p style='font-size: 14px;'>" + text + "</p>"
+									popupContent: "<h2>" + name + "</h2><hr><img style='max-width:200px;max-height:100%;' src=" + bild + "><p style='font-size: 14px;'>" + text + "<br><br><a target='_blank' href=" + link + ">" + linkname + "</a></p>"
 								};
 
 								// Add properties
@@ -146,6 +148,7 @@ function post2dbasjson() {
 									data: sendroutejson,
 									success: function () {
 										swal("Success!", $("#jsonname").val() + " added to FeatureDB", "success")
+										$('#jsonname').val("");
 										// JSNLog
 										logger.info("Post successful!");
 									},
@@ -210,6 +213,10 @@ function exportroutetogeojson() {
 
 		var namearray = [];
 		var name = $("#jsonname").val();
+		var text = $("#jsonpopuptext").val();
+		var bild = $("#jsonbild").val();
+		var link = $("#jsonweblink").val();
+		var linkname = $("#jsonweblinkname").val();
 
 		// JSNLog
 		logger.info('Name is!');
@@ -244,6 +251,14 @@ function exportroutetogeojson() {
 						if (errors === undefined || errors.length == 0) {
 
 							routejson.name = $("#jsonname").val();
+
+
+							var properties = {
+								popupContent: "<h2>" + name + "</h2><hr><img style='max-width:200px;max-height:100%;' src=" + bild + "><p style='font-size: 14px;'>" + text + "<br><br><a target='_blank' href=" + link + ">" + linkname + "</a></p>"
+							};
+
+							// Add properties
+							routejson.properties = properties;
 
 							data = routejson;
 
