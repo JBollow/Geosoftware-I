@@ -181,13 +181,13 @@ function post2dbasjson() {
 				error: function (responsedata) {
 					sweetAlert('Oops...', 'Something went wrong!', 'error');
 					// JSNLog
-					logger.error('Failed in!', response);
+					logger.error('Failed in!');
 				},
 				timeout: 3000
 			}).error(function (responsedata) {
 				sweetAlert('Oops...', 'Something went wrong!', 'error');
 				// JSNLog
-				logger.error('Failed out!', response);
+				logger.error('Failed out!');
 			});
 
 		} else {
@@ -252,7 +252,6 @@ function exportroutetogeojson() {
 
 							routejson.name = $("#jsonname").val();
 
-
 							var properties = {
 								popupContent: "<h2>" + name + "</h2><hr><img style='max-width:200px;max-height:100%;' src=" + bild + "><p style='font-size: 14px;'>" + text + "<br><br><a target='_blank' href=" + link + ">" + linkname + "</a></p>"
 							};
@@ -286,13 +285,13 @@ function exportroutetogeojson() {
 				error: function (responsedata) {
 					sweetAlert('Oops...', 'Something went wrong!', 'error');
 					// JSNLog
-					logger.error('Failed in!', response);
+					logger.error('Failed in!');
 				},
 				timeout: 3000
 			}).error(function (responsedata) {
 				sweetAlert('Oops...', 'Something went wrong!', 'error');
 				// JSNLog
-				logger.error('Failed out!', response);
+				logger.error('Failed out!');
 			});
 
 		} else {

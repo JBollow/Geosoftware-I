@@ -92,9 +92,27 @@
 
         <!-- Bodycontainer -->
         <div class="container-fluid">
+
             <div class="row">
 
-                <section class="col-sm-8">
+                <div class="col-sm-12">
+
+                    <div class="main clearfix">
+                        <div id="sb-search" class="sb-search">
+                            <form>
+                                <input class="sb-search-input" placeholder="Enter your search term..." type="search" value="" name="search" id="search">
+                                <input class="sb-search-submit" type="submit" value="">
+                                <span class="sb-icon-search"></span>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+
+                <section class="col-sm-12">
                     <div class="box">
 
                         <h2><strong>Impressum</strong></h2>
@@ -116,9 +134,12 @@
                             <br>Bei der Navigation für Rad oder zu Fuß wird bei einer zu großen Distanz keien Route berechnet.
                             <br>Besonders schlecht aber funktioniert die Navigation mit Zügen.
                             <br>
-                            <br>Die Kreis Option beim Draw ist zwar deaktiviert, aber verursacht trotzdem noch Fehlermeldungen in der Console.
+                            <br>Die Kreis Option beim Draw ist zwar deaktiviert, aber verursacht trotzdem noch Fehlermeldungen
+                            in der Console.
                             <br>
-                            <br>Um eine Route zu exportieren muss man zwei mal clicken, das "routeactive" macht Probleme.
+                            <br>Um eine Route zu exportieren muss man zwei mal clicken, das "routeactive" macht Probleme / verursacht eine Verzögerung.
+                            <br>
+                            <br>Sehr große Stages aus mehreren Routenfeatures lassen sich nicht mehr in der MongoDB speichern, weil sie die maximale Objektgröße übersteigen.
                         </p>
 
                     </div>
@@ -140,6 +161,8 @@
 <!-- loading local scripts -->
 <!-- Source: http://jsnlog.com/ -->
 <script src="js/jsnlog.min.js"></script>
+<script src="js/jsnlog.js"></script>
+<script src="js/classie.js"></script>
 
 <!-- particles -->
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -147,8 +170,13 @@
 <script src="js/particles.js"></script>
 
 <!-- loading my scripts -->
-<script src="js/jsnlog.js"></script>
 <script src="js/allpages.js"></script>
+<script src="js/search.js"></script>
+
+<script>
+        new UISearch(document.getElementById('sb-search'));
+    </script>
+
 
 <script>
     // JSNLog

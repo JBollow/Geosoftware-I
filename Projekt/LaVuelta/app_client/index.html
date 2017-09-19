@@ -92,7 +92,24 @@
         <!-- Bodycontainer -->
         <div class="container-fluid">
             <div class="row">
-                <section class="col-sm-8">
+
+                <div class="col-sm-12">
+
+                    <div class="main clearfix">
+                        <div id="sb-search" class="sb-search">
+                            <form>
+                                <input class="sb-search-input" placeholder="Enter your search term..." type="search" value="" name="search" id="search">
+                                <input class="sb-search-submit" type="submit" value="">
+                                <span class="sb-icon-search"></span>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <section class="col-sm-12">
                     <div class="box">
                         <h2><b>Admin tools:</b></h2>
 
@@ -108,8 +125,11 @@
                         <a target="_blank" class="linkjson" href="http://localhost:3000/deleteallstages">
                             <p class="linkjsonp"><i class="fa fa-trash" aria-hidden="true"></i> Delete all stages from DB</p>
                         </a>
+
+                        <br>
+
                     </div>
-                    <br>
+                    
                     <div class="box">
                         <h2><b>Features:</b></h2>
                         <br>
@@ -129,7 +149,6 @@
                 </section>
             </div>
         </div>
-
     </div>
 </body>
 
@@ -145,6 +164,8 @@
 <!-- loading local scripts -->
 <!-- Source: http://jsnlog.com/ -->
 <script src="js/jsnlog.min.js"></script>
+<script src="js/jsnlog.js"></script>
+<script src="js/classie.js"></script>
 
 <!-- particles -->
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -152,8 +173,12 @@
 <script src="js/particles.js"></script>
 
 <!-- loading my scripts -->
-<script src="js/jsnlog.js"></script>
 <script src="js/allpages.js"></script>
+<script src="js/search.js"></script>
+
+<script>
+    new UISearch(document.getElementById('sb-search'));
+</script>
 
 <script>
     // JSNLog

@@ -92,7 +92,7 @@
                     <a class="hvr-shutter-out-vertical" href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                 </li>
                 <li class="inactive">
-                    <a href="map.html"><i class="fa fa-map-o" aria-hidden="true"></i> Stages</a>
+                    <a class="hvr-shutter-out-vertical" href="map.html#"><i class="fa fa-map-o" aria-hidden="true"></i> Stages</a>
                 </li>
                 <li class="inactive">
                     <a class="hvr-shutter-out-vertical" href="map2.html"><i class="fa fa-paint-brush" aria-hidden="true"></i> Feature Editor</a>
@@ -101,7 +101,7 @@
                     <a class="hvr-shutter-out-vertical" href="map3.html"><i class="fa fa-map-marker" aria-hidden="true"></i> Route Editor</a>
                 </li>
                 <li class="active">
-                    <a class="hvr-shutter-out-vertical" href="#"><i class="fa fa-bicycle" aria-hidden="true"></i> Stage Editor</a>
+                    <a href="#"><i class="fa fa-bicycle" aria-hidden="true"></i> Stage Editor</a>
                 </li>
                 <li class="inactive">
                     <a class="hvr-shutter-out-vertical" href="impressum.html"><b>§</b> Impressum</a>
@@ -111,6 +111,24 @@
 
         <!-- Bodycontainer -->
         <div class="container-fluid">
+
+            <div class="row">
+
+                <div class="col-sm-12">
+
+                    <div class="main clearfix">
+                        <div id="sb-search" class="sb-search">
+                            <form>
+                                <input class="sb-search-input" placeholder="Enter your search term..." type="search" value="" name="search" id="search">
+                                <input class="sb-search-submit" type="submit" value="">
+                                <span class="sb-icon-search"></span>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
             <div class="row">
 
                 <section class="col-sm-9">
@@ -221,7 +239,7 @@
                                         </tr>
                                         <tr>
                                             <td style="width: 150px;">Enter time and date:</td>
-                                            <td><input type="datetime-local" id="jsonstarttime" placeholder="Popuptext or HTML-Code"
+                                            <td><input type="datetime-local" id="jsonstarttimeend" placeholder="Popuptext or HTML-Code"
                                                     style="width: 100%;">
                                             </td>
                                         </tr>
@@ -300,9 +318,9 @@
                         <table class="cleantable">
                             <tr>
                                 <td style="padding-bottom: 5px;"><label for="importjsonfile" class="custom-file-upload" style="font-size: 14px; text-align: center;"><i class="fa fa-upload" aria-hidden="true"></i> Import stages</label><input
-                                        id="importjsonfile" type="file" onchange="importstage();" /></td>
+                                        id="importjsonfile" type="file" onchange="importstage(event);" /></td>
                                 <td style="padding: 0px 0px 5px 1px;"><label for="uploadjsonfile" class="custom-file-upload" style="font-size: 14px; text-align: center;"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Upload stages</label><input
-                                        id="uploadjsonfile" type="file" onchange="uploadstage();" /></td>
+                                        id="uploadjsonfile" type="file" onchange="uploadstage(event);" /></td>
                             </tr>
                         </table>
 
@@ -326,6 +344,8 @@
 <!-- loading local scripts -->
 <!-- Source: http://jsnlog.com/ -->
 <script src="js/jsnlog.min.js"></script>
+<script src="js/jsnlog.js"></script>
+<script src="js/classie.js"></script>
 
 <!-- particles -->
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -334,13 +354,18 @@
 
 <!-- loading my scripts -->
 <script src="js/gettime.js"></script>
-<script src="js/jsnlog.js"></script>
 <script src="js/leaflet.js"></script>
 <script src="js/allpages.js"></script>
 <script src="js/getjson_short_stage.js"></script>
 <script src="js/getstage.js"></script>
 <script src="js/poststage.js"></script>
 <script src="js/autoscale.js"></script>
+<script src="js/search.js"></script>
+
+<script>
+    new UISearch(document.getElementById('sb-search'));
+</script>
+
 
 <script>
     getjsonshort();

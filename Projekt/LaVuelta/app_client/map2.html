@@ -112,6 +112,24 @@
 
         <!-- Bodycontainer -->
         <div class="container-fluid">
+
+            <div class="row">
+
+                <div class="col-sm-12">
+
+                    <div class="main clearfix">
+                        <div id="sb-search" class="sb-search">
+                            <form>
+                                <input class="sb-search-input" placeholder="Enter your search term..." type="search" value="" name="search" id="search">
+                                <input class="sb-search-submit" type="submit" value="">
+                                <span class="sb-icon-search"></span>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
             <div class="row">
 
                 <div class="col-sm-9">
@@ -168,7 +186,7 @@
                             </tr>
                         </table>
                     </div>
-                    
+
                 </div>
 
                 <div class="col-sm-3">
@@ -215,9 +233,9 @@
                             <tr>
                                 <td style="padding-bottom: 5px;">
                                     <label for="importjsonfile" class="custom-file-upload"><i class="fa fa-upload" aria-hidden="true"></i> GeoJSON from file to map</label><input
-                                        id="importjsonfile" type="file" onchange="importjsonfile();" /></td>
+                                        id="importjsonfile" type="file" onchange="importjsonfile(event);" /></td>
                                 <td style="padding: 0px 0px 5px 1px;"><label for="uploadjsonfile" class="custom-file-upload"><i class="fa fa-cloud-upload" aria-hidden="true"></i> GeoJSON from file to DB</label><input
-                                        id="uploadjsonfile" type="file" onchange="uploadjsonfile();" />
+                                        id="uploadjsonfile" type="file" onchange="uploadjsonfile(events);" />
                                 </td>
                             </tr>
                         </table>
@@ -255,6 +273,8 @@
 <!-- loading local scripts -->
 <!-- Source: http://jsnlog.com/ -->
 <script src="js/jsnlog.min.js"></script>
+<script src="js/jsnlog.js"></script>
+<script src="js/classie.js"></script>
 
 <!-- particles -->
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -263,7 +283,6 @@
 
 <!-- loading my scripts -->
 <script src="js/gettime.js"></script>
-<script src="js/jsnlog.js"></script>
 <script src="js/leaflet.js"></script>
 <script src="js/leaflet_draw.js"></script>
 <script src="js/getjson.js"></script>
@@ -272,6 +291,11 @@
 <script src="js/allpages.js"></script>
 <script src="js/delete_edit_json.js"></script>
 <script src="js/autoscale.js"></script>
+<script src="js/search.js"></script>
+
+<script>
+        new UISearch(document.getElementById('sb-search'));
+    </script>
 
 <script>
     getjson();

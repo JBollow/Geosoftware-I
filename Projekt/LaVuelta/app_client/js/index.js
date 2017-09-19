@@ -197,46 +197,46 @@ router.get('/getstage', function (req, res) {
    Posting stage to mongodb
 */
 router.post('/poststage', function (req, res) {
-  
-    // Set our internal DB variable
-    var db = req.db;
-  
-    // Get our geojson, this comes from our drawer
-    var geojson = req.body;
-  
-    // Set our collection
-    var collection = db.get('stagecollection');
-  
-    // Submit to the DB
-    collection.insert({
-      geojson
-    }, function (err, doc) {
-      if (err) {
-  
-        // If it failed, return error
-        res.send("There was a problem adding the information to the database.");
-      } else {
-  
-        // Or print object id
-        res.send(doc._id);
-      }
+
+  // Set our internal DB variable
+  var db = req.db;
+
+  // Get our geojson, this comes from our drawer
+  var geojson = req.body;
+
+  // Set our collection
+  var collection = db.get('stagecollection');
+
+  // Submit to the DB
+  collection.insert({
+    geojson
+  }, function (err, doc) {
+    if (err) {
+
+      // If it failed, return error
+      res.send("There was a problem adding the information to the database.");
+    } else {
+
+      // Or print object id
+      res.send(doc._id);
+    }
+  });
+});
+
+// Delete all json
+router.get('/deleteallstages', function (req, res) {
+
+  var db = req.db;
+  var collection = db.get('stagecollection');
+
+  collection.remove({}, function (err, result) {
+    res.send((result === 1) ? {
+      msg: 'Deleted'
+    } : {
+      msg: 'error: ' + err
     });
   });
 
-  // Delete all json
-router.get('/deleteallstages', function (req, res) {
-  
-    var db = req.db;
-    var collection = db.get('stagecollection');
-  
-    collection.remove({}, function (err, result) {
-      res.send((result === 1) ? {
-        msg: 'Deleted'
-      } : {
-        msg: 'error: ' + err
-      });
-    });
-  
-  });
+});
 
 module.exports = router;

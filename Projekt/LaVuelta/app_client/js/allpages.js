@@ -15,6 +15,5 @@ $(window).on("resize", function () {
     }
 }).trigger("resize");
 
-
 // JSNLog
 logger.info("Allpagesscript loaded");

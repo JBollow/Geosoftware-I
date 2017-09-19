@@ -23,15 +23,56 @@ document.getElementById('export').onclick = function (e) {
     document.getElementById('export').setAttribute('download', 'data.geojson');
 };
 
-// Post the geoJSON layer to DB
-function postjson() {
-
-    var namearray = [];
+// Standalone method for postjsons
+function postjsonsa(data) {
     var name = $("#jsonname").val();
     var text = $("#jsonpopuptext").val();
     var bild = $("#jsonbild").val();
     var link = $("#jsonweblink").val();
     var linkname = $("#jsonweblinkname").val();
+
+    // Add a name to the layer
+    data.name = name;
+
+    var properties = {
+        popupContent: "<h2>" + name + "</h2><hr><img style='max-width:200px;max-height:100%;' src=" + bild + "><p style='font-size: 14px;'>" + text + "<br><br><a target='_blank' href=" + link + ">" + linkname + "</a></p>"
+    };
+
+    // Add properties
+    data.properties = properties;
+
+    var senddata = JSON.stringify(data);
+
+    // Post to local mongodb
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:3000/postjson",
+        dataType: 'json',
+        contentType: 'application/json',
+        data: senddata,
+        traditional: true,
+        cache: false,
+        processData: false,
+        success: function () {
+            swal("Success!", name + " added to FeatureDB", "success")
+            getjson();
+            // JSNLog
+            logger.info("Post successful!");
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            sweetAlert('Oops...', 'Something went wrong!', 'error');
+            // JSNLog
+            logger.error("Posting failed!");
+        },
+        timeout: 3000
+    });
+};
+
+// Post the geoJSON layer to DB
+function postjson() {
+
+    var namearray = [];
+    var name = $("#jsonname").val();
 
     logger.info()
 
@@ -69,41 +110,7 @@ function postjson() {
 
                     if (errors === undefined || errors.length == 0) {
 
-                        // Add a name to the layer
-                        data.name = name;
-
-                        var properties = {
-                            popupContent: "<h2>" + name + "</h2><hr><img style='max-width:200px;max-height:100%;' src=" + bild + "><p style='font-size: 14px;'>" + text + "<br><br><a target='_blank' href=" + link + ">" + linkname + "</a></p>"
-                        };
-
-                        // Add properties
-                        data.properties = properties;
-
-                        var senddata = JSON.stringify(data);
-
-                        // Post to local mongodb
-                        $.ajax({
-                            type: "POST",
-                            url: "http://localhost:3000/postjson",
-                            dataType: 'json',
-                            contentType: 'application/json',
-                            data: senddata,
-                            traditional: true,
-                            cache: false,
-                            processData: false,
-                            success: function () {
-                                swal("Success!", name + " added to FeatureDB", "success")
-                                getjson();
-                                // JSNLog
-                                logger.info("Post successful!");
-                            },
-                            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                sweetAlert('Oops...', 'Something went wrong!', 'error');
-                                // JSNLog
-                                logger.error("Posting failed!");
-                            },
-                            timeout: 3000
-                        });
+                        postjsonsa(data);
 
                     } else {
                         sweetAlert('Oops...', 'There is something wrong with with this GeoJSON!', 'error');

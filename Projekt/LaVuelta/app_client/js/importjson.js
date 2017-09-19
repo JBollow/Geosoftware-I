@@ -92,41 +92,7 @@ function uploadjsonlink() {
 
                             if ($.inArray(name, namearray) == -1) {
 
-                                // Add a name to the layer
-                                data.name = name;
-
-                                var properties = {
-                                    popupContent: "<h2>" + name + "</h2><hr><img style='max-width:200px;max-height:100%;' src=" + bild + "><p style='font-size: 14px;'>" + text + "</p>"
-                                };
-
-                                // Add properties
-                                data.properties = properties;
-
-                                var senddata = JSON.stringify(data);
-
-                                // Post to local mongodb
-                                $.ajax({
-                                    type: "POST",
-                                    url: "http://localhost:3000/postjson",
-                                    dataType: 'json',
-                                    contentType: 'application/json',
-                                    data: senddata,
-                                    traditional: true,
-                                    cache: false,
-                                    processData: false,
-                                    success: function () {
-                                        swal("Success!", name + " added to FeatureDB", "success")
-                                        getjson();
-                                        // JSNLog
-                                        logger.info("Post successful!");
-                                    },
-                                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                        sweetAlert('Oops...', 'Something went wrong!', 'error');
-                                        // JSNLog
-                                        logger.error("Posting failed!");
-                                    },
-                                    timeout: 3000
-                                });
+                                postjsonsa(data);
 
                             } else {
                                 // JSNLog
@@ -237,41 +203,7 @@ function uploadjsontext() {
 
                         if ($.inArray(name, namearray) == -1) {
 
-                            // Add a name to the layer
-                            data.name = name;
-
-                            var properties = {
-                                popupContent: "<h2>" + name + "</h2><hr><img style='max-width:200px;max-height:100%;' src=" + bild + "><p style='font-size: 14px;'>" + text + "</p>"
-                            };
-
-                            // Add properties
-                            data.properties = properties;
-
-                            var senddata = JSON.stringify(data);
-
-                            // Post to local mongodb
-                            $.ajax({
-                                type: "POST",
-                                url: "http://localhost:3000/postjson",
-                                dataType: 'json',
-                                contentType: 'application/json',
-                                data: senddata,
-                                traditional: true,
-                                cache: false,
-                                processData: false,
-                                success: function () {
-                                    swal("Success!", name + " added to FeatureDB", "success")
-                                    getjson();
-                                    // JSNLog
-                                    logger.info("Post successful!");
-                                },
-                                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                    sweetAlert('Oops...', 'Something went wrong!', 'error');
-                                    // JSNLog
-                                    logger.error("Posting failed!");
-                                },
-                                timeout: 3000
-                            });
+                            postjsonsa(data);
 
                         } else {
                             // JSNLog
@@ -306,7 +238,8 @@ function uploadjsontext() {
 
 
 // Importing geoJson from file to geojsonLayer
-function importjsonfile() {
+// $('#importjsonfile').on('click', function (event) {
+function importjsonfile(event) {
     // Reader from input
     var reader = new FileReader();
 
@@ -330,7 +263,7 @@ function importjsonfile() {
 };
 
 // Uploading geoJson from file to DB
-function uploadjsonfile() {
+function uploadjsonfile(event) {
     // Reader from input
     var reader = new FileReader();
 
@@ -370,41 +303,7 @@ function uploadjsonfile() {
 
                         if ($.inArray(name, namearray) == -1) {
 
-                            // Add a name to the layer
-                            data.name = name;
-
-                            var properties = {
-                                popupContent: "<h2>" + name + "</h2><hr><img style='max-width:200px;max-height:100%;' src=" + bild + "><p style='font-size: 14px;'>" + text + "</p>"
-                            };
-
-                            // Add properties
-                            data.properties = properties;
-
-                            var senddata = JSON.stringify(data);
-
-                            // Post to local mongodb
-                            $.ajax({
-                                type: "POST",
-                                url: "http://localhost:3000/postjson",
-                                dataType: 'json',
-                                contentType: 'application/json',
-                                data: senddata,
-                                traditional: true,
-                                cache: false,
-                                processData: false,
-                                success: function () {
-                                    swal("Success!", name + " added to FeatureDB", "success")
-                                    getjson();
-                                    // JSNLog
-                                    logger.info("Post successful!");
-                                },
-                                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                    sweetAlert('Oops...', 'Something went wrong!', 'error');
-                                    // JSNLog
-                                    logger.error("Posting failed!");
-                                },
-                                timeout: 3000
-                            });
+                            postjsonsa(data);
 
                         } else {
                             // JSNLog
