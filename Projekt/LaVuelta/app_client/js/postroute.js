@@ -2,6 +2,44 @@
  *  @author Jan-Patrick Bollow 349891
  */
 
+
+// Postroute standalone 
+function postroutesa() {
+    var JSONtoPOST = {
+        "costing": $('#transport').val(),
+        "language": $('#language').val(),
+        "routeName": $("#jsonname").val(),
+        "navigationPoints": control.getWaypoints(),
+    };
+
+    // JSNLog
+    logger.info(JSONtoPOST);
+
+    // Post to local mongodb via nodejs using our own POST
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:3000/postroute",
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify(JSONtoPOST),
+        traditional: true,
+        cache: false,
+        processData: false,
+        success: function () {
+            swal("Success!", $("#jsonname").val() + " added to RouteDB", "success")
+            // JSNLog
+            logger.info("Post successful!");
+            getroute();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            sweetAlert('Oops...', 'Something went wrong!', 'error');
+            // JSNLog
+            logger.error("Posting failed!");
+        },
+        timeout: 3000
+    });
+};
+
 // Post the route to DB as route
 function postroute() {
 
@@ -41,39 +79,7 @@ function postroute() {
                         // JSNLog
                         logger.info(control.getWaypoints());
 
-                        var JSONtoPOST = {
-                            "costing": $('#transport').val(),
-                            "language": $('#language').val(),
-                            "routeName": $("#jsonname").val(),
-                            "navigationPoints": control.getWaypoints(),
-                        };
-
-                        // JSNLog
-                        logger.info(JSONtoPOST);
-
-                        // Post to local mongodb via nodejs using our own POST
-                        $.ajax({
-                            type: "POST",
-                            url: "http://localhost:3000/postroute",
-                            dataType: 'json',
-                            contentType: 'application/json',
-                            data: JSON.stringify(JSONtoPOST),
-                            traditional: true,
-                            cache: false,
-                            processData: false,
-                            success: function () {
-                                swal("Success!", $("#jsonname").val() + " added to RouteDB", "success")
-                                // JSNLog
-                                logger.info("Post successful!");
-                                getroute();
-                            },
-                            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                sweetAlert('Oops...', 'Something went wrong!', 'error');
-                                // JSNLog
-                                logger.error("Posting failed!");
-                            },
-                            timeout: 3000
-                        });
+                        postroutesa();
 
                     } else {
                         // JSNLog

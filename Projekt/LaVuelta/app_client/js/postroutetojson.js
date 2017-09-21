@@ -265,8 +265,7 @@ function exportroutetogeojson() {
 							var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
 
 							// Create export
-							document.getElementById('exportroute').setAttribute('href', 'data:' + convertedData);
-							document.getElementById('exportroute').setAttribute('download', 'data.geojson');
+							document.getElementById('exportroute').setAttribute('href', 'data:' + convertedData);													
 
 							return false;
 
@@ -280,7 +279,7 @@ function exportroutetogeojson() {
 						logger.error("routeactive is false :(");
 						sweetAlert("Oops...", "The routing service has a problem, please try again later.", "error");
 					}
-
+					
 				},
 				error: function (responsedata) {
 					sweetAlert('Oops...', 'Something went wrong!', 'error');
@@ -300,6 +299,8 @@ function exportroutetogeojson() {
 			sweetAlert('No featurename!', 'Please name your feature.', 'error');
 		}
 
-
 	}
+
+	document.getElementById('exportroute').setAttribute('download', 'route.geojson');
+	
 };

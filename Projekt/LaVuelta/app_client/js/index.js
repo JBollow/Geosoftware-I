@@ -223,7 +223,7 @@ router.post('/poststage', function (req, res) {
   });
 });
 
-// Delete all json
+// Delete all stages
 router.get('/deleteallstages', function (req, res) {
 
   var db = req.db;
@@ -238,5 +238,25 @@ router.get('/deleteallstages', function (req, res) {
   });
 
 });
+
+// Delete stage
+router.get('/deletestage/:id', function (req, res) {
+  
+    var db = req.db;
+  
+    var uid = req.params.id.toString();
+    var collection = db.get('stagecollection');
+  
+    collection.remove({
+      "_id": uid
+    }, function (err, result) {
+      res.send((result === 1) ? {
+        msg: 'Deleted'
+      } : {
+        msg: 'error: ' + err
+      });
+    });
+  
+  });
 
 module.exports = router;

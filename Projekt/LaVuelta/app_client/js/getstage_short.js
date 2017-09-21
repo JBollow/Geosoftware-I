@@ -44,7 +44,6 @@ function getstage() {
                 response.forEach(function (entry) {
                     var array = entry.geojson.stage;
                     var stages = L.layerGroup([]);
-                    var id = entry._id;
 
                     // shifting name from array
                     var stagename = array[0];
@@ -58,6 +57,7 @@ function getstage() {
 
                     array.forEach(function (entry) {
 
+                        var id = entry._id;
                         var name = entry.geojson.name;
                         var geojsonLayer = L.geoJSON(entry.geojson);
 
@@ -78,15 +78,15 @@ function getstage() {
                     // Adds a reference to the geojson into an array used by the control Layer clearer
                     stagegroup.push(stages);
 
-                    // Adding the layernames to the legendlist
-                    $('#stagelegendelem').append("<li style='height: 30px;width: 100%;'><div class='title'><p style='font-size: 14px;display: inline;'>" + stagename + "</p></div><div class='content'><button class='delbutton' type='button' id='" + id + "' onclick='editstage(this.id)'><i class='fa fa-pencil' aria-hidden='true'></i></button><button class='delbutton' type='button' id='" + id + "' onclick='deletestage(this.id)'><i class='fa fa-trash' aria-hidden='true'></i></button></div></li>");
+                    // Adding the layernames to the legendlist, + commented checkboxes for something that I was interested in, but maybe never finished
+                    $('#stagelegendelem').append("<li><p style='font-size: 14px;'>" + stagename + "</p></li>");
 
 
                     // Adding a legend + removebutton
                     $("#stagelegenddiv").show();
                     $("#stagelegendbtndiv").show();
                     $('#stagelegend').replaceWith("<h3>Stages:</h3>");
-                    $('#stagelegendbtn').replaceWith("<table class='cleantable' style='width: 100%; padding: 0px;'><tr><td style='width: 50%;padding: 0px;'><button style='width: 100%;' type='button' class='button jsonupbtn' value='' onclick='removestage()'>&#x21bb; Remove all stages</button></td><td style='width: 50%;padding: 0px;'><button style='margin-left: 1px;width: 100%;' type='button' class='buttondel jsonupbtn' value='' id='deletestagedb' style='width: 100%;'onclick='deleteallstages()'><i class='fa fa-trash' aria-hidden='true'></i> Delete all stages</button></td></tr></table>");
+                    $('#stagelegendbtn').replaceWith("<input style='width: 100%;' type='button' class='button' value='&#x21bb; Remove all stages' onclick='removestage()'>");
                 })
             }
         },

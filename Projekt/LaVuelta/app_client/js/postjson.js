@@ -23,7 +23,7 @@ document.getElementById('export').onclick = function (e) {
     document.getElementById('export').setAttribute('download', 'data.geojson');
 };
 
-// Standalone method for postjsons
+// Post json standalone
 function postjsonsa(data) {
     var name = $("#jsonname").val();
     var text = $("#jsonpopuptext").val();

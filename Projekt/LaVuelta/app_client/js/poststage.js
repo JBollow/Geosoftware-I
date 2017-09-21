@@ -25,7 +25,7 @@ function uploadstage(event) {
         var object = JSON.parse(data);
 
         var namearray = [];
-        var name = object.stage[0];
+        var name = object.geojson.stage[0];
 
         $.ajax({
             type: "GET",
@@ -42,40 +42,18 @@ function uploadstage(event) {
                 });
 
                 // JSNLog
+                logger.info("namearray");
                 logger.info(namearray);
 
                 if ($.inArray(name, namearray) == -1) {
 
 
                     // Use array in object.stage
-                    var array = object.stage;
+                    var array = object.geojson.stage;
                     var stagename = array[0];
 
                     var senddata = data;
-
-                    // Post to local mongodb
-                    $.ajax({
-                        type: "POST",
-                        url: "http://localhost:3000/poststage",
-                        dataType: 'json',
-                        contentType: 'application/json',
-                        data: senddata,
-                        traditional: true,
-                        cache: false,
-                        processData: false,
-                        success: function () {
-                            swal("Success!", stagename + " added to FeatureDB", "success")
-                            getstage()
-                            // JSNLog
-                            logger.info("Post successful!");
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            sweetAlert('Oops...', 'Something went wrong! It might be too big.', 'error');
-                            // JSNLog
-                            logger.error("Posting failed!");
-                        },
-                        timeout: 3000
-                    });
+                    poststagesa(array, name);
 
                 } else {
                     // JSNLog
@@ -86,6 +64,101 @@ function uploadstage(event) {
             }
         });
     }
+};
+
+// Post stage standalone
+function poststagesa(array, name) {
+    // Stagename
+    array[0] = name;
+
+    // Start picture
+    array[1] = $("#jsonbild").val();
+    // Start urlname
+    array[2] = $("#jsonweblinknamestart").val();
+    // Start url
+    array[3] = $("#jsonweblinkstart").val();
+    // Start date
+    array[4] = $("#jsonstarttime").val();
+    // Start text
+    array[5] = $("#jsonpopuptextstart").val();
+
+    // End picture
+    array[6] = $("#jsonbildend").val();
+    // End urlname
+    array[7] = $("#jsonweblinknameend").val();
+    // End url
+    array[8] = $("#jsonweblinkend").val();
+    // End date
+    array[9] = $("#jsonstarttimeend").val();
+    // End text
+    array[10] = $("#jsonpopuptextend").val();
+
+
+    // Adding selected features to stage
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:3000/getjson",
+        success: function (response) {
+            // JSNLog
+            logger.info('Get successful!', response);
+
+            if (response.length == 0) {
+                sweetAlert('Oops...', 'Something went wrong!', 'error');
+            } else {
+                response.forEach(function (entry) {
+                    var id = entry._id;
+                    // Adds a feature to the stage, if it's checkbox is checked
+                    if ($('#' + id).is(":checked")) {
+                        array.push(entry);
+                    }
+                });
+            }
+
+            var data = {
+                "stage": array
+            };
+            var senddata = JSON.stringify(data);
+
+            // JSNLog
+            logger.info("senddata");
+            logger.info(senddata);
+
+            // Post to local mongodb
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:3000/poststage",
+                dataType: 'json',
+                contentType: 'application/json',
+                data: senddata,
+                traditional: true,
+                cache: false,
+                processData: false,
+                success: function () {
+                    swal("Success!", name + " added to FeatureDB", "success")
+                    getstage();
+                    // JSNLog
+                    logger.info("Post successful!");
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    sweetAlert('Oops...', 'Something went wrong! It might be too big.', 'error');
+                    // JSNLog
+                    logger.error("Posting failed!");
+                },
+                timeout: 3000
+
+            });
+        },
+        error: function (responsedata) {
+            sweetAlert('Oops...', 'Something went wrong!', 'error');
+            // JSNLog
+            logger.error('Failed in!', response);
+        },
+        timeout: 3000
+    }).error(function (responsedata) {
+        sweetAlert('Oops...', 'Something went wrong!', 'error');
+        // JSNLog
+        logger.error('Failed out!', response);
+    });
 };
 
 // Post stage from stage editor
@@ -123,97 +196,7 @@ function poststage() {
 
                     var array = [];
 
-                    // Stagename
-                    array[0] = name;
-
-                    // Start picture
-                    array[1] = $("#jsonbild").val();
-                    // Start urlname
-                    array[2] = $("#jsonweblinknamestart").val();
-                    // Start url
-                    array[3] = $("#jsonweblinkstart").val();
-                    // Start date
-                    array[4] = $("#jsonstarttime").val();
-                    // Start text
-                    array[5] = $("#jsonpopuptextstart").val();
-
-                    // End picture
-                    array[6] = $("#jsonbildend").val();
-                    // End urlname
-                    array[7] = $("#jsonweblinknameend").val();
-                    // End url
-                    array[8] = $("#jsonweblinkend").val();
-                    // End date
-                    array[9] = $("#jsonstarttimeend").val();
-                    // End text
-                    array[10] = $("#jsonpopuptextend").val();
-
-
-                    // Adding selected features to stage
-                    $.ajax({
-                        type: "GET",
-                        url: "http://localhost:3000/getjson",
-                        success: function (response) {
-                            // JSNLog
-                            logger.info('Get successful!', response);
-
-                            if (response.length == 0) {
-                                sweetAlert('Oops...', 'Something went wrong!', 'error');
-                            } else {
-                                response.forEach(function (entry) {
-                                    var id = entry._id;
-                                    // Adds a feature to the stage, if it's checkbox is checked
-                                    if ($('#' + id).is(":checked")) {
-                                        array.push(entry);
-                                    }
-                                });
-                            }
-
-                            var data = {
-                                "stage": array
-                            };
-                            var senddata = JSON.stringify(data);
-
-                            // JSNLog
-                            logger.info("senddata");
-                            logger.info(senddata);
-
-                            // Post to local mongodb
-                            $.ajax({
-                                type: "POST",
-                                url: "http://localhost:3000/poststage",
-                                dataType: 'json',
-                                contentType: 'application/json',
-                                data: senddata,
-                                traditional: true,
-                                cache: false,
-                                processData: false,
-                                success: function () {
-                                    swal("Success!", name + " added to FeatureDB", "success")
-                                    // getstage()
-                                    // JSNLog
-                                    logger.info("Post successful!");
-                                },
-                                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                    sweetAlert('Oops...', 'Something went wrong! It might be too big.', 'error');
-                                    // JSNLog
-                                    logger.error("Posting failed!");
-                                },
-                                timeout: 3000
-
-                            });
-                        },
-                        error: function (responsedata) {
-                            sweetAlert('Oops...', 'Something went wrong!', 'error');
-                            // JSNLog
-                            logger.error('Failed in!', response);
-                        },
-                        timeout: 3000
-                    }).error(function (responsedata) {
-                        sweetAlert('Oops...', 'Something went wrong!', 'error');
-                        // JSNLog
-                        logger.error('Failed out!', response);
-                    });
+                    poststagesa(array, name);
 
                 } else {
                     // JSNLog
@@ -233,6 +216,84 @@ function poststage() {
 };
 
 // Exports stage from stage editor to file
-function exportstage() {
+document.getElementById('exportstage').onclick = function (e) {
 
+    var name = $("#jsonname").val();
+    var array = [];
+
+    // Stagename
+    array[0] = name;
+
+    // Start picture
+    array[1] = $("#jsonbild").val();
+    // Start urlname
+    array[2] = $("#jsonweblinknamestart").val();
+    // Start url
+    array[3] = $("#jsonweblinkstart").val();
+    // Start date
+    array[4] = $("#jsonstarttime").val();
+    // Start text
+    array[5] = $("#jsonpopuptextstart").val();
+
+    // End picture
+    array[6] = $("#jsonbildend").val();
+    // End urlname
+    array[7] = $("#jsonweblinknameend").val();
+    // End url
+    array[8] = $("#jsonweblinkend").val();
+    // End date
+    array[9] = $("#jsonstarttimeend").val();
+    // End text
+    array[10] = $("#jsonpopuptextend").val();
+
+
+    // Adding selected features to stage
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:3000/getjson",
+        success: function (response) {
+            // JSNLog
+            logger.info('Get successful!', response);
+
+            if (response.length == 0) {
+                sweetAlert('Oops...', 'Something went wrong!', 'error');
+            } else {
+                response.forEach(function (entry) {
+                    var id = entry._id;
+                    // Adds a feature to the stage, if it's checkbox is checked
+                    if ($('#' + id).is(":checked")) {
+                        array.push(entry);
+                    }
+                });
+            }
+
+            var data = {
+                "stage": array
+            };
+
+            // Stringify the GeoJson
+            var convertedData = JSON.stringify(data);
+
+            // JSNLog
+            logger.info("convertedData");
+            logger.info(convertedData);
+
+            // Create export
+            document.getElementById('exportstage').setAttribute('href', 'data:' + convertedData);            
+            
+        },
+        error: function (responsedata) {
+            sweetAlert('Oops...', 'Something went wrong!', 'error');
+            // JSNLog
+            logger.error('Failed in!', response);
+        },
+        timeout: 3000
+    }).error(function (responsedata) {
+        sweetAlert('Oops...', 'Something went wrong!', 'error');
+        // JSNLog
+        logger.error('Failed out!', response);
+    });
+
+    document.getElementById('exportstage').setAttribute('download', 'stage.json');
+    
 };

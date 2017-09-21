@@ -68,7 +68,7 @@ function getjson() {
                         maxWidth: "auto"
                     });
 
-                    // Adding the layernames to the legendlist, + commented checkboxes for something that I was interested in, but maybe never finished
+                    // Adding the layernames to the legendlist
                     $('#jsonlegendelem').append("<li style='height: 30px;width: 100%;'><div class='title'><p style='font-size: 14px;display: inline;'>" + name + "</p></div><div class='content'><button class='delbutton' type='button' id='" + id + "' onclick='editfeature(this.id)'><i class='fa fa-pencil' aria-hidden='true'></i></button><button class='delbutton' type='button' id='" + id + "' onclick='deletefeature(this.id)'><i class='fa fa-trash' aria-hidden='true'></i></button></div></li>");
                 });
 

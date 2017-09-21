@@ -6,18 +6,18 @@
 
 var errors;
 
-// Delete all features
-function deleteallfeature() {
+// // Delete all stages
+function deleteallstages() {
     $.ajax({
         type: "GET",
-        url: "http://localhost:3000/getjson",
+        url: "http://localhost:3000/getstage",
         success: function (response) {
             if (response.length == 0) {
-                sweetAlert('Oops...', 'There are no features to delete!', 'error');
+                sweetAlert('Oops...', 'There are no stages to delete!', 'error');
             } else {
                 swal({
-                        title: "Delete all features?",
-                        text: "To delete all features write 'delete features':",
+                        title: "Delete all stages?",
+                        text: "To delete all stages write 'delete stages':",
                         type: "input",
                         showCancelButton: true,
                         closeOnConfirm: false,
@@ -26,11 +26,11 @@ function deleteallfeature() {
                     },
                     function (inputValue) {
                         if (inputValue === false) return false;
-                        if (inputValue === "delete features") {
-                            swal("Features deleted!", "All features were deleted from the DB");
+                        if (inputValue === "delete stages") {
+                            swal("stages deleted!", "All stages were deleted from the DB");
                             $.ajax({
                                 type: "GET",
-                                url: "http://localhost:3000/deletealljson",
+                                url: "http://localhost:3000/deleteallstages",
                                 success: function () {
                                     // JSNLog
                                     logger.info('Delete successful!');
@@ -45,10 +45,10 @@ function deleteallfeature() {
                                 // JSNLog
                                 logger.error('Failed!');
                             });
-                            removelayer();
+                            removestage();
                             return true
                         } else {
-                            swal.showInputError("You need to write 'delete features' to delete all features");
+                            swal.showInputError("You need to write 'delete stages' to delete all stages");
                             return false
                         }
                     });
@@ -65,10 +65,10 @@ function deleteallfeature() {
     });
 }
 
-// Delete features function
-function deletefeature(clicked_id) {
+// Delete stages function
+function deletestage(clicked_id) {
     swal({
-            title: "Delete this feature?",
+            title: "Delete this stage?",
             text: "You will not be able to recover it!",
             type: "warning",
             showCancelButton: true,
@@ -80,10 +80,10 @@ function deletefeature(clicked_id) {
         },
         function (isConfirm) {
             if (isConfirm) {
-                swal("Deleted!", "Your feature has been deleted.", "success");
+                swal("Deleted!", "Your stage has been deleted.", "success");
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost:3000/deletejson/" + clicked_id,
+                    url: "http://localhost:3000/deletestage/" + clicked_id,
                     success: function () {
                         // JSNLog
                         logger.info('Delete successful!');
@@ -99,17 +99,17 @@ function deletefeature(clicked_id) {
                     logger.error('Failed!');
                 });
                 $("#jsonlegendelem").empty();
-                getjson();
+                getstage();
             } else {
-                swal("Cancelled", "Your feature is safe :)", "error");
+                swal("Cancelled", "Your stage is safe :)", "error");
             }
         });
 }
 
-// Delete feature function
-function editfeature(clicked_id) {
+// Delete stage function
+function editstage(clicked_id) {
     swal({
-            title: "Override this feature?",
+            title: "Override this stage?",
             text: "The original will be overwritten!",
             type: "warning",
             showCancelButton: true,
@@ -133,7 +133,7 @@ function editfeature(clicked_id) {
                     // Get all GeoJSON names from our DB using our GET
                     $.ajax({
                         type: "GET",
-                        url: "http://localhost:3000/getjson",
+                        url: "http://localhost:3000/getstage",
                         success: function (response) {
                             // JSNLog
                             logger.info('Get successful!');
@@ -151,14 +151,13 @@ function editfeature(clicked_id) {
 
                             if ($.inArray(name, namearray) == -1) {
 
-                                // Extract GeoJson from editableLayer
-                                var data = editableLayers.toGeoJSON();
+                                var array = [];
 
-                                postjsonsa(data);
+                                poststagesa(array, name);
 
                                 $.ajax({
                                     type: "GET",
-                                    url: "http://localhost:3000/deletejson/" + clicked_id,
+                                    url: "http://localhost:3000/deletestage/" + clicked_id,
                                     success: function () {
                                         // JSNLog
                                         logger.info('Delete successful!');
@@ -176,7 +175,7 @@ function editfeature(clicked_id) {
                             } else {
                                 $.ajax({
                                     type: 'GET',
-                                    url: 'http://localhost:3000/getjson',
+                                    url: 'http://localhost:3000/getstage',
                                     success: function (response) {
                                         response.forEach(function (entry) {
                                             logger.info("entry");
@@ -185,44 +184,14 @@ function editfeature(clicked_id) {
                                             if (entry._id == clicked_id) {
                                                 if (entry.geojson.name == name) {
                                                     // Extract GeoJson from editableLayer
-                                                    var data = editableLayers.toGeoJSON();
+                                                    var array = [];
 
-                                                    errors = geojsonhint.hint(data);
-                                                    logger.info("Errors:");
-                                                    logger.info(errors);
-
-                                                    if (errors === undefined || errors.length == 0) {
-
-                                                        postjsonsa(data);
-
-                                                        $.ajax({
-                                                            type: "GET",
-                                                            url: "http://localhost:3000/deletejson/" + clicked_id,
-                                                            success: function () {
-                                                                // JSNLog
-                                                                logger.info('Delete successful!');
-                                                            },
-                                                            error: function () {
-                                                                sweetAlert('Oops...', 'Something went wrong!', 'error');
-                                                                // JSNLog
-                                                                logger.error('Failed!');
-                                                            }
-                                                        }).error(function () {
-                                                            sweetAlert('Oops...', 'Something went wrong!', 'error');
-                                                            // JSNLog
-                                                            logger.error('Failed!');
-                                                        });
-
-                                                    } else {
-                                                        sweetAlert('Oops...', 'There is something wrong with with this GeoJSON!', 'error');
-                                                        // JSNLog
-                                                        logger.info('Error in GeoJSON!');
-                                                    }
+                                                    poststagesa(array, name);
 
                                                 } else {
                                                     // JSNLog
                                                     logger.error('Name already in use!', name);
-                                                    sweetAlert('Featureename already in use!', 'Please use another name for your feature.', 'error');
+                                                    sweetAlert('Stageename already in use!', 'Please use another name for your stage.', 'error');
                                                 }
                                             }
                                         });
@@ -259,16 +228,16 @@ function editfeature(clicked_id) {
                 } else {
                     // JSNLog
                     logger.error('No name', name);
-                    sweetAlert('No featurename!', 'Please name your feature.', 'error');
+                    sweetAlert('No stagename!', 'Please name your stage.', 'error');
                 }
 
 
 
             } else {
-                swal("Cancelled", "Your feature is safe :)", "error");
+                swal("Cancelled", "Your stage is safe :)", "error");
             }
         });
 }
 
 // JSNLog
-logger.info("delete_edit_json loaded");
+logger.info("delete_edit_stage loaded");
