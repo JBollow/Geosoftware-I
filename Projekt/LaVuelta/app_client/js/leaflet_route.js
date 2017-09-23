@@ -24,7 +24,8 @@ function reloadControl(language, tansportation) {
         show: true,
         position: 'bottomleft',
         autoRoute: true,
-        geocoder: L.Control.Geocoder.nominatim(),
+        // // Only one reqiured
+        // geocoder: L.Control.Geocoder.nominatim(),
         geocoder: L.Control.Geocoder.mapzen('mapzen-Viyke6a'),
         router: L.Routing.mapzen('mapzen-Viyke6a', {
             routeLine: function (route, options) {

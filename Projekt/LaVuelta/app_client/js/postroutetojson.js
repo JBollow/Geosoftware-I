@@ -128,8 +128,14 @@ function post2dbasjson() {
 								routejson.name = $("#jsonname").val();
 
 								var properties = {
-									popupContent: "<h2>" + name + "</h2><hr><img style='max-width:200px;max-height:100%;' src=" + bild + "><p style='font-size: 14px;'>" + text + "<br><br><a target='_blank' href=" + link + ">" + linkname + "</a></p>"
-								};
+									picture: bild,
+									text: text,
+									link: link,
+									linkname: linkname,
+									type: "default",
+									capacity: "",
+									price: ""
+								}
 
 								// Add properties
 								routejson.properties = properties;
@@ -253,8 +259,14 @@ function exportroutetogeojson() {
 							routejson.name = $("#jsonname").val();
 
 							var properties = {
-								popupContent: "<h2>" + name + "</h2><hr><img style='max-width:200px;max-height:100%;' src=" + bild + "><p style='font-size: 14px;'>" + text + "<br><br><a target='_blank' href=" + link + ">" + linkname + "</a></p>"
-							};
+								picture: bild,
+								text: text,
+								link: link,
+								linkname: linkname,
+								type: "route",
+								capacity: "",
+								price: ""
+							}
 
 							// Add properties
 							routejson.properties = properties;
@@ -265,7 +277,8 @@ function exportroutetogeojson() {
 							var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
 
 							// Create export
-							document.getElementById('exportroute').setAttribute('href', 'data:' + convertedData);													
+							document.getElementById('exportroute').setAttribute('href', 'data:' + convertedData);
+							document.getElementById('exportroute').setAttribute('download', 'route.geojson');
 
 							return false;
 
@@ -279,7 +292,7 @@ function exportroutetogeojson() {
 						logger.error("routeactive is false :(");
 						sweetAlert("Oops...", "The routing service has a problem, please try again later.", "error");
 					}
-					
+
 				},
 				error: function (responsedata) {
 					sweetAlert('Oops...', 'Something went wrong!', 'error');
@@ -301,6 +314,4 @@ function exportroutetogeojson() {
 
 	}
 
-	document.getElementById('exportroute').setAttribute('download', 'route.geojson');
-	
 };

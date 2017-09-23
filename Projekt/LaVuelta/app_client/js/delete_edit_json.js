@@ -268,6 +268,8 @@ function editfeature(clicked_id) {
                 swal("Cancelled", "Your feature is safe :)", "error");
             }
         });
+
+    $('#jsonname').val('');
 }
 
 // JSNLog

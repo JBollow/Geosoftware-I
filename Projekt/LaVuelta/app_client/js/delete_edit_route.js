@@ -107,6 +107,8 @@ function deleteroute(clicked_id) {
                 swal("Cancelled", "Your route is safe :)", "error");
             }
         });
+
+    getroute();
 }
 
 // Delete route function

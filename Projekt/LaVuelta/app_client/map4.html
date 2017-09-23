@@ -152,9 +152,26 @@
 
                                 <div class="box" style="width: 100%; margin-bottom:20px">
 
-                                    <h2 style="font-size: 22px; margin-top: 10px;">Start:</h2><br>
+                                    <table class="cleantable">
+                                        <tr>
+                                            <td>
+                                                <h2 style="font-size: 22px; margin-top: 10px;">Start:</h2>
+                                            </td>
+                                            <td style="vertical-align: top; text-align: right"><button type="button" class="buttonpur" value="Refresh" id="" + id + "" onclick="refreshstart();"
+                                                    style="margin: 0px;width: 50;"><i class="fa fa-retweet" aria-hidden="true"></i></button></td>
+                                        </tr>
+                                    </table>
+                                    <br>
 
                                     <table class="cleantable2" style="width: 100%;">
+                                        <tr>
+                                            <td style="width: 150px;">Startname:</td>
+                                            <td><input type="text" id="jsonstartname" placeholder="Startname..." style="width: 100%;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                        </tr>
                                         <tr>
                                             <td style="width: 150px;">Enter a picture:</td>
                                             <td><input type="text" id="jsonbild" placeholder="Picture Link..." style="width: 100%;">
@@ -206,9 +223,25 @@
 
                                 <div class="box" style="width: 100%; margin-bottom:20px">
 
-                                    <h2 style="font-size: 22px; margin-top: 10px;">End:</h2><br>
+                                    <table class="cleantable">
+                                        <tr>
+                                            <td>
+                                                <h2 style="font-size: 22px; margin-top: 10px;">End:</h2>
+                                            </td>
+                                            <td style="vertical-align: top; text-align: right"><button type="button" class="buttonpur" value="Refresh" id="" + id + "" onclick="refreshend();"
+                                                    style="margin: 0px;width: 50;"><i class="fa fa-retweet" aria-hidden="true"></i></button></td>
+                                        </tr>
+                                    </table><br>
 
                                     <table class="cleantable2" style="width: 100%;">
+                                        <tr>
+                                            <td style="width: 150px;">Endname:</td>
+                                            <td><input type="text" id="jsonendname" placeholder="Endname..." style="width: 100%;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                        </tr>
                                         <tr>
                                             <td style="width: 150px;">Enter a picture:</td>
                                             <td><input type="text" id="jsonbildend" placeholder="Picture Link..." style="width: 100%;">
@@ -270,8 +303,8 @@
                             <tr>
                                 <td><button type="button" class="button" value="to DB" id="post2db" onclick="poststage()" style="margin: 0px;width: 100%;"><i class="fa fa-cloud-upload" aria-hidden="true"></i> to DB</button></td>
                                 <td style="padding: 0px 0px 0px 1px;">
-                                    <a href="#" class="linkjson" id="exportstage" onclick="exportstage();">
-                                        <p class="linkjsonp"><i class="fa fa-download" aria-hidden="true"></i> to file</p>
+                                    <a href="#" class="linkjson" id="exportstage" onclick="exportstage();" title="Click twice if not working.">
+                                        <p class="linkjsonp"><i class="fa fa-download" aria-hidden="true"></i> to file (click twice)</p>
                                     </a>
                                 </td>
                             </tr>
@@ -347,7 +380,9 @@
 <!-- Source: http://jsnlog.com/ -->
 <script src="js/jsnlog.min.js"></script>
 <script src="js/jsnlog.js"></script>
+<script src="js/modernizr.custom.js"></script>
 <script src="js/classie.js"></script>
+<script src="js/modalEffects.js"></script>
 
 <!-- particles -->
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>

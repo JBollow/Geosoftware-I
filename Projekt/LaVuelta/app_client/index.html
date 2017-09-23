@@ -110,7 +110,7 @@
 
             <div class="row">
                 <section class="col-sm-12">
-                    <div class="box">
+                    <!-- <div class="box">
                         <h2><b>Admin tools:</b></h2>
 
                         <br>
@@ -128,23 +128,80 @@
 
                         <br>
 
-                    </div>
-                    
+                    </div> -->
+
                     <div class="box">
                         <h2><b>Features:</b></h2>
-                        <br>
+                      
                         <p style="font-size: 14px;">
-                            <b>Stages</b>: Shows features and routes, routes has language and transportation settings, geolocation
-                            marker, 3 basemaps<br><br>
-                            <b>Feature Editor</b>: Shows features, feature drawer, naming features, edit features, overrite
-                            feature, delete one/all features, save drawing as feature to db/file, import feature from url/text/file,
-                            upload feature to db from url/text/file, input validation name/url/text/file, geojson validation
-                            for all features, 3 basemaps<br><br>
-                            <b>Route Editor</b>: Shows routes, routes has language and transportation(multimodal) settings,
-                            geolocation marker, naming routes, upload routes to db as route/feature, overrite routes, delete
-                            one/all routes, geocoding for waypoints, 2-n waypoints possible, click on map allows setting
-                            start/end, 3 basemaps<br>
+                            <table class="cleantable">
+                                <tr>
+                                    <td style="vertical-align: top;text-align: left;padding: 10px;">
+                                        <b>General</b>:<br>
+                                        <br>- Map with three baselayers, layercontrollfunction
+                                        <br>- Easy switching between saved routes
+                                        <br>- Routing works multimodal and multilingual and has positiontracking
+                                        <br>- Routes use geocoder, are reversable and show distance and time
+                                        <br>- Comfortfunction everywhere, buttons, inferfaces, and almost everything is checked
+                                        <br>- Geosjson validation
+                                        <br>- Impressum with bug Overview
+                                        <br>- Custom scaling on all pages for maximized compatability
+                                    </td>
+                                    <td style="vertical-align: top;text-align: left;padding: 10px;">
+                                        <b>Route Editor</b>:<br>
+                                        <br>- Routing works multimodal and multilingual and has positiontracking
+                                        <br>- Saving routes to db and ad feature to db or as download
+                                        <br>- Adding additional informatoin: name, picture, link, text, transportation, language
+                                        <br>- Edit/overwrite/delete route
+                                        <br>- Delete all routes
+                                        <br>- Permalink to a route
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align: top;text-align: left;padding: 10px;">
+                                        <b>Feature Editor</b>:<br>
+                                        <br>- Allows for drawing features (point, line, polygon) and adding additional information:
+                                        name, picture, link, text, type, capacity, price
+                                        <br>- Saving features to db or geojsonfile
+                                        <br>- Importing geojson from text, link, file
+                                        <br>- Edit/overwrite/delete features
+                                        <br>- Delete all features
+                                        <br>- Permalink to a feature
+                                    </td>
+                                    <td style="vertical-align: top;text-align: left;padding: 10px;">
+                                        <b>Stage Editor</b>:<br>
+                                        <br>- Grouping features to a stage with additional information: stagename, start/end:
+                                        name, pictue, link, time&date, text
+                                        <br>- Saving stage to db or as file
+                                        <br>- Importing stages from file
+                                        <br>- Uploading stages from file to db
+                                        <br>- Edit/overwrite/delete stage
+                                        <br>- Delete all stages
+                                        <br>- Permalink to a stage
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align: top;text-align: left;padding: 10px;">
+                                        <b>Stages</b>:<br>
+                                        <br>- Overview over all features, routes and stages
+                                        <br>- Routingfunction, free, from object to object and to nearest parking space
+                                        <br>- Stages and features have popups with, navigation tools, name, text, picture
+                                        and a link
+                                        <br>- Additional stageinformation at the bottom, with start/end: name, pictue, link,
+                                        time&date, text, wikipedia
+                                    </td>
+                                    <td style="vertical-align: top;text-align: left;padding: 10px;">
+                                        <b>Ledgend</b>:
+                                        <br><br><i class='fa fa-pencil' aria-hidden='true'></i> - Edit/Overwrite
+                                        <br><br><i class='fa fa-trash' aria-hidden='true'></i> - Delete
+                                        <br><br><i class='fa fa-link' aria-hidden='true'></i> - Permalink</td>
+                                </tr>
+                            </table>
+
+
                         </p>
+
+
                     </div>
                 </section>
             </div>
@@ -165,7 +222,9 @@
 <!-- Source: http://jsnlog.com/ -->
 <script src="js/jsnlog.min.js"></script>
 <script src="js/jsnlog.js"></script>
+<script src="js/modernizr.custom.js"></script>
 <script src="js/classie.js"></script>
+<script src="js/modalEffects.js"></script>
 
 <!-- particles -->
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>

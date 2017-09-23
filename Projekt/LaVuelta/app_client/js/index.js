@@ -241,22 +241,82 @@ router.get('/deleteallstages', function (req, res) {
 
 // Delete stage
 router.get('/deletestage/:id', function (req, res) {
-  
-    var db = req.db;
-  
-    var uid = req.params.id.toString();
-    var collection = db.get('stagecollection');
-  
-    collection.remove({
-      "_id": uid
-    }, function (err, result) {
-      res.send((result === 1) ? {
-        msg: 'Deleted'
-      } : {
-        msg: 'error: ' + err
-      });
+
+  var db = req.db;
+
+  var uid = req.params.id.toString();
+  var collection = db.get('stagecollection');
+
+  collection.remove({
+    "_id": uid
+  }, function (err, result) {
+    res.send((result === 1) ? {
+      msg: 'Deleted'
+    } : {
+      msg: 'error: ' + err
     });
-  
   });
+
+});
+
+// Permalink route
+router.get('/route/:id', function (req, res) {
+
+  // Set our internal DB variable
+  var db = req.db;
+
+  // Set our collection
+  var collection = db.get('routecollection');
+
+  var uid = req.params.id.toString();
+
+  // Query from our DB
+  collection.find({
+    "_id": uid
+  }, {}, function (e, docs) {
+    res.json(docs);
+  });
+
+});
+
+// Permalink stage
+router.get('/stage/:id', function (req, res) {
+
+  // Set our internal DB variable
+  var db = req.db;
+
+  // Set our collection
+  var collection = db.get('stagecollection');
+
+  var uid = req.params.id.toString();
+
+  // Query from our DB
+  collection.find({
+    "_id": uid
+  }, {}, function (e, docs) {
+    res.json(docs);
+  });
+
+});
+
+// Permalink json
+router.get('/json/:id', function (req, res) {
+
+  // Set our internal DB variable
+  var db = req.db;
+
+  // Set our collection
+  var collection = db.get('layercollection');
+
+  var uid = req.params.id.toString();
+
+  // Query from our DB
+  collection.find({
+    "_id": uid
+  }, {}, function (e, docs) {
+    res.json(docs);
+  });
+
+});
 
 module.exports = router;

@@ -28,7 +28,7 @@ function getroute() {
             } else {
                 // Using a forEach method iterating over the array of nested objects
                 response.forEach(function (entry) {
-                    $('#legendelem').append("<li style='height: 30px;width: 100%;'><div class='title'><p style='font-size: 14px;display: inline;'><input name='routes' type='radio' id='" + entry._id + "' onchange='routeselector(this.id)'> " + entry.geojson.routeName + "</p></div><div class='content'><button class='delbutton' type='button' id='" + entry._id + "' onclick='editroute(this.id)'><i class='fa fa-pencil' aria-hidden='true'></i></button><button class='delbutton' type='button' id='" + entry._id + "' onclick='deleteroute(this.id)'><i class='fa fa-trash' aria-hidden='true'></i></button></div></li>");
+                    $('#legendelem').append("<li style='height: 30px;width: 100%;'><div class='title'><p style='font-size: 14px;display: inline;'><input name='routes' type='radio' id='" + entry._id + "' onchange='routeselector(this.id)'> " + entry.geojson.routeName + "</p></div><div class='content'><a target='_blank' href='http://localhost:3000/route/" + entry._id + "' class='linkjson'><p class='linkjsonper'>&nbsp;<i class='fa fa-link' aria-hidden='true'></i>&nbsp;</p></a><button class='delbutton' type='button' id='" + entry._id + "' onclick='editroute(this.id)'><i class='fa fa-pencil' aria-hidden='true'></i></button><button class='delbutton' type='button' id='" + entry._id + "' onclick='deleteroute(this.id)'><i class='fa fa-trash' aria-hidden='true'></i></button></div></li>");
                 });
                 // Adding a legend + removebutton
                 $("#legenddiv").show();

@@ -148,8 +148,16 @@
 
                     <!-- div container popup-->
                     <div class="box" style="width: 100%; margin-bottom:20px">
+                        <table class="cleantable">
+                            <tr>
+                                <td>
+                                    <h2 style="font-size: 22px; margin-top: 10px;">Popupconfigurator:</h2>
+                                </td>
+                                <td style="vertical-align: top; text-align: right"><button type="button" class="buttonpur" value="Refresh" id="" + id + "" onclick="refreshpopup();" style="margin: 0px;width: 50;"><i class="fa fa-retweet" aria-hidden="true"></i></button></td>
+                            </tr>
+                        </table>
 
-                        <h2 style="font-size: 22px; margin-top: 10px;">Popupconfigurator:</h2><br>
+                        <br>
 
                         <table class="cleantable2" style="width: 100%;">
                             <tr>
@@ -203,16 +211,16 @@
                                     </select>
                                             </td>
                                             <td style="padding-left: 10px;">
-                                                <p style="font-size: 12px;display:inline; padding-left: 20px"><b>Capacity:</b>
+                                                <p style="font-size: 12px;display:inline; padding-left: 20px"><b>Capacity: </b>
                                                 </p>
                                             </td>
-                                            <td><input type="number" id="jsoncap" style="width: 100%;">
+                                            <td><input type="number" placeholder="spots / rooms" id="jsoncap" style="width: 100%;">
                                             </td>
                                             <td style="padding-left: 10px;">
-                                                <p style="font-size: 12px;display:inline; padding-left: 20px"><b>Price:</b>
+                                                <p style="font-size: 12px;display:inline; padding-left: 20px"><b>Price: </b>
                                                 </p>
                                             </td>
-                                            <td><input type="number" id="jsonprice" style="width: 100%;">
+                                            <td><input type="number" placeholder="Price in €" id="jsonprice" style="width: 100%;">
                                             </td>
                                         </tr>
                                     </table>
@@ -310,7 +318,9 @@
 <!-- Source: http://jsnlog.com/ -->
 <script src="js/jsnlog.min.js"></script>
 <script src="js/jsnlog.js"></script>
+<script src="js/modernizr.custom.js"></script>
 <script src="js/classie.js"></script>
+<script src="js/modalEffects.js"></script>
 
 <!-- particles -->
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>

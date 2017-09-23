@@ -93,6 +93,9 @@ function poststagesa(array, name) {
     // End text
     array[10] = $("#jsonpopuptextend").val();
 
+    // Start&EndName
+    array[11] = $("#jsonstartname").val();
+    array[12] = $("#jsonendname").val();
 
     // Adding selected features to stage
     $.ajax({
@@ -220,6 +223,7 @@ document.getElementById('exportstage').onclick = function (e) {
 
     var name = $("#jsonname").val();
     var array = [];
+    var convertedData;
 
     // Stagename
     array[0] = name;
@@ -246,6 +250,9 @@ document.getElementById('exportstage').onclick = function (e) {
     // End text
     array[10] = $("#jsonpopuptextend").val();
 
+    // Start&EndName
+    array[11] = $("#jsonstartname").val();
+    array[12] = $("#jsonendname").val();
 
     // Adding selected features to stage
     $.ajax({
@@ -272,15 +279,16 @@ document.getElementById('exportstage').onclick = function (e) {
             };
 
             // Stringify the GeoJson
-            var convertedData = JSON.stringify(data);
+            convertedData = JSON.stringify(data);
 
             // JSNLog
             logger.info("convertedData");
             logger.info(convertedData);
 
             // Create export
-            document.getElementById('exportstage').setAttribute('href', 'data:' + convertedData);            
-            
+            document.getElementById('exportstage').setAttribute('href', 'data:' + convertedData);
+            document.getElementById('exportstage').setAttribute('download', 'stage.json');
+
         },
         error: function (responsedata) {
             sweetAlert('Oops...', 'Something went wrong!', 'error');
@@ -294,6 +302,25 @@ document.getElementById('exportstage').onclick = function (e) {
         logger.error('Failed out!', response);
     });
 
-    document.getElementById('exportstage').setAttribute('download', 'stage.json');
-    
+
 };
+
+// Refresh Start
+function refreshstart() {
+    $("#jsonstartname").val('');
+    $("#jsonbild").val('');
+    $("#jsonweblinknamestart").val('');
+    $("#jsonweblinkstart").val('');
+    $("#jsonstarttime").val('');
+    $("#jsonpopuptextstart").val('');
+}
+
+// Refresh End
+function refreshend() {
+    $("#jsonendname").val('');
+    $("#jsonbildend").val('');
+    $("#jsonweblinknameend").val('');
+    $("#jsonweblinkend").val('');
+    $("#jsonstarttimeend").val('');
+    $("#jsonpopuptextend").val('');
+}

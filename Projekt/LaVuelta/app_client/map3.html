@@ -173,7 +173,17 @@
                     <!-- div container popup-->
                     <div class="box" style="width: 100%; margin-bottom:20px">
 
-                        <h2 style="font-size: 22px; margin-top: 10px;">Popupconfigurator:</h2><br>
+                        <table class="cleantable">
+                            <tr>
+                                <td>
+                                    <h2 style="font-size: 22px; margin-top: 10px;">Popupconfigurator:</h2>
+                                </td>
+                                <td style="vertical-align: top; text-align: right"><button type="button" class="buttonpur" value="Refresh" id="" + id + "" onclick="refreshpopup();"
+                                        style="margin: 0px;width: 50;"><i class="fa fa-retweet" aria-hidden="true"></i></button></td>
+                            </tr>
+                        </table>
+
+                        <br>
 
                         <table class="cleantable2" style="width: 100%;">
                             <tr>
@@ -233,7 +243,7 @@
                         </table>
                         <br>
                         <a href="#" class="linkjson" id="exportroute" onclick="exportroutetogeojson();" title="Click twice if not working.">
-                            <p class="linkjsonp"><i class="fa fa-download" aria-hidden="true"></i> Download as feature</p>
+                            <p class="linkjsonp"><i class="fa fa-download" aria-hidden="true"></i> Download as feature (click twice)</p>
                         </a>
                     </div>
 
@@ -270,7 +280,9 @@
 <!-- Source: http://jsnlog.com/ -->
 <script src="js/jsnlog.min.js"></script>
 <script src="js/jsnlog.js"></script>
+<script src="js/modernizr.custom.js"></script>
 <script src="js/classie.js"></script>
+<script src="js/modalEffects.js"></script>
 
 <!-- particles -->
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -294,8 +306,8 @@
 <script src="js/search.js"></script>
 
 <script>
-        new UISearch(document.getElementById('sb-search'));
-    </script>
+    new UISearch(document.getElementById('sb-search'));
+</script>
 
 
 <script>

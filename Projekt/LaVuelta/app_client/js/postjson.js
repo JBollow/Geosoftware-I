@@ -30,13 +30,22 @@ function postjsonsa(data) {
     var bild = $("#jsonbild").val();
     var link = $("#jsonweblink").val();
     var linkname = $("#jsonweblinkname").val();
+    var type = $("#popuptype").val();
+    var capacity = $("#jsoncap").val();
+    var price = $("#jsonprice").val();
 
     // Add a name to the layer
     data.name = name;
 
     var properties = {
-        popupContent: "<h2>" + name + "</h2><hr><img style='max-width:200px;max-height:100%;' src=" + bild + "><p style='font-size: 14px;'>" + text + "<br><br><a target='_blank' href=" + link + ">" + linkname + "</a></p>"
-    };
+        picture: bild,
+        text: text,
+        link: link,
+        linkname: linkname,
+        type: type,
+        capacity: capacity,
+        price: price
+    }
 
     // Add properties
     data.properties = properties;

@@ -60,6 +60,104 @@ function getstage() {
                         var id = entry._id;
                         var name = entry.geojson.name;
                         var geojsonLayer = L.geoJSON(entry.geojson);
+                        var bild = entry.geojson.properties.picture;
+                        var text = entry.geojson.properties.text;
+                        var link = entry.geojson.properties.link;
+                        var linkname = entry.geojson.properties.linkname;
+                        var type = entry.geojson.properties.type;
+                        var capacity = entry.geojson.properties.capacity;
+                        var price = entry.geojson.properties.price;
+                        var typeinfo = "";
+
+                        // JSNLog
+                        logger.info("link");
+                        logger.info(link);
+
+                        var ishttp = link.indexOf("https://" || "http://" || "HTTPS://" || "HTTP://");
+
+                        // JSNLog
+                        logger.info("ishttp");
+                        logger.info(ishttp);
+
+                        // URL check for HTTP:
+                        if (ishttp == 0) {
+
+                            link = link;
+                            // JSNLog
+                            logger.info("link mit");
+                            logger.info(link);
+
+                        } else {
+
+                            link = "http://" + link;
+                            // JSNLog
+                            logger.info("link ohne");
+                            logger.info(link);
+
+                        }
+
+                        var popup = "<h2>" + name + "</h2><hr><img style='max-width:200px;max-height:100%;' src='" + bild + "'><p style='font-size: 14px;'>" + text + "<br><br><a target='_blank' href='" + link + "'>" + linkname + "</a><br><br>" + typeinfo + "</p><hr><h2>Navigation</h2><table class='cleantable'><tr><td><button type='button' class='buttonpur' value='Start here!' id='" + id + "' onclick='navstart(id);' style='margin: 0px;width: 100%;'><i class='fa fa-arrow-up' aria-hidden='true'></i> Start here!</button></td><td style='padding: 0px 0px 0px 1px;'><button type='button' class='buttonpur' value='End here!' id='" + id + "' onclick='navend(id);' style='margin: 0px;width: 100%;'><i class='fa fa-arrow-down' aria-hidden='true'></i> End here!</button></td></tr></table><br><button type='button' class='buttonpur' value='Nearest parkingspace!' id='" + id + "' onclick='navpark(id)' style='margin: 0px;width: 100%;'><i class='fa fa-car' aria-hidden='true'></i> Nearest parkingspace!</button>";
+
+                        // Different popups depending on type
+                        if (type == "default") {
+
+                            typeinfo = "";
+
+                        } else {
+
+                            if (type == "parkingplace") {
+
+                                typeinfo = "<b>Capacity: " + capacity + " spots</b><br><b>Price: " + price + " €</b>";
+
+                                var popup = "<h2>" + name + "</h2><hr><img style='max-width:200px;max-height:100%;' src='" + bild + "'><p style='font-size: 14px;'>" + text + "<br><br><a target='_blank' href='" + link + "'>" + linkname + "</a><br><br>" + typeinfo + "</p><hr><h2>Navigation</h2><table class='cleantable'><tr><td><button type='button' class='buttonpur' value='Start here!' id='" + id + "' onclick='navstart(id);' style='margin: 0px;width: 100%;'><i class='fa fa-arrow-up' aria-hidden='true'></i> Start here!</button></td><td style='padding: 0px 0px 0px 1px;'><button type='button' class='buttonpur' value='End here!' id='" + id + "' onclick='navend(id);' style='margin: 0px;width: 100%;'><i class='fa fa-arrow-down' aria-hidden='true'></i> End here!</button></td></tr></table>";
+
+
+                            } else {
+
+                                if (type == "hotel") {
+
+                                    typeinfo = "<b>Capacity: " + capacity + " room</b><br><b>Price: " + price + " €</b>";
+
+                                } else {
+
+                                    typeinfo = "";
+
+                                }
+
+                            }
+
+                        }
+
+                        // JSNLog
+                        logger.info("link");
+                        logger.info(link);
+
+                        var ishttp = link.indexOf("https://" || "http://" || "HTTPS://" || "HTTP://");
+
+                        // JSNLog
+                        logger.info("ishttp");
+                        logger.info(ishttp);
+
+                        // URL check for HTTP:
+                        if (ishttp == 0) {
+
+                            link = link;
+                            // JSNLog
+                            logger.info("link mit");
+                            logger.info(link);
+
+                        } else {
+
+                            link = "http://" + link;
+                            // JSNLog
+                            logger.info("link ohne");
+                            logger.info(link);
+
+                        }
+
+                        // JSNLog
+                        logger.info("typeinfo");
+                        logger.info(typeinfo);
 
                         controlLayers.removeLayer(geojsonLayer);
 
@@ -67,7 +165,7 @@ function getstage() {
                         stages.addLayer(geojsonLayer);
 
                         // Add popup
-                        geojsonLayer.bindPopup(entry.geojson.properties.popupContent, {
+                        geojsonLayer.bindPopup(popup, {
                             maxWidth: "auto"
                         });
                     });
@@ -148,6 +246,104 @@ function importstage(event) {
             var id = entry._id;
             var name = entry.geojson.name;
             var geojsonLayer = L.geoJSON(entry.geojson);
+            var bild = entry.geojson.properties.picture;
+            var text = entry.geojson.properties.text;
+            var link = entry.geojson.properties.link;
+            var linkname = entry.geojson.properties.linkname;
+            var type = entry.geojson.properties.type;
+            var capacity = entry.geojson.properties.capacity;
+            var price = entry.geojson.properties.price;
+            var typeinfo = "";
+
+            // JSNLog
+            logger.info("link");
+            logger.info(link);
+
+            var ishttp = link.indexOf("https://" || "http://" || "HTTPS://" || "HTTP://");
+
+            // JSNLog
+            logger.info("ishttp");
+            logger.info(ishttp);
+
+            // URL check for HTTP:
+            if (ishttp == 0) {
+
+                link = link;
+                // JSNLog
+                logger.info("link mit");
+                logger.info(link);
+
+            } else {
+
+                link = "http://" + link;
+                // JSNLog
+                logger.info("link ohne");
+                logger.info(link);
+
+            }
+
+            var popup = "<h2>" + name + "</h2><hr><img style='max-width:200px;max-height:100%;' src='" + bild + "'><p style='font-size: 14px;'>" + text + "<br><br><a target='_blank' href='" + link + "'>" + linkname + "</a><br><br>" + typeinfo + "</p><hr><h2>Navigation</h2><table class='cleantable'><tr><td><button type='button' class='buttonpur' value='Start here!' id='" + id + "' onclick='navstart(id);' style='margin: 0px;width: 100%;'><i class='fa fa-arrow-up' aria-hidden='true'></i> Start here!</button></td><td style='padding: 0px 0px 0px 1px;'><button type='button' class='buttonpur' value='End here!' id='" + id + "' onclick='navend(id);' style='margin: 0px;width: 100%;'><i class='fa fa-arrow-down' aria-hidden='true'></i> End here!</button></td></tr></table><br><button type='button' class='buttonpur' value='Nearest parkingspace!' id='" + id + "' onclick='navpark(id)' style='margin: 0px;width: 100%;'><i class='fa fa-car' aria-hidden='true'></i> Nearest parkingspace!</button>";
+
+            // Different popups depending on type
+            if (type == "default") {
+
+                typeinfo = "";
+
+            } else {
+
+                if (type == "parkingplace") {
+
+                    typeinfo = "<b>Capacity: " + capacity + " spots</b><br><b>Price: " + price + " €</b>";
+
+                    var popup = "<h2>" + name + "</h2><hr><img style='max-width:200px;max-height:100%;' src='" + bild + "'><p style='font-size: 14px;'>" + text + "<br><br><a target='_blank' href='" + link + "'>" + linkname + "</a><br><br>" + typeinfo + "</p><hr><h2>Navigation</h2><table class='cleantable'><tr><td><button type='button' class='buttonpur' value='Start here!' id='" + id + "' onclick='navstart(id);' style='margin: 0px;width: 100%;'><i class='fa fa-arrow-up' aria-hidden='true'></i> Start here!</button></td><td style='padding: 0px 0px 0px 1px;'><button type='button' class='buttonpur' value='End here!' id='" + id + "' onclick='navend(id);' style='margin: 0px;width: 100%;'><i class='fa fa-arrow-down' aria-hidden='true'></i> End here!</button></td></tr></table>";
+
+
+                } else {
+
+                    if (type == "hotel") {
+
+                        typeinfo = "<b>Capacity: " + capacity + " room</b><br><b>Price: " + price + " €</b>";
+
+                    } else {
+
+                        typeinfo = "";
+
+                    }
+
+                }
+
+            }
+
+            // JSNLog
+            logger.info("link");
+            logger.info(link);
+
+            var ishttp = link.indexOf("https://" || "http://" || "HTTPS://" || "HTTP://");
+
+            // JSNLog
+            logger.info("ishttp");
+            logger.info(ishttp);
+
+            // URL check for HTTP:
+            if (ishttp == 0) {
+
+                link = link;
+                // JSNLog
+                logger.info("link mit");
+                logger.info(link);
+
+            } else {
+
+                link = "http://" + link;
+                // JSNLog
+                logger.info("link ohne");
+                logger.info(link);
+
+            }
+
+            // JSNLog
+            logger.info("typeinfo");
+            logger.info(typeinfo);
 
             controlLayers.removeLayer(geojsonLayer);
 
@@ -155,7 +351,7 @@ function importstage(event) {
             stages.addLayer(geojsonLayer);
 
             // Add popup
-            geojsonLayer.bindPopup(entry.geojson.properties.popupContent, {
+            geojsonLayer.bindPopup(popup, {
                 maxWidth: "auto"
             });
         });
@@ -231,6 +427,128 @@ function shifter(array) {
     var endtext = array[0];
     array.shift();
 
+    var startname = array[0];
+    array.shift();
+
+    var endname = array[0];
+    array.shift();
+
+    // JSNLog
+    logger.info("endurl");
+    logger.info(endurl);
+
+    var ishttpend = endurl.indexOf("https://" || "http://" || "HTTPS://" || "HTTP://");
+
+    // JSNLog
+    logger.info("ishttpend");
+    logger.info(ishttpend);
+
+    // URL check for HTTP:
+    if (ishttpend == 0) {
+
+        endurl = endurl;
+        // JSNLog
+        logger.info("endurl mit");
+        logger.info(endurl);
+
+    } else {
+
+        endurl = "http://" + endurl;
+        // JSNLog
+        logger.info("endurl ohne");
+        logger.info(endurl);
+
+    }
+
+    // JSNLog
+    logger.info("starturl");
+    logger.info(starturl);
+
+    var ishttpstart = starturl.indexOf("https://" || "http://" || "HTTPS://" || "HTTP://");
+
+    // JSNLog
+    logger.info("ishttpstart");
+    logger.info(ishttpstart);
+
+    // URL check for HTTP:
+    if (ishttpstart == 0) {
+
+        starturl = starturl;
+        // JSNLog
+        logger.info("starturl mit");
+        logger.info(starturl);
+
+    } else {
+
+        starturl = "http://" + starturl;
+        // JSNLog
+        logger.info("starturl ohne");
+        logger.info(starturl);
+
+    }
+
     $("#stageinfobox").show();
-    $('#stageinfo').replaceWith("<table class='cleantable2' style='width:100%;'> <tr> <td style='width:49%;'> <div class='box boxscroll' style='height:220px;width: 100%; margin-bottom:20px'> <h2 style='font-size: 22px; margin-top: 10px;'>Start:</h2><br> <table class='cleantable2' style='width: 100%;'> <tr> <td> <img style='width:100%;' src=" + startpic + "></td> </tr> <tr> <td>&nbsp;</td> </tr> <tr> <td><a target='_blank' class='linkjson' href=" + starturl + ">" + starturlname + "</a> </td> </tr> <tr> <td>&nbsp;</td> </tr> <tr> <td>Time and date:</td> <td>" + startdate + " </td> </tr> <tr> <td>&nbsp;</td></tr> <tr> <td>starttext </td> </tr> </table> </div> </td> <td style='width:1%;'></td> <td style='width:49%;'><div class='box boxscroll' style='height:220px;width: 100%; margin-bottom:20px'><h2 style='font-size: 22px; margin-top: 10px;'>End:</h2><br> <table class='cleantable2' style='width: 100%;'> <tr> <td> <img style='width:100%;' src=" + endpic + "> </td> </tr> <tr> <td>&nbsp;</td> </tr> <tr> <td><a target='_blank' class='linkjson' href=" + endurl + ">" + endurlname + "</a> </td> </tr> <tr> <td>&nbsp;</td> </tr> <tr> <td>Time and date:</td> <td>" + enddate + " </td> </tr> <tr> <td>&nbsp;</td> </tr> <tr> <td>endtext </td> </tr> </table></div></td> </tr> </table>");
+    $('#stageinfo').replaceWith("<table class='cleantable2' style='width:100%;'> <tr> <td style='width:49%;'> <div class='box boxscroll' style='height:220px;width: 100%; margin-bottom:20px'> <h2 style='font-size: 22px; margin-top: 10px;'>Start: <b>" + startname + "</b></h2><br> <table class='cleantable2' style='width: 100%;'> <tr> <td> <img style='width:100%;' src='" + startpic + "'></td> </tr> <tr> <td>&nbsp;</td> </tr> <tr> <td><a target='_blank' class='linkjson' href='" + starturl + "'>" + starturlname + "</a> </td> </tr> <tr> <td>&nbsp;</td> </tr> <tr> <td>Time and date:</td> <td>" + startdate + " </td> </tr> <tr> <td>&nbsp;</td></tr> <tr> <td>" + starttext + " <br><br><br><b>Wikipedia:<b/><br><br><div id='articlestart'></div></td> </tr> </table> </div> </td> <td style='width:1%;'></td> <td style='width:49%;'><div class='box boxscroll' style='height:220px;width: 100%; margin-bottom:20px'><h2 style='font-size: 22px; margin-top: 10px;'>End: <b>" + endname + "</b></h2><br> <table class='cleantable2' style='width: 100%;'> <tr> <td> <img style='width:100%;' src='" + endpic + "'> </td> </tr> <tr> <td>&nbsp;</td> </tr> <tr> <td><a target='_blank' class='linkjson' href='" + endurl + "'>" + endurlname + "</a> </td> </tr> <tr> <td>&nbsp;</td> </tr> <tr> <td>Time and date:</td> <td>" + enddate + " </td> </tr> <tr> <td>&nbsp;</td> </tr> <tr> <td>" + endtext + " <br><br><br><b>Wikipedia:<b/><br><br><div id='articleend'></div></td></tr></table></div></td></tr></table>");
+
+    // Using Wikipedia Api to get some information
+    // Source:http://www.9bitstudios.com/2014/03/getting-data-from-the-wikipedia-api-using-jquery/
+    $.ajax({
+        type: "GET",
+        url: "http://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=" + startname + "&callback=?",
+        contentType: "application/json; charset=utf-8",
+        async: false,
+        dataType: "json",
+        success: function (data, textStatus, jqXHR) {
+
+            var markup = data.parse.text["*"];
+            var blurb = $('<div></div>').html(markup);
+
+            // remove links as they will not work
+            blurb.find('a').each(function () {
+                $(this).replaceWith($(this).html());
+            });
+
+            // remove any references
+            blurb.find('sup').remove();
+
+            // remove cite error
+            blurb.find('.mw-ext-cite-error').remove();
+
+            logger.info("blurb");
+            logger.info(blurb);
+
+            $('#articlestart').html($(blurb).find('p'));
+
+        },
+        error: function (errorMessage) {}
+    });
+
+    $.ajax({
+        type: "GET",
+        url: "http://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=" + endname + "&callback=?",
+        contentType: "application/json; charset=utf-8",
+        async: false,
+        dataType: "json",
+        success: function (data, textStatus, jqXHR) {
+
+            var markup = data.parse.text["*"];
+            var blurb = $('<div></div>').html(markup);
+
+            // remove links as they will not work
+            blurb.find('a').each(function () {
+                $(this).replaceWith($(this).html());
+            });
+
+            // remove any references
+            blurb.find('sup').remove();
+
+            // remove cite error
+            blurb.find('.mw-ext-cite-error').remove();
+
+            $('#articleend').html($(blurb).find('p'));
+
+        },
+        error: function (errorMessage) {}
+    });
+
 };
