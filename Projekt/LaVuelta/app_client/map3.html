@@ -129,7 +129,7 @@
                         <div id="sb-search" class="sb-search">
                             <form>
                                 <input class="sb-search-input" placeholder="Enter your search term..." type="search" value="" name="search" id="search">
-                                <input class="sb-search-submit" type="submit" value="">
+                                <input class="sb-search-submit" type="submit" onclick="mysearch($('#search').val())">
                                 <span class="sb-icon-search"></span>
                             </form>
                         </div>
@@ -243,7 +243,7 @@
                         </table>
                         <br>
                         <a href="#" class="linkjson" id="exportroute" onclick="exportroutetogeojson();" title="Click twice if not working.">
-                            <p class="linkjsonp"><i class="fa fa-download" aria-hidden="true"></i> Download as feature (click twice)</p>
+                            <p class="linkjsonp"><i class="fa fa-download" aria-hidden="true"></i> Download as feature</p>
                         </a>
                     </div>
 
@@ -264,6 +264,50 @@
                 </div>
             </div>
         </div>
+
+        <!-- /container -->
+        <div class="md-overlay"></div>
+        <!-- the overlay element -->
+
+        <!-- open/close -->
+        <div class="overlay overlay-contentscale" style="overflow: hidden;">
+            <div class="row">
+                <button type="button" class="overlay-close" style="margin-top:0px;">Close</button><br><br><br><br>
+            </div>
+            <div class="row">
+                <div style="margin: 20px;padding-top: 100px;">
+
+                    <!-- Bodycontainer -->
+                    <div class="container-fluid">
+                        <div class="row">
+
+                            <div class="col-sm-2">
+                            </div>
+
+                            <div class="col-sm-8">
+                                <div class="box">
+                                    <br>
+                                    <h2 style="display:inline;"><b>Searchresults for: </b></h2>
+                                    <h3 id="searchresultkey"></h3>
+
+                                    <br><br><br><br>
+
+                                    <p id="searchresults"></p>
+
+                                    <br><br>
+                                    <a href="#" id="trigger-overlay"></a>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-2">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </body>
 

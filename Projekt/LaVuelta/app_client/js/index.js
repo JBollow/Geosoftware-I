@@ -2,7 +2,7 @@
  *  @author Jan-Patrick Bollow 349891
  */
 
-var express = require('express');
+const express = require('express');
 var router = express.Router();
 
 // I didnt add any logger to my nodejs
@@ -54,9 +54,6 @@ router.post('/postjson', function (req, res) {
   });
 });
 
-
-// New code using routecollection
-
 /* GETjson 
    handles GET request 
 */
@@ -107,10 +104,14 @@ router.post('/postroute', function (req, res) {
 // Delete json
 router.get('/deletejson/:id', function (req, res) {
 
+  // Set our internal DB variable
   var db = req.db;
 
-  var uid = req.params.id.toString();
+  // Set our collection
   var collection = db.get('layercollection');
+
+  // Set our id
+  var uid = req.params.id.toString();
 
   collection.remove({
     "_id": uid
@@ -127,10 +128,14 @@ router.get('/deletejson/:id', function (req, res) {
 // Delete route
 router.get('/deleteroute/:id', function (req, res) {
 
+  // Set our internal DB variable
   var db = req.db;
 
-  var uid = req.params.id.toString();
+  // Set our collection
   var collection = db.get('routecollection');
+
+  // Set our id
+  var uid = req.params.id.toString();
 
   collection.remove({
     "_id": uid
@@ -147,7 +152,10 @@ router.get('/deleteroute/:id', function (req, res) {
 // Delete all json
 router.get('/deletealljson', function (req, res) {
 
+  // Set our internal DB variable
   var db = req.db;
+
+  // Set our collection
   var collection = db.get('layercollection');
 
   collection.remove({}, function (err, result) {
@@ -163,7 +171,10 @@ router.get('/deletealljson', function (req, res) {
 // Delete all route
 router.get('/deleteallroute', function (req, res) {
 
+  // Set our internal DB variable
   var db = req.db;
+
+  // Set our collection
   var collection = db.get('routecollection');
 
   collection.remove({}, function (err, result) {
@@ -226,7 +237,10 @@ router.post('/poststage', function (req, res) {
 // Delete all stages
 router.get('/deleteallstages', function (req, res) {
 
+  // Set our internal DB variable
   var db = req.db;
+
+  // Set our collection
   var collection = db.get('stagecollection');
 
   collection.remove({}, function (err, result) {
@@ -242,10 +256,14 @@ router.get('/deleteallstages', function (req, res) {
 // Delete stage
 router.get('/deletestage/:id', function (req, res) {
 
+  // Set our internal DB variable
   var db = req.db;
 
-  var uid = req.params.id.toString();
+  // Set our collection
   var collection = db.get('stagecollection');
+
+  // Set our id
+  var uid = req.params.id.toString();
 
   collection.remove({
     "_id": uid
@@ -268,6 +286,7 @@ router.get('/route/:id', function (req, res) {
   // Set our collection
   var collection = db.get('routecollection');
 
+  // Set our id
   var uid = req.params.id.toString();
 
   // Query from our DB
@@ -288,6 +307,7 @@ router.get('/stage/:id', function (req, res) {
   // Set our collection
   var collection = db.get('stagecollection');
 
+  // Set our id
   var uid = req.params.id.toString();
 
   // Query from our DB

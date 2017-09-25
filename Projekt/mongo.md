@@ -7,6 +7,7 @@
 
 > .\mongod.exe --dbpath "Y:\OneDrive\Dokumente\Uni\Uni Münster\SS17\Geosoftware I\Übung\Projekt\LaVuelta\data"
 
+
 mongod for cmd
 or
 .\mongod.exe for powershell

@@ -1,0 +1,35 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'c:\\Program Files (x86)\\nodejs\\node.exe',
+1 verbose cli   'c:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'start' ]
+2 info using npm@3.10.10
+3 info using node@v6.11.0
+4 verbose run-script [ 'prestart', 'start', 'poststart' ]
+5 info lifecycle LaVuelta@0.0.0~prestart: LaVuelta@0.0.0
+6 silly lifecycle LaVuelta@0.0.0~prestart: no script for prestart, continuing
+7 info lifecycle LaVuelta@0.0.0~start: LaVuelta@0.0.0
+8 verbose lifecycle LaVuelta@0.0.0~start: unsafe-perm in lifecycle true
+9 verbose lifecycle LaVuelta@0.0.0~start: PATH: c:\Program Files (x86)\nodejs\node_modules\npm\bin\node-gyp-bin;Y:\OneDrive\Dokumente\Uni\Uni Münster\SS17\Geosoftware I\Übung\Projekt\LaVuelta\node_modules\.bin;c:\programdata\oracle\java\javapath;c:\windows\system32;c:\windows;c:\windows\system32\wbem;c:\windows\system32\windowspowershell\v1.0\;c:\windows\system32\config\systemprofile\.dnx\bin;c:\program files\microsoft dnx\dnvm\;c:\program files\microsoft sql server\120\tools\binn\;c:\program files\microsoft sql server\130\tools\binn\;c:\program files (x86)\microsoft emulator manager\1.0\;c:\program files (x86)\skype\phone\;c:\program files\cmake\bin;c:\program files\git\cmd;c:\program files\putty\;c:\program files (x86)\nodejs\;c:\windows\system32;c:\windows;c:\windows\system32\wbem;c:\windows\system32\windowspowershell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Users\Jan_P\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Java\jdk1.8.0_111\bin;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Program Files\CMake\bin;C:\Users\Jan_P\AppData\Roaming\npm;
+10 verbose lifecycle LaVuelta@0.0.0~start: CWD: Y:\OneDrive\Dokumente\Uni\Uni Münster\SS17\Geosoftware I\Übung\Projekt\LaVuelta
+11 silly lifecycle LaVuelta@0.0.0~start: Args: [ '/d /s /c', 'node ./bin/www' ]
+12 verbose stack Error: kill ENOSYS
+12 verbose stack     at exports._errnoException (util.js:1018:11)
+12 verbose stack     at process.kill (internal/process.js:190:13)
+12 verbose stack     at process.listener (c:\Program Files (x86)\nodejs\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:86:15)
+12 verbose stack     at emitNone (events.js:91:20)
+12 verbose stack     at process.emit (events.js:185:7)
+12 verbose stack     at processEmit (c:\Program Files (x86)\nodejs\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:146:32)
+12 verbose stack     at processEmit (c:\Program Files (x86)\nodejs\node_modules\npm\node_modules\npm-registry-client\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:146:32)
+12 verbose stack     at Signal.wrap.onsignal (internal/process.js:217:44)
+13 verbose cwd Y:\OneDrive\Dokumente\Uni\Uni Münster\SS17\Geosoftware I\Übung\Projekt\LaVuelta
+14 error Windows_NT 10.0.15063
+15 error argv "c:\\Program Files (x86)\\nodejs\\node.exe" "c:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "start"
+16 error node v6.11.0
+17 error npm  v3.10.10
+18 error code ENOSYS
+19 error errno ENOSYS
+20 error syscall kill
+21 error kill ENOSYS
+22 error If you need help, you may report this error at:
+22 error     <https://github.com/npm/npm/issues>
+23 verbose exit [ 1, true ]

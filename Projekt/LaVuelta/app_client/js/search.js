@@ -4,6 +4,83 @@
 
 'use strict';
 
+function mysearch(term) {
+
+	var searchresultkey = $('#searchresultkey');
+	var searchresults = $('#searchresults');
+
+	// Triggering my overlay
+	document.getElementById("trigger-overlay").click();
+
+	// Saving all responses
+	var features = [];
+	var routes = [];
+	var stages = [];
+
+	searchresultkey.replaceWith("<h2 id='searchresultkey' style='display:inline;'> " + term + "</h2>");
+
+	$.ajax({
+		type: "GET",
+		url: "http://localhost:3000/getjson",
+		success: function (response) {
+
+			features = response;
+
+			// JSNLog
+			logger.info("features");
+			logger.info(features);
+			$.ajax({
+				type: "GET",
+				url: "http://localhost:3000/getroute",
+				success: function (response) {
+
+					routes = response;
+
+					// JSNLog
+					logger.info("routes");
+					logger.info(routes);
+				}
+			});
+			$.ajax({
+				type: "GET",
+				url: "http://localhost:3000/getstage",
+				success: function (response) {
+					$.ajax({
+						type: "GET",
+						url: "http://localhost:3000/getjson",
+						success: function (response) {
+
+							stages = response;
+
+							// JSNLog
+							logger.info("stages");
+							logger.info(stages);
+
+							// Combine all arrays
+							var all = features.concat(routes).concat(stages);
+
+							// JSNLog
+							logger.info("all");
+							logger.info(all);
+
+							// Not completed yet
+							// all.find(searchresultkey);
+
+							// Inserting my searchresults
+							searchresults.replaceWith("<h2 id='searchresults' style='display:inline;'> No searchresults, search isn't working.</h2>");
+
+
+						}
+					});
+
+				}
+			});
+		}
+	});
+
+
+
+};
 
 // Source: https://tympanus.net/codrops/2013/06/26/expanding-search-bar-deconstructed/
 ;

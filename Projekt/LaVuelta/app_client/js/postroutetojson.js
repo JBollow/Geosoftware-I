@@ -228,89 +228,102 @@ function exportroutetogeojson() {
 		logger.info('Name is!');
 		logger.info(name);
 
-		if (name != "") {
+		// Not needed for geojson only
+		// if (name != "") {
 
-			// Get all GeoJSON names from our DB using our GET
-			$.ajax({
-				type: "GET",
-				url: "http://localhost:3000/getjson",
-				success: function (response) {
-					// JSNLog
-					logger.info('Get successful!');
-					logger.info(response);
-					// Using a forEach method iterating over the array of nested objects
-					response.forEach(function (entry) {
-						namearray.push(entry.geojson.name);
-					});
+		// // Get all GeoJSON names from our DB using our GET
+		// $.ajax({
+		// 	type: "GET",
+		// 	url: "http://localhost:3000/getjson",
+		// 	success: function (response) {
+		// 		// JSNLog
+		// 		logger.info('Get successful!');
+		// 		logger.info(response);
+		// 		// Using a forEach method iterating over the array of nested objects
+		// 		response.forEach(function (entry) {
+		// 			namearray.push(entry.geojson.name);
+		// 		});
 
-					if (routeactive) {
+		if (routeactive) {
 
-						// JSNLog
-						logger.info("routeactive!");
+			// JSNLog
+			logger.info("routeactive!");
 
-						var routejson = RouteToGeoJSON(routeactive);
+			var routejson = RouteToGeoJSON(routeactive);
 
-						errors = geojsonhint.hint(routejson);
-						logger.info("Errors:");
-						logger.info(errors);
+			errors = geojsonhint.hint(routejson);
+			logger.info("Errors:");
+			logger.info(errors);
 
-						if (errors === undefined || errors.length == 0) {
+			if (errors === undefined || errors.length == 0) {
 
-							routejson.name = $("#jsonname").val();
 
-							var properties = {
-								picture: bild,
-								text: text,
-								link: link,
-								linkname: linkname,
-								type: "route",
-								capacity: "",
-								price: ""
-							}
+				// No geojson format if enabled
 
-							// Add properties
-							routejson.properties = properties;
+				// routejson.name = $("#jsonname").val();
 
-							data = routejson;
+				// var properties = {
+				// 	picture: bild,
+				// 	text: text,
+				// 	link: link,
+				// 	linkname: linkname,
+				// 	type: "route",
+				// 	capacity: "",
+				// 	price: ""
+				// }
 
-							// Stringify the GeoJson
-							var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
+				// Add properties
+				// routejson.properties = properties;
 
-							// Create export
-							document.getElementById('exportroute').setAttribute('href', 'data:' + convertedData);
-							document.getElementById('exportroute').setAttribute('download', 'route.geojson');
+				data = routejson;
 
-							return false;
+				// Stringify the GeoJson
+				var convertedData = encodeURIComponent(JSON.stringify(data));
 
-						} else {
-							sweetAlert('Oops...', 'There is something wrong with with this GeoJSON!', 'error');
-							// JSNLog
-							logger.info('Error in GeoJSON!');
-						}
+				// Create exportlink for download
+				var exportlink = document.createElement('a');
 
-					} else {
-						logger.error("routeactive is false :(");
-						sweetAlert("Oops...", "The routing service has a problem, please try again later.", "error");
-					}
+				// Add routejson to download
+				exportlink.href = 'data:application/vnd.geo+json,' + convertedData;
+				exportlink.target = '_blank';
+				exportlink.download = "route.geojson";
+				document.body.appendChild(exportlink);
+				exportlink.click();
 
-				},
-				error: function (responsedata) {
-					sweetAlert('Oops...', 'Something went wrong!', 'error');
-					// JSNLog
-					logger.error('Failed in!');
-				},
-				timeout: 3000
-			}).error(function (responsedata) {
-				sweetAlert('Oops...', 'Something went wrong!', 'error');
+				// Removes exportlink after download
+				document.body.removeChild(exportlink);
+
+				return false;
+
+			} else {
+				sweetAlert('Oops...', 'There is something wrong with with this GeoJSON!', 'error');
 				// JSNLog
-				logger.error('Failed out!');
-			});
+				logger.info('Error in GeoJSON!');
+			}
 
 		} else {
-			// JSNLog
-			logger.error('No name', name);
-			sweetAlert('No featurename!', 'Please name your feature.', 'error');
+			logger.error("routeactive is false :(");
+			sweetAlert("Oops...", "The routing service has a problem, please try again later.", "error");
 		}
+
+		// 	},
+		// 	error: function (responsedata) {
+		// 		sweetAlert('Oops...', 'Something went wrong!', 'error');
+		// 		// JSNLog
+		// 		logger.error('Failed in!');
+		// 	},
+		// 	timeout: 3000
+		// }).error(function (responsedata) {
+		// 	sweetAlert('Oops...', 'Something went wrong!', 'error');
+		// 	// JSNLog
+		// 	logger.error('Failed out!');
+		// });
+
+		// } else {
+		// 	// JSNLog
+		// 	logger.error('No name', name);
+		// 	sweetAlert('No featurename!', 'Please name your feature.', 'error');
+		// }
 
 	}
 

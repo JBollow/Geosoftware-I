@@ -27,7 +27,7 @@ function refreshpopup() {
     $("#jsonprice").val('');    
  }
 
- // modernizr overlay
+ // modernizr overlay for search results
  (function () {
 	var container = document.querySelector('div.container'),
 		triggerBttn = document.getElementById('trigger-overlay'),

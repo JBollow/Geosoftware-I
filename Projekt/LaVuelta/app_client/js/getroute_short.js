@@ -40,6 +40,7 @@ function getrouteshort() {
                 $('#legendbtn').replaceWith("<input style='width: 100%;' type='button' class='button' value='&#x21bb; Remove all routes' onclick='removeroute();control.hide();'>");
             }
         },
+        
 
         error: function (responsedata) {
 

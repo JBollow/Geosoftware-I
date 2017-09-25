@@ -6,7 +6,7 @@
 $(window).on("resize", function () {
     var x;
     if ($(window).width() > 767) {
-        x = (($(window).height() - 213) * 0.33);        
+        x = (($(window).height() - 213) * 0.33);
         $('.boxscroll').css('max-height', x + 'px');
     } else {
         x = 300;
@@ -17,7 +17,7 @@ $(window).on("resize", function () {
 $(window).on("resize", function () {
     var x;
     if ($(window).width() > 767) {
-        x = (($(window).height() - 336));        
+        x = (($(window).height() - 336));
         $('.boxscroll2').css('max-height', x + 'px');
     } else {
         x = 300;
@@ -28,11 +28,11 @@ $(window).on("resize", function () {
 $(window).on("resize", function () {
     var x;
     if ($(window).width() > 1906) {
-        x = (($(window).height() - 561));        
+        x = (($(window).height() - 561));
         $('.boxscroll1').css('max-height', x + 'px');
     } else {
         if ($(window).width() > 1211) {
-            x = (($(window).height() - 601));            
+            x = (($(window).height() - 601));
             $('.boxscroll1').css('max-height', x + 'px');
         } else {
             if ($(window).width() > 1179) {

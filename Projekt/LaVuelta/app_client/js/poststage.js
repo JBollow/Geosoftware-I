@@ -275,7 +275,9 @@ document.getElementById('exportstage').onclick = function (e) {
             }
 
             var data = {
-                "stage": array
+                "geojson": {
+                    "stage": array
+                }
             };
 
             // Stringify the GeoJson
@@ -285,10 +287,18 @@ document.getElementById('exportstage').onclick = function (e) {
             logger.info("convertedData");
             logger.info(convertedData);
 
-            // Create export
-            document.getElementById('exportstage').setAttribute('href', 'data:' + convertedData);
-            document.getElementById('exportstage').setAttribute('download', 'stage.json');
+            // Create exportlink for download
+            var exportlink = document.createElement('a');
 
+            // Add stageobjekt to download
+            exportlink.href = 'data:application/vnd.geo+json,' + convertedData;
+            exportlink.target = '_blank';
+            exportlink.download = "stage.json";
+            document.body.appendChild(exportlink);
+            exportlink.click();
+
+            // Removes exportlink after download
+            document.body.removeChild(exportlink);
         },
         error: function (responsedata) {
             sweetAlert('Oops...', 'Something went wrong!', 'error');
@@ -301,8 +311,6 @@ document.getElementById('exportstage').onclick = function (e) {
         // JSNLog
         logger.error('Failed out!', response);
     });
-
-
 };
 
 // Refresh Start

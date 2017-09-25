@@ -121,7 +121,7 @@
                         <div id="sb-search" class="sb-search">
                             <form>
                                 <input class="sb-search-input" placeholder="Enter your search term..." type="search" value="" name="search" id="search">
-                                <input class="sb-search-submit" type="submit" value="">
+                                <input class="sb-search-submit" type="submit" onclick="mysearch($('#search').val())">
                                 <span class="sb-icon-search"></span>
                             </form>
                         </div>
@@ -153,7 +153,8 @@
                                 <td>
                                     <h2 style="font-size: 22px; margin-top: 10px;">Popupconfigurator:</h2>
                                 </td>
-                                <td style="vertical-align: top; text-align: right"><button type="button" class="buttonpur" value="Refresh" id="" + id + "" onclick="refreshpopup();" style="margin: 0px;width: 50;"><i class="fa fa-retweet" aria-hidden="true"></i></button></td>
+                                <td style="vertical-align: top; text-align: right"><button type="button" class="buttonpur" value="Refresh" id="" + id + "" onclick="refreshpopup();"
+                                        style="margin: 0px;width: 50;"><i class="fa fa-retweet" aria-hidden="true"></i></button></td>
                             </tr>
                         </table>
 
@@ -302,6 +303,50 @@
                 </div>
             </div>
         </div>
+
+        <!-- /container -->
+        <div class="md-overlay"></div>
+        <!-- the overlay element -->
+
+        <!-- open/close -->
+        <div class="overlay overlay-contentscale" style="overflow: hidden;">
+            <div class="row">
+                <button type="button" class="overlay-close" style="margin-top:0px;">Close</button><br><br><br><br>
+            </div>
+            <div class="row">
+                <div style="margin: 20px;padding-top: 100px;">
+
+                    <!-- Bodycontainer -->
+                    <div class="container-fluid">
+                        <div class="row">
+
+                            <div class="col-sm-2">
+                            </div>
+
+                            <div class="col-sm-8">
+                                <div class="box">
+                                    <br>
+                                    <h2 style="display:inline;"><b>Searchresults for: </b></h2>
+                                    <h3 id="searchresultkey"></h3>
+
+                                    <br><br><br><br>
+
+                                    <p id="searchresults"></p>
+
+                                    <br><br>
+                                    <a href="#" id="trigger-overlay"></a>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-2">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </body>
 

@@ -27,6 +27,12 @@
 #                     open localhost:3000 in the browser of your choice       #
 #                                                                             #
 #                                                                             #
+#           Optional:                                                         #
+#                     There is still data in the DB for testing               #
+#                     There is a TestStage.json that can be imported          #
+#                                                                             #
+#                                                                             #
+#                                                                             #
 #             Any problems?                                                   #
 #                                                                             #
 #             Ask me: janpatrickbollow@uni-muenster.de                        #

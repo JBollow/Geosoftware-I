@@ -8,7 +8,7 @@ cmd.exe > npm install -g express-generator
 
 > cmd.exe Ausführen in "*\"
 
-express LaVuelta
+express leaflet_map
 
 // edit package.json to:
 {
@@ -32,7 +32,7 @@ express LaVuelta
 }
 
 
-> cmd.exe Ausfuehren in "*\LaVuelta"
+> cmd.exe Ausfuehren in "*\leaflet_map"
 
 npm install
 
@@ -42,6 +42,6 @@ mkdir data
 
 ## Oder falls alles schon installiert ist, einfach nur
 
-> cmd.exe Ausfuehren in "*\LaVuelta"
+> cmd.exe Ausfuehren in "*\leaflet_map"
 
 npm start
